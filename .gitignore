@@ -1,0 +1,11 @@
+# Malware found in repo root - hidden SEO link/redirect injector, do not commit
+wp.php
+
+# Logs
+error_log
+
+# Backups
+index.php.bak
+
+# Secrets - real DB credentials, use config/connect.php.example as a template
+config/connect.php

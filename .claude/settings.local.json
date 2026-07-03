@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php --version)",
+      "Bash(mysql --version)",
+      "Bash(where xampp *)",
+      "Bash(where mysql *)",
+      "Read(//c/xampp/**)",
+      "Read(//c//**)"
+    ]
+  }
+}
