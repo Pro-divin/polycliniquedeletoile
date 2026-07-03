@@ -6,6 +6,3 @@ error_log
 
 # Backups
 index.php.bak
-
-# Secrets - real DB credentials, use config/connect.php.example as a template
-config/connect.php
