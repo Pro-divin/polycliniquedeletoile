@@ -1,9 +1,6 @@
 # Malware found in repo root - hidden SEO link/redirect injector, do not commit
 wp.php
 
-# Mail credentials - never commit secrets
-config/mail.php
-
 # Logs
 error_log
 
