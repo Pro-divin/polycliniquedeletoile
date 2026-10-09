@@ -240,7 +240,7 @@ s0.parentNode.insertBefore(s1,s0);
                          <a href="doctor" class="nav-item nav-link">Doctors</a>
                         <a href="contact" class="nav-item nav-link">Contact </a>
                     </div>
-                    <a href="appointment" class="btn btn-primary  text-white py-2 px-4 flex-wrap flex-sm-shrink-0" style="position: relative;font-family:Playfair Display;">Book Appointment.</a>
+                    <a href="appointment" class="btn btn-primary  text-white py-2 px-4 flex-wrap flex-sm-shrink-0" style="position: relative;font-family:Playfair Display;">Book me</a>
                 </div>
             </nav>
 
