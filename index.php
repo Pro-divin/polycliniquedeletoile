@@ -245,14 +245,14 @@ s0.parentNode.insertBefore(s1,s0);
             </nav>
 
             <!-- CT Scan Advertisement Banner Start -->
-            <div class="ct-scan-banner" onclick="document.getElementById('ctScanModal').classList.add('active')" style="cursor:pointer; position:relative; overflow:hidden; background:#050d1a; height:480px;">
-                <img src="1800x1200_ct_scan_machine_bigbead.webp" alt="CT Scan Machine" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0.45;">
-                <div style="position:absolute; inset:0; background:linear-gradient(to right, rgba(5,13,26,0.85) 40%, rgba(5,13,26,0.3) 100%);"></div>
-                <div style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; height:100%; padding:0 60px; max-width:700px;">
-                    <span style="display:inline-block; background:var(--bs-primary); color:#fff; font-size:11px; font-weight:700; letter-spacing:4px; text-transform:uppercase; padding:6px 20px; border-radius:2px; margin-bottom:22px;">Coming Soon</span>
-                    <h2 style="font-family:'Playfair Display', serif; color:#ffffff; font-size:clamp(1.6rem,3.5vw,2.8rem); font-weight:700; letter-spacing:1px; margin:0 0 16px 0; line-height:1.25; text-shadow:0 2px 16px rgba(0,0,0,0.5);">CT Scan Now at<br>Polyclinique de l'Etoile</h2>
-                    <p style="color:rgba(255,255,255,0.8); font-family:'Playfair Display', serif; font-size:clamp(0.95rem,1.8vw,1.1rem); margin:0 0 30px 0; line-height:1.7;">State-of-the-art computed tomography imaging — precision diagnostics for faster, accurate treatment.</p>
-                    <span style="display:inline-block; border:2px solid #fff; color:#fff; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:12px 36px; border-radius:2px; background:rgba(255,255,255,0.08);">Learn More</span>
+            <div class="ct-scan-banner" onclick="document.getElementById('ctScanModal').classList.add('active')" style="cursor:pointer; position:relative; overflow:hidden; height:500px; width:100%;">
+                <img src="1800x1200_ct_scan_machine_bigbead.webp" alt="CT Scan Machine" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;">
+                <div style="position:absolute; inset:0; background:linear-gradient(to right, rgba(0,0,0,0.72) 35%, rgba(0,0,0,0.1) 100%);"></div>
+                <div style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; height:100%; padding:0 60px; max-width:680px;">
+                    <span style="display:inline-block; background:var(--bs-primary); color:#fff; font-size:11px; font-weight:700; letter-spacing:4px; text-transform:uppercase; padding:6px 22px; border-radius:2px; margin-bottom:22px;">Coming Soon</span>
+                    <h2 style="font-family:'Playfair Display', serif; color:#ffffff; font-size:clamp(1.6rem,3.5vw,2.8rem); font-weight:700; letter-spacing:1px; margin:0 0 16px 0; line-height:1.3;">CT Scan Now at<br>Polyclinique de l'Etoile</h2>
+                    <p style="color:rgba(255,255,255,0.85); font-family:'Playfair Display', serif; font-size:clamp(0.95rem,1.8vw,1.05rem); margin:0 0 30px 0; line-height:1.8;">State-of-the-art computed tomography imaging — precision diagnostics for faster, accurate treatment.</p>
+                    <span style="display:inline-block; border:2px solid rgba(255,255,255,0.9); color:#fff; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:12px 36px; border-radius:2px;">Learn More</span>
                 </div>
             </div>
             <!-- CT Scan Advertisement Banner End -->
