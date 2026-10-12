@@ -244,6 +244,66 @@ s0.parentNode.insertBefore(s1,s0);
                 </div>
             </nav>
 
+            <!-- CT Scan Advertisement Banner Start -->
+            <div class="ct-scan-banner" onclick="document.getElementById('ctScanModal').classList.add('active')" style="cursor:pointer; position:relative; overflow:hidden; background:#0a0a0a; max-height:320px; display:flex; align-items:center; justify-content:center;">
+                <img src="1800x1200_ct_scan_machine_bigbead.webp" alt="CT Scan Machine" style="width:100%; max-height:320px; object-fit:cover; opacity:0.55; display:block;">
+                <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;">
+                    <span style="display:inline-block; background:var(--bs-primary); color:#fff; font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:5px 18px; border-radius:2px; margin-bottom:18px;">Coming Soon</span>
+                    <h2 style="font-family:'Playfair Display', serif; color:#ffffff; font-size:clamp(1.4rem,4vw,2.6rem); font-weight:700; letter-spacing:1px; margin:0 0 12px 0; text-shadow:0 2px 12px rgba(0,0,0,0.6);">CT Scan Now Available at Polyclinique de l'Etoile</h2>
+                    <p style="color:rgba(255,255,255,0.82); font-family:'Playfair Display', serif; font-size:clamp(0.9rem,2vw,1.1rem); margin:0 0 22px 0; max-width:600px;">State-of-the-art computed tomography imaging — precision diagnostics for your health.</p>
+                    <span style="display:inline-block; border:1.5px solid #fff; color:#fff; font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:10px 30px; border-radius:2px; transition:background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='transparent'">Learn More</span>
+                </div>
+            </div>
+            <!-- CT Scan Advertisement Banner End -->
+
+            <!-- CT Scan Modal Start -->
+            <div id="ctScanModal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.65); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:20px;" onclick="if(event.target===this){this.classList.remove('active')}">
+                <div style="background:#fff; border-radius:6px; max-width:720px; width:100%; max-height:88vh; overflow-y:auto; position:relative; box-shadow:0 24px 80px rgba(0,0,0,0.35);">
+                    <div style="background:var(--bs-primary); padding:32px 40px 24px; border-radius:6px 6px 0 0; position:relative;">
+                        <button onclick="document.getElementById('ctScanModal').classList.remove('active')" style="position:absolute; top:16px; right:20px; background:rgba(255,255,255,0.2); border:none; color:#fff; width:34px; height:34px; border-radius:50%; font-size:18px; cursor:pointer; line-height:1; display:flex; align-items:center; justify-content:center;">&times;</button>
+                        <span style="display:inline-block; background:rgba(255,255,255,0.2); color:#fff; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; padding:4px 14px; border-radius:2px; margin-bottom:14px;">Coming Soon</span>
+                        <h3 style="font-family:'Playfair Display', serif; color:#fff; font-size:1.8rem; font-weight:700; margin:0;">CT Scan at Polyclinique de l'Etoile</h3>
+                    </div>
+                    <div style="padding:36px 40px;">
+                        <img src="1800x1200_ct_scan_machine_bigbead.webp" alt="CT Scan Machine" style="width:100%; height:200px; object-fit:cover; border-radius:4px; margin-bottom:32px;">
+
+                        <h5 style="font-family:'Playfair Display', serif; color:var(--bs-primary); font-size:1rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; border-left:3px solid var(--bs-primary); padding-left:12px;">What is a CT Scan?</h5>
+                        <p style="color:#444; line-height:1.8; margin-bottom:28px; font-size:0.97rem;">A CT (Computed Tomography) scan uses advanced X-ray technology to produce detailed cross-sectional images of the body. It gives physicians a clear, three-dimensional view of bones, organs, blood vessels, and soft tissues — enabling fast, accurate diagnosis.</p>
+
+                        <h5 style="font-family:'Playfair Display', serif; color:var(--bs-primary); font-size:1rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; border-left:3px solid var(--bs-primary); padding-left:12px;">Benefits &amp; Advantages</h5>
+                        <ul style="color:#444; line-height:2; margin-bottom:28px; padding-left:20px; font-size:0.97rem;">
+                            <li>Rapid, non-invasive imaging with high diagnostic accuracy</li>
+                            <li>Detects tumors, internal bleeding, fractures, and organ abnormalities</li>
+                            <li>Provides detailed 3D views that standard X-rays cannot</li>
+                            <li>Guides treatment planning for surgeons and specialists</li>
+                            <li>Results available quickly for faster clinical decisions</li>
+                            <li>Painless procedure completed in minutes</li>
+                        </ul>
+
+                        <h5 style="font-family:'Playfair Display', serif; color:var(--bs-primary); font-size:1rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; border-left:3px solid var(--bs-primary); padding-left:12px;">Who Needs a CT Scan?</h5>
+                        <ul style="color:#444; line-height:2; margin-bottom:32px; padding-left:20px; font-size:0.97rem;">
+                            <li>Patients with severe or persistent headaches and neurological symptoms</li>
+                            <li>Individuals suspected of internal injuries after trauma or accidents</li>
+                            <li>Cancer patients requiring tumor detection, staging, or monitoring</li>
+                            <li>Patients with chest pain, pulmonary embolism, or heart conditions</li>
+                            <li>Those with abdominal or pelvic pain of unknown origin</li>
+                            <li>Patients preparing for surgical procedures requiring detailed imaging</li>
+                            <li>Anyone referred by a physician for organ or vascular assessment</li>
+                        </ul>
+
+                        <a href="appointment" style="display:inline-block; background:var(--bs-primary); color:#fff; font-family:'Playfair Display', serif; font-size:14px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; padding:14px 36px; border-radius:2px; text-decoration:none;">Book an Appointment</a>
+                    </div>
+                </div>
+            </div>
+            <style>
+                #ctScanModal { display:none; }
+                #ctScanModal.active { display:flex; }
+                .ct-scan-banner:hover img { opacity:0.45; transition:opacity 0.3s; }
+            </style>
+            <script>
+                document.addEventListener('keydown', function(e){ if(e.key==='Escape') document.getElementById('ctScanModal').classList.remove('active'); });
+            </script>
+            <!-- CT Scan Modal End -->
 
             <!-- Carousel Start -->
             <div class="header-carousel owl-carousel">
