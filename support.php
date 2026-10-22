@@ -573,6 +573,33 @@
     </div>
 </div>
 
+<!-- Check Ticket Status Section -->
+<div style="background:#fff; border-top:3px solid var(--primary); padding:40px 16px;">
+    <div style="max-width:600px; margin:0 auto;">
+        <div style="text-align:center; margin-bottom:24px;">
+            <div style="width:52px; height:52px; background:var(--primary-light); border-radius:50%;
+                        display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <i class="fa fa-search" style="font-size:20px; color:var(--primary);"></i>
+            </div>
+            <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:#1a1a2e; margin:0 0 6px;">Check Your Ticket Status</h3>
+            <p style="color:#777; font-size:13.5px; margin:0;">Enter your ticket number to see the latest update from IT.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <input type="text" id="checkTicketId" placeholder="e.g. IT-1001"
+                   style="flex:1; border:1.5px solid #d4dae3; border-radius:7px; padding:11px 14px;
+                          font-size:14px; font-family:'Open Sans',sans-serif; min-width:180px;"
+                   onkeydown="if(event.key==='Enter')checkTicket()">
+            <button onclick="checkTicket()"
+                    style="background:var(--primary); color:#fff; border:none; border-radius:7px;
+                           padding:11px 24px; font-size:14px; font-weight:700; cursor:pointer;
+                           font-family:'Playfair Display',serif; white-space:nowrap;">
+                <i class="fa fa-search me-1"></i> Check Status
+            </button>
+        </div>
+        <div id="ticketStatusResult" style="margin-top:18px; display:none;"></div>
+    </div>
+</div>
+
 <!-- Footer -->
 <div class="support-footer">
     &copy; 2026 <a href="https://www.polycliniquedeletoile.com">Polyclinique de l'Etoile</a> &mdash; IT Support Centre &mdash; Internal Staff Portal
@@ -652,6 +679,58 @@ function resetForm() {
     document.getElementById('formError').style.display = 'none';
     document.getElementById('formPanel').style.display = 'block';
     document.getElementById('successPanel').style.display = 'none';
+}
+
+function checkTicket() {
+    var input = document.getElementById('checkTicketId').value.trim().toUpperCase();
+    var result = document.getElementById('ticketStatusResult');
+    if (!input) {
+        result.style.display = 'block';
+        result.innerHTML = '<div style="background:#fff3f3; border:1px solid #e53935; border-radius:8px; padding:14px 16px; color:#c62828; font-size:13.5px;"><i class="fa fa-exclamation-circle me-2"></i>Please enter a ticket number.</div>';
+        return;
+    }
+    var tickets = loadTickets();
+    var t = tickets.find(function(x){ return x.id.toUpperCase() === input; });
+    if (!t) {
+        result.style.display = 'block';
+        result.innerHTML = '<div style="background:#fff3f3; border:1px solid #e53935; border-radius:8px; padding:14px 16px; color:#c62828; font-size:13.5px;"><i class="fa fa-times-circle me-2"></i>Ticket <strong>' + input + '</strong> not found. Please check the number and try again.</div>';
+        return;
+    }
+
+    var statusColors = {
+        'New':                  { bg:'#E3F2FD', color:'#1565C0', icon:'fa-clock-o' },
+        'Acknowledged':         { bg:'#FFF8E1', color:'#F57F17', icon:'fa-eye' },
+        'In Progress':          { bg:'#E8F5E9', color:'#2E7D32', icon:'fa-cog' },
+        'Waiting for Employee': { bg:'#F3E5F5', color:'#6A1B9A', icon:'fa-hourglass-half' },
+        'Resolved':             { bg:'#EFEBE9', color:'#4E342E', icon:'fa-check-circle' }
+    };
+    var sc = statusColors[t.status] || { bg:'#f5f5f5', color:'#333', icon:'fa-info-circle' };
+    var dt = new Date(t.submitted);
+    var dateStr = dt.toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'})
+                + ' at ' + dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    var updatedStr = t.updatedAt ? 'Last updated: ' + new Date(t.updatedAt).toLocaleString('en-GB') : '';
+
+    result.style.display = 'block';
+    result.innerHTML =
+        '<div style="border:1.5px solid ' + sc.color + '; border-radius:10px; overflow:hidden;">' +
+            '<div style="background:' + sc.bg + '; padding:14px 18px; display:flex; align-items:center; gap:12px;">' +
+                '<i class="fa ' + sc.icon + '" style="font-size:22px; color:' + sc.color + ';"></i>' +
+                '<div>' +
+                    '<div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:' + sc.color + ';">Current Status</div>' +
+                    '<div style="font-size:1.2rem; font-weight:700; color:' + sc.color + '; font-family:\'Playfair Display\',serif;">' + t.status + '</div>' +
+                '</div>' +
+            '</div>' +
+            '<div style="padding:16px 18px; background:#fff;">' +
+                '<div style="display:flex; flex-wrap:wrap; gap:16px; font-size:13px; color:#555; margin-bottom:' + (t.notes ? '14px' : '0') + ';">' +
+                    '<div><strong style="color:#1a1a2e;">Ticket #</strong><br>' + t.id + '</div>' +
+                    '<div><strong style="color:#1a1a2e;">Department</strong><br>' + t.department + '</div>' +
+                    '<div><strong style="color:#1a1a2e;">Category</strong><br>' + t.category + '</div>' +
+                    '<div><strong style="color:#1a1a2e;">Submitted</strong><br>' + dateStr + '</div>' +
+                    (updatedStr ? '<div><strong style="color:#1a1a2e;">Updated</strong><br>' + updatedStr + '</div>' : '') +
+                '</div>' +
+                (t.notes ? '<div style="background:#f8f9ff; border-left:4px solid var(--primary); border-radius:0 6px 6px 0; padding:12px 14px; margin-top:4px;"><strong style="font-size:12px; text-transform:uppercase; letter-spacing:.7px; color:var(--primary);">IT Notes</strong><p style="margin:6px 0 0; font-size:13.5px; color:#1a1a2e;">' + t.notes + '</p></div>' : '') +
+            '</div>' +
+        '</div>';
 }
 </script>
 </body>
