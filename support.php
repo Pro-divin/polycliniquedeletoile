@@ -699,7 +699,7 @@ function checkTicket() {
             var t = data.ticket;
 
     var statusColors = {
-        'New':                  { bg:'#E3F2FD', color:'#1565C0', icon:'fa-clock-o' },
+        'New':                  { bg:'#E8F5E9', color:'#2E7D32', icon:'fa-clock-o' },
         'Acknowledged':         { bg:'#FFF8E1', color:'#F57F17', icon:'fa-eye' },
         'In Progress':          { bg:'#E8F5E9', color:'#2E7D32', icon:'fa-cog' },
         'Waiting for Employee': { bg:'#F3E5F5', color:'#6A1B9A', icon:'fa-hourglass-half' },
