@@ -9,11 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary:       #1565C0;
-            --primary-dark:  #0D47A1;
-            --primary-mid:   #1976D2;
-            --primary-light: #E3F2FD;
-            --accent:        #00ACC1;
+            --primary:       #198754;
+            --primary-dark:  #146c43;
+            --primary-mid:   #1daa68;
+            --primary-light: #d1e7dd;
+            --accent:        #20c997;
             --surface:       #F8FAFC;
             --card:          #ffffff;
             --text:          #1a2340;
@@ -27,7 +27,7 @@
 
         /* ── TOPBAR ── */
         .topbar {
-            background: linear-gradient(90deg, #0a1628 0%, #0d2147 100%);
+            background: linear-gradient(90deg, #0d2010 0%, #1a3a22 100%);
             color: #9ab; font-size: 12px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 8px 24px; flex-wrap: wrap; gap: 6px;
@@ -37,7 +37,7 @@
 
         /* ── HERO ── */
         .hero {
-            background: linear-gradient(135deg, #0D47A1 0%, #1565C0 50%, #0097A7 100%);
+            background: linear-gradient(135deg, #146c43 0%, #198754 50%, #1daa68 100%);
             padding: 60px 24px 80px;
             text-align: center;
             position: relative;
@@ -160,7 +160,7 @@
 
         /* ── CONTACT BOX ── */
         .contact-card {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
+            background: linear-gradient(135deg, #146c43 0%, #198754 100%);
             border-radius: var(--radius); padding: 28px 32px;
             display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
             box-shadow: var(--shadow);
@@ -207,7 +207,7 @@
             to   { transform: translateY(0);    opacity: 1; }
         }
         .modal-head {
-            background: linear-gradient(135deg, #0D47A1, #1976D2);
+            background: linear-gradient(135deg, #146c43, #198754);
             border-radius: 20px 20px 0 0;
             padding: 24px 28px 20px;
             color: #fff;
