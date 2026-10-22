@@ -75,6 +75,24 @@
         .btn-report:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,.3); }
         .hero-note { color: rgba(255,255,255,.55); font-size: 12px; margin-top: 14px; }
 
+        /* ── TARGET DEPT CARDS (step 1) ── */
+        .target-grid { display: flex; flex-direction: column; gap: 10px; }
+        .target-card {
+            display: flex; align-items: center; gap: 14px;
+            border: 2px solid var(--border); border-radius: 12px;
+            padding: 14px 16px; background: #fff; cursor: pointer;
+            text-align: left; transition: all .2s; width: 100%;
+        }
+        .target-card:hover { border-color: var(--primary); background: var(--primary-light); }
+        .target-card.selected { border-color: var(--primary); background: var(--primary-light); }
+        .target-icon {
+            width: 46px; height: 46px; border-radius: 10px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+        }
+        .target-info { display: flex; flex-direction: column; }
+        .target-info strong { font-size: 14px; font-weight: 700; color: var(--text); }
+        .target-info span { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
         /* ── QUICK CARDS ── */
         .quick-cards {
             display: grid;
@@ -575,50 +593,45 @@
     <!-- Step 1: Department -->
     <div class="modal-body">
     <div class="step-panel active" id="step1">
-        <p class="step-title">Which department are you in?</p>
-        <div class="dept-grid" id="deptGrid">
-            <button class="dept-btn" onclick="selectDept(this,'Reception')"><i class="fa fa-user-md"></i>Reception</button>
-            <button class="dept-btn" onclick="selectDept(this,'Consultation')"><i class="fa fa-stethoscope"></i>Consultation</button>
-            <button class="dept-btn" onclick="selectDept(this,'Emergency')"><i class="fa fa-ambulance"></i>Emergency</button>
-            <button class="dept-btn" onclick="selectDept(this,'Laboratory')"><i class="fa fa-flask"></i>Laboratory</button>
-            <button class="dept-btn" onclick="selectDept(this,'Radiology')"><i class="fa fa-eye"></i>Radiology</button>
-            <button class="dept-btn" onclick="selectDept(this,'Nursing Ward')"><i class="fa fa-heartbeat"></i>Nursing Ward</button>
-            <button class="dept-btn" onclick="selectDept(this,'Pediatrics')"><i class="fa fa-child"></i>Pediatrics</button>
-            <button class="dept-btn" onclick="selectDept(this,'Administration')"><i class="fa fa-building"></i>Administration</button>
-            <button class="dept-btn" onclick="selectDept(this,'Finance')"><i class="fa fa-money"></i>Finance</button>
-            <button class="dept-btn" onclick="selectDept(this,'CT Scan')"><i class="fa fa-circle-o-notch"></i>CT Scan</button>
-            <button class="dept-btn" onclick="selectDept(this,'Gynaecology')"><i class="fa fa-venus"></i>Gynaecology</button>
-            <button class="dept-btn" onclick="selectDept(this,'Endoscopy')"><i class="fa fa-search-plus"></i>Endoscopy</button>
-            <button class="dept-btn" onclick="selectDept(this,'Dentistry')"><i class="fa fa-smile-o"></i>Dentistry</button>
-            <button class="dept-btn" onclick="selectDept(this,'Other')"><i class="fa fa-ellipsis-h"></i>Other</button>
+        <p class="step-title">Which department are you submitting to?</p>
+        <div class="target-grid">
+            <button class="target-card" onclick="selectDept(this,'IT')">
+                <div class="target-icon" style="background:#E3F2FD;"><i class="fa fa-laptop" style="color:#1565C0;"></i></div>
+                <div class="target-info">
+                    <strong>IT Department</strong>
+                    <span>Computer, network, software &amp; device issues</span>
+                </div>
+            </button>
+            <button class="target-card" onclick="selectDept(this,'Finance')">
+                <div class="target-icon" style="background:#E8F5E9;"><i class="fa fa-money" style="color:#2E7D32;"></i></div>
+                <div class="target-info">
+                    <strong>Finance</strong>
+                    <span>Salary, payments, budgets &amp; reimbursements</span>
+                </div>
+            </button>
+            <button class="target-card" onclick="selectDept(this,'HR')">
+                <div class="target-icon" style="background:#FFF3E0;"><i class="fa fa-users" style="color:#E65100;"></i></div>
+                <div class="target-info">
+                    <strong>Human Resources</strong>
+                    <span>Leave, contracts, training &amp; staff matters</span>
+                </div>
+            </button>
+            <button class="target-card" onclick="selectDept(this,'Logistics')">
+                <div class="target-icon" style="background:#F3E5F5;"><i class="fa fa-truck" style="color:#6A1B9A;"></i></div>
+                <div class="target-info">
+                    <strong>Logistics</strong>
+                    <span>Supplies, equipment, stock &amp; transport</span>
+                </div>
+            </button>
         </div>
-        <p class="err-msg" id="errDept">Please select your department.</p>
+        <p class="err-msg" id="errDept">Please select a department to submit to.</p>
     </div>
 
-    <!-- Step 2: Category -->
+    <!-- Step 2: Category (dynamic based on dept) -->
     <div class="step-panel" id="step2">
-        <p class="step-title">What type of problem is it?</p>
-        <div class="cat-grid">
-            <div class="cat-card" onclick="selectCat(this,'Computer / Laptop')">
-                <i class="fa fa-laptop"></i><span>Computer / Laptop</span>
-            </div>
-            <div class="cat-card" onclick="selectCat(this,'Internet / Wi-Fi')">
-                <i class="fa fa-wifi"></i><span>Internet / Wi-Fi</span>
-            </div>
-            <div class="cat-card" onclick="selectCat(this,'Printer / Scanner')">
-                <i class="fa fa-print"></i><span>Printer / Scanner</span>
-            </div>
-            <div class="cat-card" onclick="selectCat(this,'Email / Account')">
-                <i class="fa fa-envelope"></i><span>Email / Account</span>
-            </div>
-            <div class="cat-card" onclick="selectCat(this,'Hospital Software')">
-                <i class="fa fa-database"></i><span>Hospital Software</span>
-            </div>
-            <div class="cat-card" onclick="selectCat(this,'Phone / Other')">
-                <i class="fa fa-phone"></i><span>Phone / Other</span>
-            </div>
-        </div>
-        <p class="err-msg" id="errCat">Please select a problem type.</p>
+        <p class="step-title">What type of issue is it?</p>
+        <div class="cat-grid" id="catGrid"></div>
+        <p class="err-msg" id="errCat">Please select an issue type.</p>
     </div>
 
     <!-- Step 3: Urgency -->
@@ -688,8 +701,8 @@
     <div class="step-panel" id="step5">
         <p class="step-title">Review your ticket before submitting</p>
         <div class="summary-box">
-            <div class="summary-row"><span class="label">Department</span><span class="value" id="sum-dept">—</span></div>
-            <div class="summary-row"><span class="label">Problem</span><span class="value" id="sum-cat">—</span></div>
+            <div class="summary-row"><span class="label">Submit To</span><span class="value" id="sum-dept">—</span></div>
+            <div class="summary-row"><span class="label">Issue Type</span><span class="value" id="sum-cat">—</span></div>
             <div class="summary-row"><span class="label">Urgency</span><span class="value" id="sum-urg">—</span></div>
             <div class="summary-row"><span class="label">Description</span><span class="value" id="sum-desc" style="max-width:60%;font-weight:400;color:var(--muted);">—</span></div>
             <div class="summary-row"><span class="label">Contact</span><span class="value" id="sum-ext">Not provided</span></div>
@@ -702,7 +715,7 @@
     <div class="success-screen" id="successScreen">
         <div class="success-ring"><i class="fa fa-check"></i></div>
         <h3>Ticket Submitted!</h3>
-        <p>Your IT issue has been logged. The IT team has been notified and will follow up shortly.</p>
+        <p>Your issue has been logged and the relevant team has been notified. They will follow up with you shortly.</p>
         <div class="ticket-pill" id="ticketNumber">IT-0000</div>
         <p class="success-note">Keep this number to check your ticket status below.</p>
         <button class="btn-another" onclick="resetWizard()"><i class="fa fa-plus me-1"></i> Report Another Issue</button>
@@ -744,12 +757,60 @@ function closeOnBackdrop(e) {
 })();
 }
 
+// ── DEPARTMENT CATEGORIES ──
+var DEPT_CATS = {
+    'IT': [
+        { icon:'fa-laptop',   label:'Computer / Laptop' },
+        { icon:'fa-wifi',     label:'Internet / Wi-Fi' },
+        { icon:'fa-print',    label:'Printer / Scanner' },
+        { icon:'fa-envelope', label:'Email / Account' },
+        { icon:'fa-database', label:'Hospital Software' },
+        { icon:'fa-phone',    label:'Phone / Other' }
+    ],
+    'Finance': [
+        { icon:'fa-money',        label:'Salary / Payroll' },
+        { icon:'fa-file-text',    label:'Expense Claim' },
+        { icon:'fa-bar-chart',    label:'Budget Request' },
+        { icon:'fa-credit-card',  label:'Invoice / Payment' },
+        { icon:'fa-shopping-cart',label:'Purchase Order' },
+        { icon:'fa-line-chart',   label:'Financial Report' }
+    ],
+    'HR': [
+        { icon:'fa-calendar',     label:'Leave Request' },
+        { icon:'fa-file-text-o',  label:'Staff Contract' },
+        { icon:'fa-user-plus',    label:'Recruitment' },
+        { icon:'fa-graduation-cap',label:'Training / Development' },
+        { icon:'fa-clock-o',      label:'Work Schedule' },
+        { icon:'fa-gavel',        label:'Disciplinary / Grievance' }
+    ],
+    'Logistics': [
+        { icon:'fa-medkit',       label:'Medical Supplies' },
+        { icon:'fa-wrench',       label:'Equipment Request' },
+        { icon:'fa-cubes',        label:'Stock / Inventory' },
+        { icon:'fa-shopping-cart',label:'Purchase Order' },
+        { icon:'fa-truck',        label:'Transport / Delivery' },
+        { icon:'fa-archive',      label:'Storage' }
+    ]
+};
+
 // ── SELECTORS ──
 function selectDept(el, val) {
-    document.querySelectorAll('.dept-btn').forEach(function(b){ b.classList.remove('selected'); });
+    document.querySelectorAll('.target-card').forEach(function(b){ b.classList.remove('selected'); });
     el.classList.add('selected');
     selDept = val;
+    selCat = '';
     document.getElementById('errDept').classList.remove('show');
+    // Populate step 2 categories for this department
+    var cats = DEPT_CATS[val] || [];
+    var grid = document.getElementById('catGrid');
+    grid.innerHTML = '';
+    cats.forEach(function(c) {
+        var d = document.createElement('div');
+        d.className = 'cat-card';
+        d.innerHTML = '<i class="fa ' + c.icon + '"></i><span>' + c.label + '</span>';
+        d.onclick = function(){ selectCat(d, c.label); };
+        grid.appendChild(d);
+    });
 }
 function selectCat(el, val) {
     document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('selected'); });
@@ -872,7 +933,8 @@ function resetWizard() {
     document.querySelectorAll('.prog-step').forEach(function(p){ p.classList.remove('active','done'); });
     document.getElementById('ps1').classList.add('active');
     document.querySelectorAll('.prog-line').forEach(function(l){ l.classList.remove('done'); });
-    document.querySelectorAll('.dept-btn,.cat-card,.urg-card').forEach(function(el){ el.classList.remove('selected'); });
+    document.querySelectorAll('.target-card,.cat-card,.urg-card').forEach(function(el){ el.classList.remove('selected'); });
+    document.getElementById('catGrid').innerHTML = '';
     document.getElementById('desc').value = '';
     document.getElementById('ext').value = '';
     document.getElementById('uploadName').textContent = '';
