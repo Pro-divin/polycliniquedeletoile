@@ -739,6 +739,12 @@ function closeModal() {
 }
 function closeOnBackdrop(e) {
     if (e.target === document.getElementById('modalOverlay')) closeModal();
+
+// Wire button via event listener as reliable fallback
+(function() {
+    var btn = document.querySelector('.btn-report');
+    if (btn) btn.addEventListener('click', openModal);
+})();
 }
 
 // ── SELECTORS ──
