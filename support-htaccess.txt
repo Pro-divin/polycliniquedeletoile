@@ -1,0 +1,13 @@
+DirectoryIndex support.php index.php
+
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+  RemoveHandler .html .htm
+  RemoveType .html .htm
+  AddType text/html .html .htm
+</IfModule>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ support.php [L]
