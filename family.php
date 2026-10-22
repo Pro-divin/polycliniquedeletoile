@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -55,60 +55,7 @@ s0.parentNode.insertBefore(s1,s0);
         </div>
         <!-- Spinner End -->
 
-
-        <!-- Topbar Start -->
-       <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-            <div class="row gx-0 align-items-center" style="height: 45px;">
-                <div class="col-lg-8 text-center text-lg-start mb-lg-0">
-                    <div class="d-flex flex-wrap">
-                        <a href="#" class="text-light me-4" style="position: relative;font-family:Playfair Display;"><i class="fas fa-map-marker-alt text-primary me-2" ></i> Gasabo,  Remera, Rukiri I </a>
-                        <a href="#" class="text-light me-4" style="position: relative;font-family:Playfair Display;"><i class="fas fa-phone-alt text-primary me-2"></i>  Free Call  1301 </a>|| 
-                        <a href="#" class="text-light me-4" style="position: relative;font-family:Playfair Display;"><i class="fa fa-whatsapp  me-2 text-primary me-2" style="position: relative;font-size:22px!important;top:3px!important;"></i> Customer Call & Whatsapp  +(250)790008754 </a>
-                        <!-- <a href="#" class="text-light me-0" style="position: relative;font-family:Playfair Display;"><i class="fas fa-envelope text-primary me-2"></i>polycliniquedeletoile2020@gmail.com</a> -->
-                    </div>
-                </div>
-                <div class="col-lg-4 text-center text-lg-end">
-                    <div class="d-flex align-items-center justify-content-end">
-                        <a href="https://www.facebook.com/PolycliniquedeLetoile1?_rdc=1&_rdr" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://x.com/polydeletoile" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/polycliniquedeletoile/" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UCWMShUjUxoVuByeEve3VXrw" class="btn btn-light btn-square border rounded-circle nav-fill me-0"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Topbar End -->
-
-
-        <!-- Navbar & Hero Start -->
-          <div class="container-fluid position-relative p-0"style="position: relative;font-family:Playfair Display!important;">
-         <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
-                <a href="index" class="navbar-brand p-0"> </a>
-                <img src="img/etoile.png" alt="Logo" style="height: 70px!important;">
-               
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="index" class="nav-item nav-link">Home</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About Us</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="clinicinfo" class="dropdown-item">Clinic Information</a>
-                                <a href="https://www.flickr.com/photos/189884140@N04/with/51930575082" class="dropdown-item">Gallery</a>
-                                <a href="https://www.youtube.com/channel/UCWMShUjUxoVuByeEve3VXrw" class="dropdown-item">Videos</a>
-                            </div>
-                        </div>
-                       <!--  <a href="department" class="nav-item nav-link">Departments</a> -->
-                         <a href="doctor" class="nav-item nav-link">Doctors</a>
-                        <a href="contact" class="nav-item nav-link">Contact </a>
-                    </div>
-                    <a href="appointment" class="btn btn-primary  text-white py-2 px-4 flex-wrap flex-sm-shrink-0" style="position: relative;font-family:Playfair Display;">Book Appointment</a>
-                </div>
-            </nav>
-        </div>
-        <!-- Navbar End -->
+        <?php include('config/navbar.php'); ?>
 
 
         <!-- Header Start -->
@@ -217,21 +164,6 @@ s0.parentNode.insertBefore(s1,s0);
         <!-- Footer End -->
         
         <!-- Copyright Start -->
-         <div class="container-fluid copyright py-4">
-            <div class="container">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-6 text-center text-md-start mb-md-0" style="position: relative;font-family:Playfair Display;">
-                        <span class="text-white"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Polyclinique de l'Etoile</a>, All right reserved.</span>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end text-white" style="position: relative;font-family:Playfair Display;">
-                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">Mike Vedaste</a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Copyright End -->
 
         <!-- Back to Top -->

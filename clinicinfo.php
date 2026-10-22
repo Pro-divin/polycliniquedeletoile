@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
     <head>
@@ -57,60 +57,7 @@ s0.parentNode.insertBefore(s1,s0);
         </div>
         <!-- Spinner End -->
 
-
-        <!-- Topbar Start -->
-     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-            <div class="row gx-0 align-items-center" style="height: 45px;">
-                <div class="col-lg-8 text-center text-lg-start mb-lg-0">
-                    <div class="d-flex flex-wrap">
-                        <a href="#" class="text-light me-4" style="position: relative;font-family:Playfair Display;"><i class="fas fa-map-marker-alt text-primary me-2" ></i> Gasabo,  Remera, Rukiri I </a>
-                        <a href="#" class="text-light me-4" style="position: relative;font-family:Playfair Display;"><i class="fas fa-phone-alt text-primary me-2"></i>  Free Call  1301 </a>|| 
-                        <a href="#" class="text-light me-4" style="position: relative;font-family:Playfair Display;"><i class="fa fa-whatsapp  me-2 text-primary me-2" style="position: relative;font-size:22px!important;top:3px!important;"></i> Customer Call & Whatsapp  +(250)790008754 </a>
-                        <!-- <a href="#" class="text-light me-0" style="position: relative;font-family:Playfair Display;"><i class="fas fa-envelope text-primary me-2"></i>polycliniquedeletoile2020@gmail.com</a> -->
-                    </div>
-                </div>
-                <div class="col-lg-4 text-center text-lg-end">
-                    <div class="d-flex align-items-center justify-content-end">
-                        <a href="https://www.facebook.com/PolycliniquedeLetoile1?_rdc=1&_rdr" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://x.com/polydeletoile" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/polycliniquedeletoile/" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UCWMShUjUxoVuByeEve3VXrw" class="btn btn-light btn-square border rounded-circle nav-fill me-0"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Topbar End -->
-
-
-        <!-- Navbar & Hero Start -->
-          <div class="container-fluid position-relative p-0"style="position: relative;font-family:Playfair Display!important;">
-          <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
-                <a href="index" class="navbar-brand p-0"> </a>
-                <img src="img/etoile.png" alt="Logo" style="height: 70px!important;">
-               
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="index" class="nav-item nav-link">Home</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About Us</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="clinicinfo" class="dropdown-item">Clinic Information</a>
-                                <a href="https://www.flickr.com/photos/189884140@N04/with/51930575082" class="dropdown-item">Gallery</a>
-                                <a href="https://www.youtube.com/channel/UCWMShUjUxoVuByeEve3VXrw" class="dropdown-item">Videos</a>
-                            </div>
-                        </div>
-                       <!--  <a href="department" class="nav-item nav-link">Departments</a> -->
-                         <a href="doctor" class="nav-item nav-link">Doctors</a>
-                        <a href="contact" class="nav-item nav-link">Contact </a>
-                    </div>
-                    <a href="appointment" class="btn btn-primary  text-white py-2 px-4 flex-wrap flex-sm-shrink-0" style="position: relative;font-family:Playfair Display;">Book Appointment</a>
-                </div>
-            </nav>
-        </div>
-        <!-- Navbar End -->
+        <?php include('config/navbar.php'); ?>
 
 
         <!-- Header Start -->
@@ -132,76 +79,179 @@ s0.parentNode.insertBefore(s1,s0);
 
 
 
-        <div class="container-fluid team py-5" style="position: relative;font-family:josephine;">
-            <div class="container py-5">
-                <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">About Us </h4>
-                    </div><br><br></br>
-
-                    <p style="position: relative;font-size: 20px!important;text-align: initial;">At polyclinique de l'Etoile we are dedicated to providing compassionate, patient-centered healthcare in a warm and welcoming environment. Our team of experienced professionals combines modern medical expertise with personalized care to meet the unique needs of every patient. We are committed to promoting health, preventing illness, and supporting overall well-being through reliable medical services.</p>
-
-                    <!-- <p style="position: relative;text-align: initial;color:black;">**  Appointments can be scheduled through telephone or email.</p>
-
-                    <p style="position: relative;text-align: initial;color:black;">**  Patients are required to carry an insurance card, identification card, or passport.</p>
-
-                    <p style="position: relative;text-align: initial;color:black;">**  International visitors are required to carry an identification card or passport for registration purposes.</p>
-
-                    <p style="position: relative;text-align: initial;color:black;">**  For booking an appointment, please dial the following lines: toll-free lines: 1301 OR +250 790008753 , 0790008754.</p>
-
-                    <p style="position: relative;text-align: initial;color:black;">**  It is the policy of Polyclinique de l'Etoile,  to provide services to all persons regardless of age, gender, race, national origin, religion, sexual orientation, gender identity, or disabilities. 
-                    This non-discrimination policy applies to all facilities.</p> -->
-                  
+        <!-- Who We Are -->
+        <div class="container-fluid py-5 wow fadeIn" data-wow-delay="0.1s" style="background:#f8f9ff;">
+            <div class="container py-4">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="sub-style mb-3">
+                            <h4 class="sub-title px-3 mb-0">Who Are We?</h4>
+                        </div>
+                        <h2 style="font-family:'Playfair Display',serif; font-weight:700; font-size:2rem; margin-bottom:18px; color:#222;">Polyclinique de l'Etoile</h2>
+                        <p style="color:#444; font-size:1.05rem; font-weight:600; line-height:1.9; margin-bottom:16px;">
+                            Polyclinique de l'Etoile is a private medical facility located in Kigali, in the Remera sector, Gasabo district, Rwanda. Established in 2014, it mainly provides outpatient and inpatient care to local and international patients.
+                        </p>
+                        <div class="row g-3 mt-2">
+                            <div class="col-6">
+                                <div style="display:flex; align-items:flex-start; gap:10px;">
+                                    <i class="fa fa-check-circle text-primary mt-1"></i>
+                                    <span style="color:#444; font-weight:700; font-size:1rem;">MOH Licensed</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div style="display:flex; align-items:flex-start; gap:10px;">
+                                    <i class="fa fa-check-circle text-primary mt-1"></i>
+                                    <span style="color:#444; font-weight:700; font-size:1rem;">Est. 2014 — Kigali</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div style="display:flex; align-items:flex-start; gap:10px;">
+                                    <i class="fa fa-check-circle text-primary mt-1"></i>
+                                    <span style="color:#444; font-weight:700; font-size:1rem;">Local &amp; International Patients</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div style="display:flex; align-items:flex-start; gap:10px;">
+                                    <i class="fa fa-check-circle text-primary mt-1"></i>
+                                    <span style="color:#444; font-weight:700; font-size:1rem;">11+ Departments</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
+                        <img src="img/background.jpg" class="img-fluid rounded w-100" style="height:400px; object-fit:cover;" alt="Polyclinique de l'Etoile">
+                    </div>
                 </div>
+            </div>
         </div>
-    </div>
-     <!-- Services Start -->
-        <div class="container-fluid service py-5" style="position: relative;top: -120px!important;">
-            <div class="container py-5">
-                <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.2s">
+
+        <!-- Vision, Mission, Values -->
+        <div class="container-fluid py-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-4">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="sub-style d-inline-block mb-3">
+                        <h4 class="sub-title px-3 mb-0">Our Foundation</h4>
+                    </div>
+                    <h2 style="font-family:'Playfair Display',serif; font-weight:700; font-size:2rem; color:#222;">Vision, Mission &amp; Values</h2>
                 </div>
                 <div class="row g-4 justify-content-center">
-                    <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item rounded">
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
-                                    <h5 class="mb-4">Vision</h5>
-                                    <p class="mb-4" style="position: relative;text-align: initial;">Transforming medicine to connect and cure as the global authority in the care of serious or complex disease.</p>
-                                </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div style="background:#fff; border-radius:10px; padding:34px 28px; height:100%;
+                                    box-shadow:0 4px 24px rgba(0,0,0,0.07); border-top:4px solid var(--bs-primary);">
+                            <div style="width:52px; height:52px; background:var(--bs-primary); border-radius:50%;
+                                        display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+                                <i class="fa fa-eye" style="color:#fff; font-size:20px;"></i>
                             </div>
+                            <h5 style="font-family:'Playfair Display',serif; font-weight:700; color:#222; margin-bottom:14px;">Vision</h5>
+                            <p style="color:#555; line-height:1.85; font-size:0.97rem; margin:0;">
+                                To become a medical center of excellence recognized in Rwanda and internationally for the quality of its care, its medical innovation, and its ability to effectively manage serious and complex diseases, while placing the patient at the heart of every decision.
+                            </p>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item rounded">
-                           
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
-                                    <h5 class="mb-4">Mission</h5>
-                                    <p class="mb-4" style="position: relative;text-align: initial;">To provide patient-centered healthcare with excellence in quality, service, and access.</p>
-                                   
-                                </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div style="background:#fff; border-radius:10px; padding:34px 28px; height:100%;
+                                    box-shadow:0 4px 24px rgba(0,0,0,0.07); border-top:4px solid var(--bs-primary);">
+                            <div style="width:52px; height:52px; background:var(--bs-primary); border-radius:50%;
+                                        display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+                                <i class="fa fa-bullseye" style="color:#fff; font-size:20px;"></i>
                             </div>
+                            <h5 style="font-family:'Playfair Display',serif; font-weight:700; color:#222; margin-bottom:14px;">Mission</h5>
+                            <p style="color:#555; line-height:1.85; font-size:0.97rem; margin:0;">
+                                To provide high-quality, accessible, patient-centered healthcare, relying on a professional team, modern medical technologies, and an approach grounded in excellence, innovation, integrity, and respect for the dignity of every patient.
+                            </p>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-item rounded">
-                            <div class="service-content rounded-bottom bg-light p-4">
-                                <div class="service-content-inner">
-                                    <h5 class="mb-4">Values</h5>
-                                    <p class="mb-4" style="position: relative;text-align: initial;">❏ Quality Services<br>
-                                    ❏ The patient always comes first<br>
-                                    ❏ We treat each person with respect and dignity<br>
-                                    ❏ Time Management<br>
-                                    ❏ Innovation
-                                    ❏ Integrity</p>
-                                </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div style="background:#fff; border-radius:10px; padding:34px 28px; height:100%;
+                                    box-shadow:0 4px 24px rgba(0,0,0,0.07); border-top:4px solid var(--bs-primary);">
+                            <div style="width:52px; height:52px; background:var(--bs-primary); border-radius:50%;
+                                        display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+                                <i class="fa fa-star" style="color:#fff; font-size:20px;"></i>
                             </div>
+                            <h5 style="font-family:'Playfair Display',serif; font-weight:700; color:#222; margin-bottom:14px;">Values</h5>
+                            <ul style="color:#555; line-height:2.1; font-size:0.97rem; padding-left:18px; margin:0;">
+                                <li>Quality of Services</li>
+                                <li>The Patient Always Comes First</li>
+                                <li>Respect and Dignity</li>
+                                <li>Time Management</li>
+                                <li>Innovation</li>
+                                <li>Integrity</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Services End -->
+
+        <!-- Objectives -->
+        <div class="container-fluid py-5 wow fadeIn" data-wow-delay="0.1s" style="background:#f8f9ff;">
+            <div class="container py-4">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="sub-style d-inline-block mb-3">
+                        <h4 class="sub-title px-3 mb-0">What We Stand For</h4>
+                    </div>
+                    <h2 style="font-family:'Playfair Display',serif; font-weight:700; font-size:2rem; color:#222;">Our Objectives</h2>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div style="background:#fff; border-radius:10px; padding:28px 24px; height:100%; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+                            <i class="fa fa-shield text-primary" style="font-size:28px; margin-bottom:14px; display:block;"></i>
+                            <h6 style="font-family:'Playfair Display',serif; font-weight:700; color:#222; margin-bottom:10px;">Safe &amp; Effective Care</h6>
+                            <p style="color:#555; font-size:0.95rem; line-height:1.8; margin:0;">To ensure safe, effective, and high-quality medical care by continuously improving medical practices, patient safety, and staff skills.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div style="background:#fff; border-radius:10px; padding:28px 24px; height:100%; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+                            <i class="fa fa-heart text-primary" style="font-size:28px; margin-bottom:14px; display:block;"></i>
+                            <h6 style="font-family:'Playfair Display',serif; font-weight:700; color:#222; margin-bottom:10px;">Patient-Centered Care</h6>
+                            <p style="color:#555; font-size:0.95rem; line-height:1.8; margin:0;">To place the patient at the center of all activities, providing a professional welcome and accessible, prompt care that respects the dignity of every patient.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div style="background:#fff; border-radius:10px; padding:28px 24px; height:100%; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+                            <i class="fa fa-flask text-primary" style="font-size:28px; margin-bottom:14px; display:block;"></i>
+                            <h6 style="font-family:'Playfair Display',serif; font-weight:700; color:#222; margin-bottom:10px;">Innovation &amp; Development</h6>
+                            <p style="color:#555; font-size:0.95rem; line-height:1.8; margin:0;">To develop Polyclinique de l'Etoile as a modern and innovative medical center through new technologies, strengthened specialized services, and continuous improvement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Managing Director Message -->
+        <div class="container-fluid py-5 wow fadeIn" data-wow-delay="0.1s" style="background:var(--bs-primary);">
+            <div class="container py-4">
+                <div class="row align-items-center g-5">
+                    <!-- Photo -->
+                    <div class="col-lg-4 text-center wow fadeInLeft" data-wow-delay="0.2s">
+                        <img src="managing director.jpeg" alt="Dr. BIRAHIRA B. Williams"
+                             style="width:240px; height:240px; object-fit:cover; object-position:top;
+                                    border-radius:50%; border:5px solid rgba(255,255,255,0.4);
+                                    box-shadow:0 12px 40px rgba(0,0,0,0.25);">
+                        <div style="margin-top:20px;">
+                            <h5 style="font-family:'Playfair Display',serif; color:#fff; font-weight:700; margin:0;">Dr. BIRAHIRA B. Williams</h5>
+                            <p style="color:rgba(255,255,255,0.8); font-size:0.9rem; margin:6px 0 0; letter-spacing:1px; text-transform:uppercase;">Founder &amp; Managing Director</p>
+                        </div>
+                    </div>
+                    <!-- Message -->
+                    <div class="col-lg-8 wow fadeInRight" data-wow-delay="0.3s">
+                        <div class="sub-style mb-3" style="--sub-color:rgba(255,255,255,0.6);">
+                            <h4 class="sub-title px-3 mb-0" style="color:rgba(255,255,255,0.85);">Leadership Message</h4>
+                        </div>
+                        <h2 style="font-family:'Playfair Display',serif; font-weight:700; font-size:1.7rem; color:#fff; margin-bottom:24px; line-height:1.4;">
+                            Message from the Managing Director of Polyclinique de l'Etoile
+                        </h2>
+                        <i class="fa fa-quote-left" style="color:rgba(255,255,255,0.3); font-size:40px; display:block; margin-bottom:16px;"></i>
+                        <p style="color:rgba(255,255,255,0.92); font-size:1.05rem; font-weight:500; line-height:1.95; margin:0; font-style:italic;">
+                            Our institution aims to provide every patient with quality, accessible, safe care centered on their needs. Our vision is built on medical excellence, innovation, and above all on listening to and respecting every person who trusts us. Our mission is not limited to treating illness. We also want to prevent disease, promote health, and support our patients with humanity and dignity.
+                        </p>
+                        <p style="color:rgba(255,255,255,0.92); font-size:1.05rem; font-weight:500; line-height:1.95; margin-top:16px; font-style:italic;">
+                            We are aware of the challenges ahead, but we are determined to continue our development, to continuously improve the quality of our services, and to make Polyclinique de l'Etoile a benchmark in healthcare. Together, let us continue to place the patient at the heart of everything we do.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -269,21 +319,6 @@ s0.parentNode.insertBefore(s1,s0);
         <!-- Footer End -->
         
         <!-- Copyright Start -->
-         <div class="container-fluid copyright py-4">
-            <div class="container">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-6 text-center text-md-start mb-md-0" style="position: relative;font-family:Playfair Display;">
-                        <span class="text-white"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Polyclinique de l'Etoile</a>, All right reserved.</span>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end text-white" style="position: relative;font-family:Playfair Display;">
-                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">Mike Vedaste</a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Copyright End -->
 
         <!-- Back to Top -->

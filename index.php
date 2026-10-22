@@ -192,58 +192,372 @@ s0.parentNode.insertBefore(s1,s0);
         <!-- Spinner End -->
 
 
-        <!-- Topbar Start -->
-        <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-            <div class="row gx-0 align-items-center" style="height: 45px;">
-                <div class="col-lg-8 text-center text-lg-start mb-lg-0">
-                    <div class="d-flex flex-wrap">
-                        <a href="#" class="text-light me-4" style="position: relative;font-family:Playfair Display;"><i class="fas fa-map-marker-alt text-primary me-2" ></i> Gasabo,  Remera, Rukiri I </a>
-                        <a href="#" class="text-light me-4" style="position: relative;font-family:Playfair Display;"><i class="fas fa-phone-alt text-primary me-2"></i>  Free Call  1301 </a>|| 
-                        <a href="#" class="text-light me-4" style="position: relative;font-family:Playfair Display;"><i class="fa fa-whatsapp  me-2 text-primary me-2" style="position: relative;font-size:22px!important;top:3px!important;"></i> Customer Call & Whatsapp  +(250)790008754 </a>
-                        <!-- <a href="#" class="text-light me-0" style="position: relative;font-family:Playfair Display;"><i class="fas fa-envelope text-primary me-2"></i>polycliniquedeletoile2020@gmail.com</a> -->
+        <?php include('config/navbar.php'); ?>
+
+        <!-- Hero/CT Banner wrapper continues -->
+        <div class="container-fluid position-relative p-0">
+
+            <!-- CT Scan Advertisement Banner Start -->
+            <div style="display:flex; width:100%; height:480px; overflow:hidden;">
+
+                <!-- Left: text panel, plain dark background, no image -->
+                <div style="flex:0 0 42%; background:var(--bs-primary); display:flex; flex-direction:column;
+                            justify-content:center; padding:48px 50px;">
+                    <h2 style="font-family:'Playfair Display', serif; color:#fff;
+                               font-size:clamp(1.4rem, 2.5vw, 2.2rem); font-weight:700;
+                               line-height:1.35; margin:0 0 16px 0;">
+                        CT Scan Now at<br>Polyclinique de l'Etoile
+                    </h2>
+                    <p style="color:rgba(255,255,255,0.8); font-size:0.97rem;
+                              font-family:'Playfair Display', serif; line-height:1.8;
+                              margin:0 0 28px 0;">
+                        State-of-the-art computed tomography imaging — precision diagnostics for faster, accurate treatment.
+                    </p>
+                    <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+                        <span class="starting-soon-badge">Starting Soon</span>
+                        <span onclick="document.getElementById('ctScanModal').classList.add('active')"
+                              style="display:inline-block; border:2px solid #fff; color:#fff;
+                                     font-size:11px; font-weight:700; letter-spacing:2px;
+                                     text-transform:uppercase; padding:10px 28px;
+                                     border-radius:2px; cursor:pointer;">Learn More</span>
                     </div>
                 </div>
-                <div class="col-lg-4 text-center text-lg-end">
-                    <div class="d-flex align-items-center justify-content-end">
-                        <a href="https://www.facebook.com/PolycliniquedeLetoile1?_rdc=1&_rdr" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://x.com/polydeletoile" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/polycliniquedeletoile/" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UCWMShUjUxoVuByeEve3VXrw" class="btn btn-light btn-square border rounded-circle nav-fill me-0"><i class="fab fa-youtube"></i></a>
+
+                <!-- Right: clean image, absolutely no overlay -->
+                <div style="flex:1; overflow:hidden;">
+                    <img src="1800x1200_ct_scan_machine_bigbead.webp" alt="CT Scan Machine"
+                         style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+                </div>
+            </div>
+
+
+            <!-- CT Scan Modal -->
+            <div id="ctScanModal"
+                 onclick="if(event.target===this)this.classList.remove('active')"
+                 style="display:none; position:fixed; inset:0; z-index:99999;
+                        background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);
+                        align-items:center; justify-content:center; padding:20px;">
+                <div style="background:#fff; border-radius:6px; max-width:700px; width:100%;
+                            max-height:90vh; overflow-y:auto; position:relative;
+                            box-shadow:0 20px 70px rgba(0,0,0,0.4);">
+
+                    <!-- Modal header -->
+                    <div style="background:var(--bs-primary); padding:30px 38px 22px; border-radius:6px 6px 0 0; position:relative;">
+                        <button onclick="document.getElementById('ctScanModal').classList.remove('active')"
+                                style="position:absolute; top:14px; right:18px; background:rgba(255,255,255,0.18);
+                                       border:none; color:#fff; width:32px; height:32px; border-radius:50%;
+                                       font-size:20px; cursor:pointer; display:flex; align-items:center;
+                                       justify-content:center; line-height:1;">&times;</button>
+                        <span style="display:inline-block; background:rgba(255,255,255,0.2); color:#fff;
+                                     font-size:10px; font-weight:700; letter-spacing:3px;
+                                     text-transform:uppercase; padding:4px 14px; border-radius:2px;
+                                     margin-bottom:12px;">Coming Soon</span>
+                        <h3 style="font-family:'Playfair Display', serif; color:#fff;
+                                   font-size:1.7rem; font-weight:700; margin:0;">
+                            CT Scan at Polyclinique de l'Etoile
+                        </h3>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div style="padding:34px 38px;">
+                        <img src="1800x1200_ct_scan_machine_bigbead.webp" alt="CT Scan Machine"
+                             style="width:100%; height:210px; object-fit:cover;
+                                    border-radius:4px; margin-bottom:28px;">
+
+                        <h5 style="font-family:'Playfair Display', serif; color:var(--bs-primary);
+                                   font-size:0.85rem; font-weight:700; letter-spacing:2.5px;
+                                   text-transform:uppercase; border-left:3px solid var(--bs-primary);
+                                   padding-left:12px; margin-bottom:14px;">What is a CT Scan?</h5>
+                        <p style="color:#444; line-height:1.85; font-size:0.96rem; margin-bottom:26px;">
+                            A CT (Computed Tomography) scan uses advanced X-ray technology to produce detailed
+                            cross-sectional images of the body. It gives physicians a clear, three-dimensional
+                            view of bones, organs, blood vessels and soft tissues — enabling fast, accurate diagnosis.
+                        </p>
+
+                        <h5 style="font-family:'Playfair Display', serif; color:var(--bs-primary);
+                                   font-size:0.85rem; font-weight:700; letter-spacing:2.5px;
+                                   text-transform:uppercase; border-left:3px solid var(--bs-primary);
+                                   padding-left:12px; margin-bottom:14px;">Benefits &amp; Advantages</h5>
+                        <ul style="color:#444; line-height:2.1; font-size:0.96rem;
+                                   padding-left:20px; margin-bottom:26px;">
+                            <li>Rapid, non-invasive imaging with high diagnostic accuracy</li>
+                            <li>Detects tumors, internal bleeding, fractures and organ abnormalities</li>
+                            <li>Provides detailed 3D views that standard X-rays cannot</li>
+                            <li>Guides treatment planning for surgeons and specialists</li>
+                            <li>Results available quickly for faster clinical decisions</li>
+                            <li>Painless procedure completed in minutes</li>
+                        </ul>
+
+                        <h5 style="font-family:'Playfair Display', serif; color:var(--bs-primary);
+                                   font-size:0.85rem; font-weight:700; letter-spacing:2.5px;
+                                   text-transform:uppercase; border-left:3px solid var(--bs-primary);
+                                   padding-left:12px; margin-bottom:14px;">Who Needs a CT Scan?</h5>
+                        <ul style="color:#444; line-height:2.1; font-size:0.96rem;
+                                   padding-left:20px; margin-bottom:32px;">
+                            <li>Patients with severe or persistent headaches and neurological symptoms</li>
+                            <li>Individuals suspected of internal injuries after trauma or accidents</li>
+                            <li>Cancer patients requiring tumor detection, staging or monitoring</li>
+                            <li>Patients with chest pain, pulmonary embolism or heart conditions</li>
+                            <li>Those with abdominal or pelvic pain of unknown origin</li>
+                            <li>Patients preparing for surgical procedures requiring detailed imaging</li>
+                            <li>Anyone referred by a physician for organ or vascular assessment</li>
+                        </ul>
+
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Topbar End -->
+            <style>
+                #ctScanModal { display:none !important; }
+                #ctScanModal.active { display:flex !important; }
 
+                /* Services flyout menu */
+                .svc-nav-wrap { position:relative; }
+                .svc-nav-trigger { cursor:pointer; }
 
-        <!-- Navbar & Hero Start -->
-        <div class="container-fluid position-relative p-0" style="position: relative;font-family:Playfair Display!important;">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
-                <a href="index" class="navbar-brand p-0"> </a>
-                <img src="img/etoile.png" alt="Logo" style="height: 70px!important;">
-               
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="index" class="nav-item nav-link active">Home</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About Us</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="clinicinfo" class="dropdown-item">Clinic Information</a>
-                                <a href="https://www.flickr.com/photos/189884140@N04/with/51930575082" class="dropdown-item">Gallery</a>
-                                <a href="https://www.youtube.com/channel/UCWMShUjUxoVuByeEve3VXrw" class="dropdown-item">Videos</a>
+                .svc-flyout-root {
+                    position:absolute; top:100%; left:0;
+                    min-width:240px;
+                    background:#fff;
+                    border-top:3px solid var(--bs-primary);
+                    border-radius:0 0 6px 6px;
+                    box-shadow:0 12px 40px rgba(0,0,0,0.14);
+                    opacity:0; visibility:hidden;
+                    transform:translateY(10px);
+                    transition:all 0.25s ease;
+                    z-index:9999;
+                    pointer-events:none;
+                }
+                .svc-nav-wrap:hover .svc-flyout-root {
+                    opacity:1; visibility:visible;
+                    transform:translateY(0);
+                    pointer-events:all;
+                }
+
+                .svc-main-list {
+                    list-style:none; margin:0; padding:8px 0;
+                }
+                .svc-main-item {
+                    position:relative;
+                    display:flex; align-items:center; justify-content:space-between;
+                    padding:10px 18px;
+                    font-size:13.5px; color:#333; font-weight:500;
+                    cursor:pointer;
+                    transition:background 0.18s, color 0.18s;
+                    gap:8px;
+                }
+                .svc-main-item a {
+                    color:inherit; text-decoration:none;
+                    display:flex; align-items:center; gap:8px; flex:1;
+                }
+                .svc-main-item span {
+                    display:flex; align-items:center; gap:8px; flex:1;
+                }
+                .svc-main-item:hover {
+                    background:var(--bs-primary);
+                    color:#fff;
+                }
+                .svc-main-item:hover a,
+                .svc-main-item:hover span { color:#fff; }
+                .svc-main-item:hover i { color:#fff !important; }
+                .svc-arrow { font-size:10px; color:#aaa; flex-shrink:0; }
+                .svc-main-item:hover .svc-arrow { color:#fff; }
+
+                /* Sub list flyout to the right */
+                .svc-sub-list {
+                    position:absolute; top:0; left:100%;
+                    min-width:230px;
+                    background:#fff;
+                    border-left:3px solid var(--bs-primary);
+                    border-radius:0 6px 6px 0;
+                    box-shadow:6px 8px 32px rgba(0,0,0,0.13);
+                    list-style:none; margin:0; padding:8px 0;
+                    opacity:0; visibility:hidden;
+                    transform:translateX(10px);
+                    transition:all 0.22s ease;
+                    pointer-events:none;
+                    z-index:99999;
+                }
+                .svc-main-item:hover .svc-sub-list {
+                    opacity:1; visibility:visible;
+                    transform:translateX(0);
+                    pointer-events:all;
+                }
+                .svc-sub-list li a {
+                    display:block; padding:9px 18px;
+                    font-size:13px; color:#333 !important;
+                    text-decoration:none;
+                    transition:background 0.18s, color 0.18s, padding 0.18s;
+                    border-left:2px solid transparent;
+                    background:#fff !important;
+                }
+                .svc-sub-list li a:hover {
+                    background:#f4f7ff !important;
+                    color:var(--bs-primary) !important;
+                    border-left-color:var(--bs-primary);
+                    padding-left:24px;
+                }
+
+                .starting-soon-badge {
+                    display: inline-block;
+                    position: relative;
+                    background: #fff;
+                    color: var(--bs-primary);
+                    font-size: 17px;
+                    font-weight: 900;
+                    letter-spacing: 6px;
+                    text-transform: uppercase;
+                    padding: 14px 34px;
+                    border-radius: 3px;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+                    animation: badgePulse 2s ease-in-out infinite;
+                }
+                .starting-soon-badge::before,
+                .starting-soon-badge::after {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 3px;
+                    border: 2px solid #fff;
+                    animation: waveRing 2s ease-out infinite;
+                    opacity: 0;
+                }
+                .starting-soon-badge::after {
+                    animation-delay: 1s;
+                }
+                @keyframes waveRing {
+                    0%   { transform: scale(1);    opacity: 0.8; }
+                    100% { transform: scale(1.55); opacity: 0; }
+                }
+                @keyframes badgePulse {
+                    0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
+                    50%       { box-shadow: 0 4px 36px rgba(255,255,255,0.5); }
+                }
+            </style>
+            <script>
+                document.addEventListener('keydown', function(e){
+                    if(e.key === 'Escape') document.getElementById('ctScanModal').classList.remove('active');
+                });
+            </script>
+            <!-- CT Scan Advertisement Banner End -->
+
+            <!-- Welcome Section Start -->
+            <div class="welcome-section" style="background:#fff; padding:70px 0; overflow:hidden;">
+                <div class="container">
+                    <div class="row align-items-center g-5">
+
+                        <!-- Left: animated text -->
+                        <div class="col-lg-6 welcome-text-col">
+                            <span class="welcome-tag">Kigali, Rwanda</span>
+                            <h1 class="welcome-heading">
+                                Welcome to <span class="welcome-highlight">Polyclinique de l'Etoile</span>
+                            </h1>
+                            <p class="welcome-desc">Where compassionate care meets clinical excellence. Our team of specialists is dedicated to your health — delivering world-class medical services across 11+ departments, every day of the year.</p>
+                            <div class="welcome-pills">
+                                <span class="wpill"><i class="fa fa-check-circle"></i> Patient-Centered Care</span>
+                                <span class="wpill"><i class="fa fa-check-circle"></i> Clinical Excellence</span>
+                                <span class="wpill"><i class="fa fa-check-circle"></i> Compassionate Team</span>
+                                <span class="wpill"><i class="fa fa-check-circle"></i> Trusted Diagnosis</span>
                             </div>
                         </div>
-                       <!--  <a href="department" class="nav-item nav-link">Departments</a> -->
-                         <a href="doctor" class="nav-item nav-link">Doctors</a>
-                        <a href="contact" class="nav-item nav-link">Contact </a>
-                    </div>
-                    <a href="appointment" class="btn btn-primary  text-white py-2 px-4 flex-wrap flex-sm-shrink-0" style="position: relative;font-family:Playfair Display;">Book Appointment</a>
-                </div>
-            </nav>
 
+                        <!-- Right: video -->
+                        <div class="col-lg-6 welcome-img-col">
+                            <div style="border-radius:14px; overflow:hidden; box-shadow:0 24px 64px rgba(0,0,0,0.2); position:relative;">
+                                <video autoplay muted loop playsinline
+                                       style="width:100%; height:400px; object-fit:cover; display:block;">
+                                    <source src="the end.mp4" type="video/mp4">
+                                </video>
+                                <!-- Subtle gradient overlay at bottom -->
+                                <div style="position:absolute; bottom:0; left:0; right:0; height:60px;
+                                            background:linear-gradient(to top, rgba(0,0,0,0.35), transparent);
+                                            border-radius:0 0 14px 14px; pointer-events:none;"></div>
+                                <!-- Live badge -->
+                                <div style="position:absolute; top:14px; left:14px; background:var(--bs-primary);
+                                            color:#fff; font-size:10px; font-weight:800; letter-spacing:2px;
+                                            text-transform:uppercase; padding:5px 14px; border-radius:30px;
+                                            display:flex; align-items:center; gap:6px;">
+                                    <span style="width:7px; height:7px; background:#fff; border-radius:50%;
+                                                 display:inline-block; animation:liveBlink 1.2s ease-in-out infinite;"></span>
+                                    Our Polyclinique
+                                </div>
+                            </div>
+                            <style>
+                                @keyframes liveBlink {
+                                    0%,100% { opacity:1; } 50% { opacity:0.2; }
+                                }
+                            </style>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <style>
+                .welcome-text-col { animation:slideInLeft 0.8s ease both; }
+                .welcome-img-col  { animation:slideInRight 0.8s ease both; }
+                .welcome-tag {
+                    display:inline-block; color:var(--bs-primary);
+                    font-size:11px; font-weight:700; letter-spacing:3px;
+                    text-transform:uppercase; padding:6px 18px;
+                    border-radius:30px; margin-bottom:20px;
+                    border:1px solid var(--bs-primary); background:transparent;
+                }
+                .welcome-heading {
+                    font-family:'Playfair Display',serif;
+                    font-size:clamp(2rem,4vw,3rem);
+                    font-weight:900; color:#111;
+                    line-height:1.2; margin-bottom:20px;
+                }
+                .welcome-highlight { color:var(--bs-primary); }
+                .welcome-desc {
+                    color:#444; font-size:1.18rem; font-weight:600; line-height:1.85;
+                    margin-bottom:28px; max-width:500px;
+                }
+                .welcome-pills { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px; }
+                .wpill {
+                    display:inline-flex; align-items:center; gap:7px;
+                    background:#f4f6fb; color:#333;
+                    font-size:13px; font-weight:600;
+                    padding:8px 16px; border-radius:30px;
+                }
+                .wpill i { color:var(--bs-primary); }
+                .welcome-btn {
+                    display:inline-block; background:var(--bs-primary); color:#fff;
+                    font-family:'Playfair Display',serif; font-size:13px; font-weight:700;
+                    letter-spacing:2px; text-transform:uppercase;
+                    padding:15px 38px; border-radius:3px; text-decoration:none;
+                    box-shadow:0 8px 30px rgba(0,0,0,0.2);
+                    transition:transform 0.2s, box-shadow 0.2s;
+                }
+                .welcome-btn:hover { transform:translateY(-2px); color:#fff; box-shadow:0 12px 36px rgba(0,0,0,0.28); }
+                .welcome-img-wrap { position:relative; display:inline-block; width:100%; }
+                .welcome-main-img {
+                    width:100%; height:420px; object-fit:cover;
+                    border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,0.15);
+                }
+                .welcome-badge-card {
+                    position:absolute; background:#fff; border-radius:10px;
+                    padding:14px 20px; display:flex; align-items:center; gap:12px;
+                    box-shadow:0 8px 32px rgba(0,0,0,0.14); min-width:160px;
+                }
+                .welcome-badge-card i { font-size:26px; color:var(--bs-primary); flex-shrink:0; }
+                .welcome-badge-card strong { display:block; font-size:1.3rem; font-weight:900; color:#111; line-height:1; }
+                .welcome-badge-card span { display:block; font-size:11px; color:#888; text-transform:uppercase; letter-spacing:1px; margin-top:3px; }
+                .welcome-badge-1 { bottom:30px; left:-24px; animation:floatUp 3s ease-in-out infinite; }
+                .welcome-badge-2 { top:30px; right:-20px; animation:floatUp 3s ease-in-out infinite 1.5s; }
+                @keyframes floatUp {
+                    0%,100% { transform:translateY(0); }
+                    50%      { transform:translateY(-10px); }
+                }
+                @keyframes slideInLeft {
+                    from { opacity:0; transform:translateX(-50px); }
+                    to   { opacity:1; transform:translateX(0); }
+                }
+                @keyframes slideInRight {
+                    from { opacity:0; transform:translateX(50px); }
+                    to   { opacity:1; transform:translateX(0); }
+                }
+            </style>
+            <!-- Welcome Section End -->
 
             <!-- Carousel Start -->
             <div class="header-carousel owl-carousel">
@@ -255,7 +569,7 @@ s0.parentNode.insertBefore(s1,s0);
                             <h1 class="display-1 text-capitalize text-white mb-4" style="letter-spacing:3px;margin-top:130px!important;font-family: Playfair Display sans serif;">Dental</h1>
                             <p class="mb-5 fs-5" style="position: relative;margin-top:50px!important;font-family:Playfair Display;">The Dental and Maxillofacial unit at Polyclinique de l'Etoile, provides a comprehensive range of services including study, prevention, diagnosis, treatment, and rehabilitation of congenital or acquired diseases of the entire facial structure 
                             </p>
-                            <a class="btn btn-primary  text-white py-3 px-5" href="#" style="position: relative;font-family:Playfair Display;">Book Appointment</a>
+                            <a class="btn btn-primary text-white py-3 px-5" href="#" onclick="event.preventDefault();document.getElementById('apptModal').classList.add('active');" style="position:relative;font-family:Playfair Display;">Book Appointment</a>
                         </div>
                     </div>
                 </div>
@@ -267,7 +581,7 @@ s0.parentNode.insertBefore(s1,s0);
                              <h1 class="display-1 text-capitalize text-white mb-4" style="letter-spacing: 3px;margin-top:100px!important;font-family: Playfair Display sans serif;">Laboratory</h1>
                             <p class="mb-5 fs-5 animated slideInDown" style="position: relative;margin-top:50px!important;font-family:Playfair Display;">Polyclinique de l'Etoile Pathology Department is equipped with world-class laboratory equipment to perform a wide range of pathology tests. 
                             </p>
-                            <a class="btn btn-primary  text-white py-3 px-5" href="#" style="position: relative;font-family:Playfair Display;">Book Appointment</a>
+                            <a class="btn btn-primary text-white py-3 px-5" href="#" onclick="event.preventDefault();document.getElementById('apptModal').classList.add('active');" style="position:relative;font-family:Playfair Display;">Book Appointment</a>
                         </div>
                     </div>
                 </div>
@@ -281,7 +595,7 @@ s0.parentNode.insertBefore(s1,s0);
                             <p class="mb-5 fs-5 animated slideInDown" style="position: relative;margin-top:50px!important;font-family:Playfair Display;">At the Polyclinique de l'Etoile customercare service is at the top level,
                                 where our customers get the service in a short time.
                             </p>
-                            <a class="btn btn-primary  text-white py-3 px-5" href="#" style="position: relative;font-family:Playfair Display;">Book Appointment</a>
+                            <a class="btn btn-primary text-white py-3 px-5" href="#" onclick="event.preventDefault();document.getElementById('apptModal').classList.add('active');" style="position:relative;font-family:Playfair Display;">Book Appointment</a>
                         </div>
                     </div>
                 </div>
@@ -294,7 +608,7 @@ s0.parentNode.insertBefore(s1,s0);
                              <h1 class="display-1 text-capitalize text-white mb-4" style="letter-spacing: 3px;margin-top:130px!important;font-family: Playfair Display sans serif;">Endoscopy</h1>
                             <p class="mb-5 fs-5 animated slideInDown" style="position: relative;margin-top:50px!important;font-family:Playfair Display;">Polyclinique de l'Etoile performs a wide range of endoscopic procedures that allow both diagnosis and treatment of gastrointestinal disorders, such as peptic ulcers, polyps, cancers, and blockages of the bile ducts due to stones, inflammation and tumors.  
                             </p>
-                            <a class="btn btn-primary  text-white py-3 px-5" href="#" style="position: relative;font-family:Playfair Display;">Book Appointment</a>
+                            <a class="btn btn-primary text-white py-3 px-5" href="#" onclick="event.preventDefault();document.getElementById('apptModal').classList.add('active');" style="position:relative;font-family:Playfair Display;">Book Appointment</a>
                         </div>
                     </div>
                 </div>
@@ -302,8 +616,6 @@ s0.parentNode.insertBefore(s1,s0);
             <!-- Carousel End -->
         </div>
         <!-- Navbar & Hero End -->
-
-
 
                 <!-- Services Start -->
         <div class="container-fluid service py-5" style="position: relative;top:0px!important;text-align: initial;">
@@ -537,6 +849,201 @@ s0.parentNode.insertBefore(s1,s0);
         <!-- Services End -->
 
 
+        <!-- Stats Bar Start -->
+        <div class="container-fluid py-5" style="background:var(--bs-primary);">
+            <div class="container">
+                <div class="row g-4 text-center text-white">
+                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <div style="border-right:1px solid rgba(255,255,255,0.25); padding:10px 0;">
+                            <h2 style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:900; margin:0;">12+</h2>
+                            <p style="margin:6px 0 0; font-size:13px; letter-spacing:2px; text-transform:uppercase; opacity:0.9;">Years Experience</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div style="border-right:1px solid rgba(255,255,255,0.25); padding:10px 0;">
+                            <h2 style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:900; margin:0;">15+</h2>
+                            <p style="margin:6px 0 0; font-size:13px; letter-spacing:2px; text-transform:uppercase; opacity:0.9;">Qualified Doctors</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.3s">
+                        <div style="border-right:1px solid rgba(255,255,255,0.25); padding:10px 0;">
+                            <h2 style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:900; margin:0;">750K+</h2>
+                            <p style="margin:6px 0 0; font-size:13px; letter-spacing:2px; text-transform:uppercase; opacity:0.9;">Patients Treated</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 wow fadeInUp" data-wow-delay="0.4s">
+                        <div style="padding:10px 0;">
+                            <h2 style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:900; margin:0;">10+</h2>
+                            <p style="margin:6px 0 0; font-size:13px; letter-spacing:2px; text-transform:uppercase; opacity:0.9;">Specialties</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Stats Bar End -->
+
+        <!-- Why Choose Us Start -->
+        <div class="container-fluid py-5" style="background:#fff;">
+            <div class="container py-4">
+                <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="sub-style">
+                        <h4 class="sub-title px-3 mb-0">Why Choose Us</h4>
+                    </div>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <div style="text-align:center; padding:36px 24px; border:1px solid #e8e8e8; border-radius:6px; height:100%; transition:box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 8px 30px rgba(0,0,0,0.10)'" onmouseout="this.style.boxShadow='none'">
+                            <div style="width:64px; height:64px; background:var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+                                <i class="fa fa-clock text-white" style="font-size:24px;"></i>
+                            </div>
+                            <h5 style="font-family:'Playfair Display',serif; font-weight:700; margin-bottom:12px;">24/7 Available</h5>
+                            <p style="color:#666; font-size:0.95rem; line-height:1.75; margin:0;">Our clinic is open 24 hours a day, Monday to Sunday, so care is always within reach.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div style="text-align:center; padding:36px 24px; border:1px solid #e8e8e8; border-radius:6px; height:100%; transition:box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 8px 30px rgba(0,0,0,0.10)'" onmouseout="this.style.boxShadow='none'">
+                            <div style="width:64px; height:64px; background:var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+                                <i class="fa fa-user-md text-white" style="font-size:24px;"></i>
+                            </div>
+                            <h5 style="font-family:'Playfair Display',serif; font-weight:700; margin-bottom:12px;">Expert Doctors</h5>
+                            <p style="color:#666; font-size:0.95rem; line-height:1.75; margin:0;">Our team of experienced specialists ensures you receive the highest standard of medical care.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                        <div style="text-align:center; padding:36px 24px; border:1px solid #e8e8e8; border-radius:6px; height:100%; transition:box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 8px 30px rgba(0,0,0,0.10)'" onmouseout="this.style.boxShadow='none'">
+                            <div style="width:64px; height:64px; background:var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+                                <i class="fa fa-microscope text-white" style="font-size:24px;"></i>
+                            </div>
+                            <h5 style="font-family:'Playfair Display',serif; font-weight:700; margin-bottom:12px;">Modern Equipment</h5>
+                            <p style="color:#666; font-size:0.95rem; line-height:1.75; margin:0;">We invest in state-of-the-art technology for accurate diagnostics and effective treatment.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.4s">
+                        <div style="text-align:center; padding:36px 24px; border:1px solid #e8e8e8; border-radius:6px; height:100%; transition:box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 8px 30px rgba(0,0,0,0.10)'" onmouseout="this.style.boxShadow='none'">
+                            <div style="width:64px; height:64px; background:var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+                                <i class="fa fa-shield-alt text-white" style="font-size:24px;"></i>
+                            </div>
+                            <h5 style="font-family:'Playfair Display',serif; font-weight:700; margin-bottom:12px;">Our Partners</h5>
+                            <p style="color:#666; font-size:0.95rem; line-height:1.75; margin:0;">We collaborate with leading insurance companies and health organizations so your care is covered and stress-free.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Why Choose Us End -->
+
+        <!-- Book Appointment CTA Start -->
+        <div class="container-fluid py-5 wow fadeIn" data-wow-delay="0.2s" style="background:var(--bs-primary);">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-8">
+                        <h2 style="font-family:'Playfair Display',serif; color:#fff; font-weight:700; font-size:1.9rem; margin:0 0 10px 0;">Need to See a Doctor?</h2>
+                        <p style="color:rgba(255,255,255,0.88); font-size:1rem; margin:0;">Book your appointment today and get expert medical care from our qualified specialists.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a href="#" onclick="event.preventDefault();document.getElementById('apptCalOverlay')&&document.getElementById('apptCalOverlay').classList.remove('active');document.getElementById('apptModal').classList.add('active');" style="display:inline-block; background:#fff; color:var(--bs-primary); font-family:'Playfair Display',serif; font-size:14px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:16px 40px; border-radius:3px; text-decoration:none; box-shadow:0 4px 20px rgba(0,0,0,0.15);">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Book Appointment CTA End -->
+
+        <!-- Testimonials Start -->
+        <div class="container-fluid py-5" style="background:#f8f9fa;">
+            <div class="container py-4">
+                <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="sub-style">
+                        <h4 class="sub-title px-3 mb-0">Testimonials</h4>
+                    </div>
+                    <p style="font-family:'Playfair Display',serif; font-size:1.1rem; color:#555; margin:16px 0 0;">What our patients say about us</p>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div style="background:#fff; border-radius:6px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.07); height:100%; position:relative;">
+                            <div style="color:var(--bs-primary); font-size:32px; line-height:1; margin-bottom:16px;">"</div>
+                            <p style="color:#555; line-height:1.85; font-size:0.97rem; margin-bottom:24px;">The doctors and nurses at Polyclinique de l'Etoile are incredibly professional and caring. I received excellent care and felt in safe hands throughout my treatment.</p>
+                            <div style="display:flex; align-items:center; gap:14px;">
+                                <div style="width:44px; height:44px; background:var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:16px; flex-shrink:0;">A</div>
+                                <div>
+                                    <p style="margin:0; font-weight:700; font-size:0.95rem; color:#222;">Amina K.</p>
+                                    <p style="margin:0; font-size:12px; color:#999;">Patient, Kigali</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div style="background:#fff; border-radius:6px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.07); height:100%; position:relative;">
+                            <div style="color:var(--bs-primary); font-size:32px; line-height:1; margin-bottom:16px;">"</div>
+                            <p style="color:#555; line-height:1.85; font-size:0.97rem; margin-bottom:24px;">Very clean facility with modern equipment. The laboratory results were fast and accurate. I highly recommend this clinic to anyone seeking quality healthcare in Rwanda.</p>
+                            <div style="display:flex; align-items:center; gap:14px;">
+                                <div style="width:44px; height:44px; background:var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:16px; flex-shrink:0;">J</div>
+                                <div>
+                                    <p style="margin:0; font-weight:700; font-size:0.95rem; color:#222;">Jean-Paul M.</p>
+                                    <p style="margin:0; font-size:12px; color:#999;">Patient, Kigali</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div style="background:#fff; border-radius:6px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.07); height:100%; position:relative;">
+                            <div style="color:var(--bs-primary); font-size:32px; line-height:1; margin-bottom:16px;">"</div>
+                            <p style="color:#555; line-height:1.85; font-size:0.97rem; margin-bottom:24px;">From reception to consultation, everything was smooth and efficient. The specialist I saw was thorough and explained everything clearly. Truly a world-class clinic in Kigali.</p>
+                            <div style="display:flex; align-items:center; gap:14px;">
+                                <div style="width:44px; height:44px; background:var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:16px; flex-shrink:0;">C</div>
+                                <div>
+                                    <p style="margin:0; font-weight:700; font-size:0.95rem; color:#222;">Christine U.</p>
+                                    <p style="margin:0; font-size:12px; color:#999;">Patient, Kigali</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonials End -->
+
+        <!-- Contact Strip Start -->
+        <div class="container-fluid py-4" style="background:#0b1a2e;">
+            <div class="container">
+                <div class="row g-4 justify-content-center text-white text-center text-md-start">
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div style="display:flex; align-items:center; gap:16px; justify-content:center;">
+                            <div style="width:48px; height:48px; border:2px solid var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <p style="margin:0; font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:0.6; margin-bottom:4px;">Location</p>
+                                <p style="margin:0; font-size:0.9rem; font-weight:600;">KG 1 Ave, Remera, Kigali, Rwanda</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div style="display:flex; align-items:center; gap:16px; justify-content:center;">
+                            <div style="width:48px; height:48px; border:2px solid var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                                <i class="fas fa-phone text-primary"></i>
+                            </div>
+                            <div>
+                                <p style="margin:0; font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:0.6; margin-bottom:4px;">Call Us</p>
+                                <p style="margin:0; font-size:0.9rem; font-weight:600;">Free Call: 1301 &nbsp;|&nbsp; WhatsApp: 0790008754</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div style="display:flex; align-items:center; gap:16px; justify-content:center;">
+                            <div style="width:48px; height:48px; border:2px solid var(--bs-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                                <i class="fas fa-envelope text-primary"></i>
+                            </div>
+                            <div>
+                                <p style="margin:0; font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:0.6; margin-bottom:4px;">Email Us</p>
+                                <p style="margin:0; font-size:0.9rem; font-weight:600;">polycliniquedeletoile2020@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact Strip End -->
+
             <div class="container-fluid team py-5">
             <div class="container py-5">
                 <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -563,7 +1070,7 @@ s0.parentNode.insertBefore(s1,s0);
                         <div class="section-title text-start"> -->
                             <!-- <h4 class="sub-title pe-3 mb-0"></h4> -->
                          <!--    <h4 class="sub-title pe-3 mb-0" style="position: relative;font-size:17px!important;">Best Quality Services With Minimal Time Rate</h4><br><br>
-                            <p class="mb-4">Polyclinique de l'Etoile, established in Kigali in 2014 and, is a private clinic offering high-quality outpatient care to local and international patients.</p>
+                            <p class="mb-4">Polyclinique de l'Etoile, established in Kigali in 2014, is a private Polyclinique offering high-quality outpatient and inpatient care to local and international patients.</p>
                             <div class="row g-4">
                                 <div class="col-sm-6">
                                     <div class="d-flex flex-column h-100">
@@ -889,7 +1396,7 @@ s0.parentNode.insertBefore(s1,s0);
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <!-- <h4 class="text-white mb-4"><i class="fas fa-star-of-life me-3"></i>Polyclinique de l'Etoile</h4> -->
-                            <p>Polyclinique de l'Etoile, established in Kigali in 2014 and, is a private clinic offering high-quality outpatient care to local and international patients."
+                            <p>Polyclinique de l'Etoile, established in Kigali in 2014, is a private Polyclinique offering high-quality outpatient and inpatient care to local and international patients."
                             </p>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-share fa-2x text-white me-2"></i>
