@@ -287,7 +287,7 @@ var DEPT_ICONS = {
 function loadTickets() {
     var fd = new FormData();
     fd.append('action', 'dept_list');
-    fetch('ticket-action.php', { method:'POST', body:fd })
+    fetch('ticket-action.php', { method:'POST', body:fd, credentials:'same-origin' })
         .then(function(r){ return r.json(); })
         .then(function(data) {
             if (!data.success) {
@@ -426,7 +426,7 @@ function saveTicket() {
     fd.append('status', document.getElementById('panelStatus').value);
     fd.append('notes',  document.getElementById('panelNotes').value.trim());
 
-    fetch('ticket-action.php', { method:'POST', body:fd })
+    fetch('ticket-action.php', { method:'POST', body:fd, credentials:'same-origin' })
         .then(function(r){ return r.json(); })
         .then(function(data) {
             if (data.success) {
@@ -444,7 +444,7 @@ function saveTicket() {
 function doLogout() {
     var fd = new FormData();
     fd.append('action', 'dept_logout');
-    fetch('ticket-action.php', { method:'POST', body:fd })
+    fetch('ticket-action.php', { method:'POST', body:fd, credentials:'same-origin' })
         .then(function(){ window.location.href = 'dept-login.php'; });
 }
 
