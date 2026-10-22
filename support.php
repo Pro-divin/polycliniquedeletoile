@@ -582,16 +582,12 @@
             <button class="dept-btn" onclick="selectDept(this,'Emergency')"><i class="fa fa-ambulance"></i>Emergency</button>
             <button class="dept-btn" onclick="selectDept(this,'Laboratory')"><i class="fa fa-flask"></i>Laboratory</button>
             <button class="dept-btn" onclick="selectDept(this,'Radiology')"><i class="fa fa-eye"></i>Radiology</button>
-            <button class="dept-btn" onclick="selectDept(this,'Pharmacy')"><i class="fa fa-medkit"></i>Pharmacy</button>
             <button class="dept-btn" onclick="selectDept(this,'Nursing Ward')"><i class="fa fa-heartbeat"></i>Nursing Ward</button>
-            <button class="dept-btn" onclick="selectDept(this,'Maternity')"><i class="fa fa-child"></i>Maternity</button>
             <button class="dept-btn" onclick="selectDept(this,'Pediatrics')"><i class="fa fa-child"></i>Pediatrics</button>
             <button class="dept-btn" onclick="selectDept(this,'Administration')"><i class="fa fa-building"></i>Administration</button>
             <button class="dept-btn" onclick="selectDept(this,'Finance')"><i class="fa fa-money"></i>Finance</button>
-            <button class="dept-btn" onclick="selectDept(this,'IT Department')"><i class="fa fa-laptop"></i>IT Dept</button>
-            <button class="dept-btn" onclick="selectDept(this,'Maintenance')"><i class="fa fa-wrench"></i>Maintenance</button>
-            <button class="dept-btn" onclick="selectDept(this,'Kitchen')"><i class="fa fa-cutlery"></i>Kitchen</button>
-            <button class="dept-btn" onclick="selectDept(this,'Physiotherapy')"><i class="fa fa-wheelchair"></i>Physiotherapy</button>
+            <button class="dept-btn" onclick="selectDept(this,'CT Scan')"><i class="fa fa-circle-o-notch"></i>CT Scan</button>
+            <button class="dept-btn" onclick="selectDept(this,'Gynaecology')"><i class="fa fa-venus"></i>Gynaecology</button>
             <button class="dept-btn" onclick="selectDept(this,'Endoscopy')"><i class="fa fa-search-plus"></i>Endoscopy</button>
             <button class="dept-btn" onclick="selectDept(this,'Dentistry')"><i class="fa fa-smile-o"></i>Dentistry</button>
             <button class="dept-btn" onclick="selectDept(this,'Other')"><i class="fa fa-ellipsis-h"></i>Other</button>
