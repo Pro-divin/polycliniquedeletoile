@@ -127,7 +127,9 @@ if ($action === "dept_list") {
 }
 
 if ($action === "dept_update") {
-    if (empty($_SESSION['dept'])) {
+    $validDepts = ['IT','Finance','HR','Logistics'];
+    $dept = trim($_POST["dept"] ?? $_SESSION['dept'] ?? "");
+    if (!in_array($dept, $validDepts)) {
         echo json_encode(["success" => false, "error" => "Unauthorized."]); exit;
     }
     $allowed = ["New","Acknowledged","In Progress","Waiting for Employee","Resolved"];
@@ -137,9 +139,8 @@ if ($action === "dept_update") {
     if (!in_array($status, $allowed)) {
         echo json_encode(["success" => false, "error" => "Invalid status."]); exit;
     }
-    // Only update tickets belonging to this dept
     $stmt = $conn->prepare("UPDATE it_tickets SET status=?, notes=?, updated_at=NOW() WHERE id=? AND department=?");
-    $stmt->execute([$status, $notes, $id, $_SESSION['dept']]);
+    $stmt->execute([$status, $notes, $id, $dept]);
     echo json_encode(["success" => true]);
     exit;
 }

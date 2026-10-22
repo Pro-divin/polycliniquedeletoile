@@ -6,6 +6,16 @@ if (empty($_SESSION['dept'])) {
     header('Location: dept-login.php');
     exit;
 }
+$phpDept = $_SESSION['dept'];
+
+// Fetch tickets directly from DB
+require_once __DIR__ . '/config/connect.php';
+$phpTickets = [];
+if ($conn) {
+    $stmt = $conn->prepare("SELECT * FROM it_tickets WHERE department = ? ORDER BY submitted DESC");
+    $stmt->execute([$phpDept]);
+    $phpTickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -236,7 +246,7 @@ if (empty($_SESSION['dept'])) {
             <option>New</option><option>Acknowledged</option><option>In Progress</option>
             <option>Waiting for Employee</option><option>Resolved</option>
         </select>
-        <button class="refresh-btn" onclick="loadTickets()">
+        <button class="refresh-btn" onclick="window.location.reload()">
             <i class="fa fa-refresh"></i> Refresh
         </button>
     </div>
@@ -269,7 +279,9 @@ if (empty($_SESSION['dept'])) {
 </div>
 
 <script>
-var allTickets = [], cardFilter = null;
+var DEPT       = <?= json_encode($phpDept) ?>;
+var allTickets = <?= json_encode($phpTickets) ?>;
+var cardFilter = null;
 
 var STATUS_COLORS = {
     'New':                  { bg:'#E8F5E9', color:'#2E7D32' },
@@ -285,24 +297,14 @@ var DEPT_ICONS = {
 };
 
 function loadTickets() {
-    var fd = new FormData();
-    fd.append('action', 'dept_list');
-    fetch('ticket-action.php', { method:'POST', body:fd, credentials:'same-origin' })
-        .then(function(r){ return r.json(); })
-        .then(function(data) {
-            if (!data.success) { return; }
-            var dept = data.dept;
-            document.getElementById('headerTitle').textContent = dept + ' Department Dashboard';
-            document.getElementById('headerSub').textContent   = 'Support tickets submitted to ' + dept;
-            document.getElementById('topbarDept').textContent  = dept + ' Portal';
-            var icon = DEPT_ICONS[dept] || 'fa-inbox';
-            document.getElementById('headerIcon').className    = 'fa ' + icon;
-
-            allTickets = data.tickets || [];
-            updateStats();
-            renderTable();
-        })
-        .catch(function() { /* network error — keep page, retry on next interval */ });
+    // Tickets are loaded server-side on page load; refresh reloads the page
+    var icon = DEPT_ICONS[DEPT] || 'fa-inbox';
+    document.getElementById('headerTitle').textContent = DEPT + ' Department Dashboard';
+    document.getElementById('headerSub').textContent   = 'Support tickets submitted to ' + DEPT;
+    document.getElementById('topbarDept').textContent  = DEPT + ' Portal';
+    document.getElementById('headerIcon').className    = 'fa ' + icon;
+    updateStats();
+    renderTable();
 }
 
 function updateStats() {
@@ -415,6 +417,7 @@ function saveTicket() {
     if (!panelTicket) return;
     var fd = new FormData();
     fd.append('action', 'dept_update');
+    fd.append('dept',   DEPT);
     fd.append('id',     panelTicket.id);
     fd.append('status', document.getElementById('panelStatus').value);
     fd.append('notes',  document.getElementById('panelNotes').value.trim());
@@ -441,9 +444,10 @@ function doLogout() {
         .then(function(){ window.location.href = 'dept-login.php'; });
 }
 
-// Load on page ready
+// Initialize on page load (data already embedded from PHP)
 loadTickets();
-setInterval(loadTickets, 60000);
+// Auto-refresh every 60 seconds by reloading the page
+setInterval(function(){ window.location.reload(); }, 60000);
 </script>
 </body>
 </html>
