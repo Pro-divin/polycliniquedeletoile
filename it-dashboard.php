@@ -77,6 +77,10 @@
             background:#fff; border-radius:10px; padding:20px 22px;
             box-shadow:0 3px 18px rgba(0,0,0,0.07);
             display:flex; align-items:center; gap:16px;
+            transition:transform .15s, box-shadow .15s;
+        }
+        .stat-tile:hover {
+            transform:translateY(-2px); box-shadow:0 6px 24px rgba(0,0,0,0.13);
         }
         .stat-icon {
             width:46px; height:46px; border-radius:9px;
@@ -278,25 +282,25 @@
     <!-- STAT TILES -->
     <div class="row g-3 mb-4">
         <div class="col-6 col-md-3">
-            <div class="stat-tile">
+            <div class="stat-tile" onclick="filterByCard('all')" style="cursor:pointer;" title="Show all tickets">
                 <div class="stat-icon" style="background:var(--primary);"><i class="fa fa-ticket"></i></div>
                 <div><h3 id="st-total">0</h3><p>Total Tickets</p></div>
             </div>
         </div>
         <div class="col-6 col-md-3">
-            <div class="stat-tile">
+            <div class="stat-tile" onclick="filterByCard('open')" style="cursor:pointer;" title="Show open tickets">
                 <div class="stat-icon" style="background:#E65100;"><i class="fa fa-exclamation-circle"></i></div>
                 <div><h3 id="st-open">0</h3><p>Open</p></div>
             </div>
         </div>
         <div class="col-6 col-md-3">
-            <div class="stat-tile">
+            <div class="stat-tile" onclick="filterByCard('resolved')" style="cursor:pointer;" title="Show resolved tickets">
                 <div class="stat-icon" style="background:#2E7D32;"><i class="fa fa-check-circle"></i></div>
                 <div><h3 id="st-resolved">0</h3><p>Resolved</p></div>
             </div>
         </div>
         <div class="col-6 col-md-3">
-            <div class="stat-tile">
+            <div class="stat-tile" onclick="filterByCard('critical')" style="cursor:pointer;" title="Show critical tickets">
                 <div class="stat-icon" style="background:#4a0000;"><i class="fa fa-warning"></i></div>
                 <div><h3 id="st-critical">0</h3><p>Critical</p></div>
             </div>
@@ -469,6 +473,17 @@ function updateStats() {
     document.getElementById('st-critical').textContent = allTickets.filter(t => t.urgency === 'Critical').length;
 }
 
+// ── CARD QUICK FILTER ──
+var cardFilter = null;
+function filterByCard(type) {
+    cardFilter = type === 'all' ? null : type;
+    document.getElementById('filterStatus').value  = '';
+    document.getElementById('filterUrgency').value = type === 'critical' ? 'Critical' : '';
+    document.getElementById('filterDept').value    = '';
+    document.getElementById('filterSearch').value  = '';
+    renderTable();
+}
+
 // ── DEPT FILTER POPULATION ──
 function populateDeptFilter() {
     var sel = document.getElementById('filterDept');
@@ -508,6 +523,8 @@ function renderTable() {
     var fSearch  = document.getElementById('filterSearch').value.toLowerCase();
 
     var filtered = allTickets.filter(function(t) {
+        if (cardFilter === 'open'     && t.status === 'Resolved') return false;
+        if (cardFilter === 'resolved' && t.status !== 'Resolved') return false;
         if (fStatus  && t.status    !== fStatus)  return false;
         if (fUrgency && t.urgency   !== fUrgency) return false;
         if (fDept    && t.department!== fDept)    return false;
