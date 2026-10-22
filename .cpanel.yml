@@ -2,8 +2,13 @@
 deployment:
   tasks:
     - /bin/mkdir -p /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/config
-    - /bin/cp support.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/index.php
-    - /bin/cp it-dashboard.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/it-dashboard.php
-    - /bin/cp ticket-action.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/ticket-action.php
-    - /bin/cp config/connect.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/config/connect.php
-    - /bin/cp support-htaccess.txt /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/.htaccess
+    - /bin/cp /home/jkvxncuh/public_html/support.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/index.php
+    - /bin/cp /home/jkvxncuh/public_html/it-dashboard.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/it-dashboard.php
+    - /bin/cp /home/jkvxncuh/public_html/ticket-action.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/ticket-action.php
+    - /bin/cp /home/jkvxncuh/public_html/config/connect.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/config/connect.php
+    - /bin/cp /home/jkvxncuh/public_html/support-htaccess.txt /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/.htaccess
+    - /bin/mkdir -p /home/jkvxncuh/support.polycliniquedeletoile.com/config
+    - /bin/cp /home/jkvxncuh/support.polycliniquedeletoile.com/support.php /home/jkvxncuh/support.polycliniquedeletoile.com/index.php
+    - /bin/cp /home/jkvxncuh/support.polycliniquedeletoile.com/ticket-action.php /home/jkvxncuh/support.polycliniquedeletoile.com/ticket-action.php
+    - /bin/cp /home/jkvxncuh/support.polycliniquedeletoile.com/config/connect.php /home/jkvxncuh/support.polycliniquedeletoile.com/config/connect.php
+    - /bin/cp /home/jkvxncuh/support.polycliniquedeletoile.com/support-htaccess.txt /home/jkvxncuh/support.polycliniquedeletoile.com/.htaccess
