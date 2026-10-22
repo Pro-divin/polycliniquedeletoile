@@ -653,6 +653,10 @@
             <button class="dept-btn" onclick="selectFrom(this,'Logistics')"><i class="fa fa-truck"></i>Logistics</button>
             <button class="dept-btn" onclick="selectFrom(this,'Other')"><i class="fa fa-ellipsis-h"></i>Other</button>
         </div>
+        <div id="otherFromWrap" style="display:none;margin-top:12px;">
+            <label class="field-label">Please specify your department <span class="req">*</span></label>
+            <input type="text" class="field-input" id="otherFromInput" placeholder="e.g. Physiotherapy, Pharmacy…" oninput="selFrom=this.value.trim()">
+        </div>
         <p class="err-msg" id="errFrom">Please select your department.</p>
     </div>
 
@@ -846,7 +850,14 @@ function selectDept(el, val) {
 function selectFrom(el, val) {
     document.querySelectorAll('#fromGrid .dept-btn').forEach(function(b){ b.classList.remove('selected'); });
     el.classList.add('selected');
-    selFrom = val;
+    var wrap = document.getElementById('otherFromWrap');
+    if (val === 'Other') {
+        wrap.style.display = 'block';
+        selFrom = document.getElementById('otherFromInput').value.trim();
+    } else {
+        wrap.style.display = 'none';
+        selFrom = val;
+    }
     document.getElementById('errFrom').classList.remove('show');
 }
 function selectCat(el, val) {
@@ -899,6 +910,9 @@ function validateStep() {
         if (!selDept) { document.getElementById('errDept').classList.add('show'); return false; }
     }
     if (step === 2) {
+        if (document.getElementById('otherFromWrap').style.display !== 'none') {
+            selFrom = document.getElementById('otherFromInput').value.trim();
+        }
         if (!selFrom) { document.getElementById('errFrom').classList.add('show'); return false; }
     }
     if (step === 3) {
@@ -977,6 +991,8 @@ function resetWizard() {
     document.querySelectorAll('.prog-line').forEach(function(l){ l.classList.remove('done'); });
     document.querySelectorAll('.target-card,.dept-btn,.cat-card,.urg-card').forEach(function(el){ el.classList.remove('selected'); });
     document.getElementById('catGrid').innerHTML = '';
+    document.getElementById('otherFromWrap').style.display = 'none';
+    document.getElementById('otherFromInput').value = '';
     document.getElementById('desc').value = '';
     document.getElementById('ext').value = '';
     document.getElementById('uploadName').textContent = '';
