@@ -5,6 +5,7 @@ session_start();
 if (empty($_SESSION['dept'])) { header('Location: dept-login.php'); exit; }
 
 $dept = $_SESSION['dept'];
+session_write_close(); // Release session lock immediately — page doesn't need it anymore
 
 // Per-department colours and icons
 $deptMeta = [
