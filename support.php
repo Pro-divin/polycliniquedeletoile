@@ -608,23 +608,7 @@
 </div>
 
 <script>
-var STORAGE_KEY = 'pce_it_tickets';
-
-function loadTickets() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-    catch(e) { return []; }
-}
-function saveTicket(ticket) {
-    var tickets = loadTickets();
-    tickets.unshift(ticket);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tickets));
-}
-function genId() {
-    var tickets = loadTickets();
-    var nums = tickets.map(function(t){ return parseInt((t.id||'IT-1000').replace('IT-',''))||1000; });
-    var next = nums.length ? Math.max.apply(null, nums) + 1 : 1001;
-    return 'IT-' + next;
-}
+var API = 'ticket-action.php';
 
 document.getElementById('supportForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -650,25 +634,38 @@ document.getElementById('supportForm').addEventListener('submit', function(e) {
 
     if (!valid) return;
 
-    var id = genId();
+    var btn = document.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Submitting…';
 
-    var ticket = {
-        id:          id,
-        submitted:   new Date().toISOString(),
-        department:  dept,
-        category:    cat.value,
-        urgency:     urg.value,
-        description: desc,
-        contact:     ext,
-        status:      'New',
-        notes:       ''
-    };
+    var fd = new FormData();
+    fd.append('action',      'submit');
+    fd.append('department',  dept);
+    fd.append('category',    cat.value);
+    fd.append('urgency',     urg.value);
+    fd.append('description', desc);
+    fd.append('contact',     ext);
 
-    saveTicket(ticket);
-
-    document.getElementById('ticketNumber').textContent = id;
-    document.getElementById('formPanel').style.display = 'none';
-    document.getElementById('successPanel').style.display = 'block';
+    fetch(API, { method:'POST', body:fd })
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa fa-paper-plane"></i> Submit Ticket';
+            if (data.success) {
+                document.getElementById('ticketNumber').textContent = data.ticket_id;
+                document.getElementById('formPanel').style.display = 'none';
+                document.getElementById('successPanel').style.display = 'block';
+            } else {
+                document.getElementById('formError').textContent = data.error || 'Submission failed. Please try again.';
+                document.getElementById('formError').style.display = 'block';
+            }
+        })
+        .catch(function() {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa fa-paper-plane"></i> Submit Ticket';
+            document.getElementById('formError').textContent = 'Network error. Please try again.';
+            document.getElementById('formError').style.display = 'block';
+        });
 });
 
 function resetForm() {
@@ -689,13 +686,17 @@ function checkTicket() {
         result.innerHTML = '<div style="background:#fff3f3; border:1px solid #e53935; border-radius:8px; padding:14px 16px; color:#c62828; font-size:13.5px;"><i class="fa fa-exclamation-circle me-2"></i>Please enter a ticket number.</div>';
         return;
     }
-    var tickets = loadTickets();
-    var t = tickets.find(function(x){ return x.id.toUpperCase() === input; });
-    if (!t) {
-        result.style.display = 'block';
-        result.innerHTML = '<div style="background:#fff3f3; border:1px solid #e53935; border-radius:8px; padding:14px 16px; color:#c62828; font-size:13.5px;"><i class="fa fa-times-circle me-2"></i>Ticket <strong>' + input + '</strong> not found. Please check the number and try again.</div>';
-        return;
-    }
+    result.style.display = 'block';
+    result.innerHTML = '<div style="text-align:center; padding:16px; color:#555;"><i class="fa fa-spinner fa-spin me-2"></i>Checking ticket…</div>';
+
+    fetch(API + '?action=check&id=' + encodeURIComponent(input))
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+            if (!data.success) {
+                result.innerHTML = '<div style="background:#fff3f3; border:1px solid #e53935; border-radius:8px; padding:14px 16px; color:#c62828; font-size:13.5px;"><i class="fa fa-times-circle me-2"></i>Ticket <strong>' + input + '</strong> not found. Please check the number and try again.</div>';
+                return;
+            }
+            var t = data.ticket;
 
     var statusColors = {
         'New':                  { bg:'#E3F2FD', color:'#1565C0', icon:'fa-clock-o' },
@@ -731,6 +732,10 @@ function checkTicket() {
                 (t.notes ? '<div style="background:#f8f9ff; border-left:4px solid var(--primary); border-radius:0 6px 6px 0; padding:12px 14px; margin-top:4px;"><strong style="font-size:12px; text-transform:uppercase; letter-spacing:.7px; color:var(--primary);">IT Notes</strong><p style="margin:6px 0 0; font-size:13.5px; color:#1a1a2e;">' + t.notes + '</p></div>' : '') +
             '</div>' +
         '</div>';
+        })
+        .catch(function() {
+            result.innerHTML = '<div style="background:#fff3f3; border:1px solid #e53935; border-radius:8px; padding:14px 16px; color:#c62828; font-size:13.5px;"><i class="fa fa-exclamation-triangle me-2"></i>Network error. Please try again.</div>';
+        });
 }
 </script>
 </body>

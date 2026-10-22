@@ -415,7 +415,8 @@ var IT_USERS = {
     'divin@polycliniquedeletoile.com': { pass: 'Abcde123.', name: 'IT Administrator' }
 };
 
-var STORAGE_KEY = 'pce_it_tickets';
+var API        = 'ticket-action.php';
+var API_KEY    = 'PCE_IT_2026';
 var SESSION_KEY = 'pce_it_session';
 var currentModal = null;
 var allTickets   = [];
@@ -443,20 +444,22 @@ function showDash() {
     document.getElementById('dashBody').style.display = 'block';
     document.getElementById('staffName').innerHTML = '<i class="fa fa-user-circle me-1"></i>' + sess.name;
     loadTickets();
-    setInterval(loadTickets, 15000); // auto-refresh every 15 s
+    setInterval(loadTickets, 15000);
 }
 
-// ── TICKETS ──
+// ── TICKETS FROM SERVER ──
 function loadTickets() {
-    try { allTickets = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-    catch(e) { allTickets = []; }
-    populateDeptFilter();
-    updateStats();
-    renderTable();
+    fetch(API + '?action=list&key=' + API_KEY)
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+            allTickets = data.success ? data.tickets : [];
+            populateDeptFilter();
+            updateStats();
+            renderTable();
+        })
+        .catch(function(){ allTickets = []; renderTable(); });
 }
-function saveTickets() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(allTickets));
-}
+function saveTickets() { /* now handled server-side */ }
 
 // ── STATS ──
 function updateStats() {
@@ -561,14 +564,18 @@ function esc(s) {
 
 // ── QUICK STATUS UPDATE ──
 function quickStatus(id, newStatus) {
+    var fd = new FormData();
+    fd.append('action', 'update');
+    fd.append('key',    API_KEY);
+    fd.append('id',     id);
+    fd.append('status', newStatus);
     var t = allTickets.find(function(x){ return x.id === id; });
-    if (!t) return;
-    t.status = newStatus;
-    t.updatedAt = new Date().toISOString();
-    saveTickets();
-    updateStats();
-    renderTable();
-    showToast('Status updated to "' + newStatus + '"');
+    fd.append('notes',  t ? (t.notes || '') : '');
+    fetch(API, { method:'POST', body:fd })
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+            if (data.success) { loadTickets(); showToast('Status updated to "' + newStatus + '"'); }
+        });
 }
 
 // ── MODAL ──
@@ -593,7 +600,7 @@ function openModal(id) {
         row('Current Status', '<span class="badge-status '+statusClass(t.status)+'">'+esc(t.status)+'</span>') +
         row('Contact',     t.contact || '<em style="color:#aaa">Not provided</em>') +
         row('Description', '<span style="white-space:pre-wrap">'+esc(t.description)+'</span>') +
-        (t.updatedAt ? row('Last Updated', new Date(t.updatedAt).toLocaleString('en-GB')) : '');
+        (t.updated_at ? row('Last Updated', new Date(t.updated_at).toLocaleString('en-GB')) : '');
 
     document.getElementById('detailModal').classList.add('open');
 }
@@ -606,24 +613,24 @@ function closeModal() {
 }
 function saveModal() {
     if (!currentModal) return;
-    currentModal.status    = document.getElementById('modalStatus').value;
-    currentModal.notes     = document.getElementById('modalNotes').value.trim();
-    currentModal.updatedAt = new Date().toISOString();
-    saveTickets();
-    updateStats();
-    renderTable();
+    var fd = new FormData();
+    fd.append('action', 'update');
+    fd.append('key',    API_KEY);
+    fd.append('id',     currentModal.id);
+    fd.append('status', document.getElementById('modalStatus').value);
+    fd.append('notes',  document.getElementById('modalNotes').value.trim());
+    fetch(API, { method:'POST', body:fd })
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+            if (data.success) { loadTickets(); showToast('Ticket updated successfully'); }
+        });
     closeModal();
-    showToast('Ticket updated successfully');
 }
 
 // ── CLEAR ALL ──
 function clearAllTickets() {
     if (!confirm('Delete ALL tickets permanently? This cannot be undone.')) return;
-    localStorage.removeItem(STORAGE_KEY);
-    allTickets = [];
-    updateStats();
-    renderTable();
-    showToast('All tickets cleared');
+    showToast('Clear all is disabled in server mode. Delete from database directly.');
 }
 
 // ── TOAST ──
