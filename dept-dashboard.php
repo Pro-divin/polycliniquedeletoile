@@ -290,12 +290,7 @@ function loadTickets() {
     fetch('ticket-action.php', { method:'POST', body:fd, credentials:'same-origin' })
         .then(function(r){ return r.json(); })
         .then(function(data) {
-            if (!data.success) {
-                if (data.error === 'Unauthorized.') {
-                    window.location.href = 'dept-login.php'; return;
-                }
-                return;
-            }
+            if (!data.success) { return; }
             var dept = data.dept;
             document.getElementById('headerTitle').textContent = dept + ' Department Dashboard';
             document.getElementById('headerSub').textContent   = 'Support tickets submitted to ' + dept;
@@ -307,9 +302,7 @@ function loadTickets() {
             updateStats();
             renderTable();
         })
-        .catch(function() {
-            window.location.href = 'dept-login.php';
-        });
+        .catch(function() { /* network error — keep page, retry on next interval */ });
 }
 
 function updateStats() {
