@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/jkvxncuh/support.polycliniquedeletoile.com
+    - export DEPLOYPATH=/home/jkvxncuh/public_html/support.polycliniquedeletoile.com
     - /bin/mkdir -p $DEPLOYPATH/config
     - /bin/cp support.php $DEPLOYPATH/index.php
     - /bin/cp it-dashboard.php $DEPLOYPATH/it-dashboard.php
