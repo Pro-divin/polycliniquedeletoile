@@ -565,26 +565,31 @@
         <div class="progress-track">
             <div class="prog-step active" id="ps1">
                 <div class="prog-dot">1</div>
-                <span class="prog-label">Department</span>
+                <span class="prog-label">Send To</span>
             </div>
             <div class="prog-line" id="pl1"></div>
             <div class="prog-step" id="ps2">
                 <div class="prog-dot">2</div>
-                <span class="prog-label">Problem</span>
+                <span class="prog-label">Your Dept</span>
             </div>
             <div class="prog-line" id="pl2"></div>
             <div class="prog-step" id="ps3">
                 <div class="prog-dot">3</div>
-                <span class="prog-label">Urgency</span>
+                <span class="prog-label">Issue Type</span>
             </div>
             <div class="prog-line" id="pl3"></div>
             <div class="prog-step" id="ps4">
                 <div class="prog-dot">4</div>
-                <span class="prog-label">Details</span>
+                <span class="prog-label">Urgency</span>
             </div>
             <div class="prog-line" id="pl4"></div>
             <div class="prog-step" id="ps5">
                 <div class="prog-dot">5</div>
+                <span class="prog-label">Details</span>
+            </div>
+            <div class="prog-line" id="pl5"></div>
+            <div class="prog-step" id="ps6">
+                <div class="prog-dot">6</div>
                 <span class="prog-label">Review</span>
             </div>
         </div>
@@ -627,15 +632,39 @@
         <p class="err-msg" id="errDept">Please select a department to submit to.</p>
     </div>
 
-    <!-- Step 2: Category (dynamic based on dept) -->
+    <!-- Step 2: From Department -->
     <div class="step-panel" id="step2">
+        <p class="step-title">Which department are you submitting this request from?</p>
+        <div class="dept-grid" id="fromGrid">
+            <button class="dept-btn" onclick="selectFrom(this,'Reception')"><i class="fa fa-user-md"></i>Reception</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Consultation')"><i class="fa fa-stethoscope"></i>Consultation</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Emergency')"><i class="fa fa-ambulance"></i>Emergency</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Laboratory')"><i class="fa fa-flask"></i>Laboratory</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Radiology')"><i class="fa fa-eye"></i>Radiology</button>
+            <button class="dept-btn" onclick="selectFrom(this,'CT Scan')"><i class="fa fa-circle-o-notch"></i>CT Scan</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Gynaecology')"><i class="fa fa-venus"></i>Gynaecology</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Nursing Ward')"><i class="fa fa-heartbeat"></i>Nursing Ward</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Pediatrics')"><i class="fa fa-child"></i>Pediatrics</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Endoscopy')"><i class="fa fa-search-plus"></i>Endoscopy</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Dentistry')"><i class="fa fa-smile-o"></i>Dentistry</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Administration')"><i class="fa fa-building"></i>Administration</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Finance')"><i class="fa fa-money"></i>Finance</button>
+            <button class="dept-btn" onclick="selectFrom(this,'HR')"><i class="fa fa-users"></i>HR</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Logistics')"><i class="fa fa-truck"></i>Logistics</button>
+            <button class="dept-btn" onclick="selectFrom(this,'Other')"><i class="fa fa-ellipsis-h"></i>Other</button>
+        </div>
+        <p class="err-msg" id="errFrom">Please select your department.</p>
+    </div>
+
+    <!-- Step 3: Category (dynamic based on target dept) -->
+    <div class="step-panel" id="step3">
         <p class="step-title">What best describes your issue?</p>
         <div class="cat-grid" id="catGrid"></div>
         <p class="err-msg" id="errCat">Please select an issue type.</p>
     </div>
 
-    <!-- Step 3: Urgency -->
-    <div class="step-panel" id="step3">
+    <!-- Step 4: Urgency -->
+    <div class="step-panel" id="step4">
         <p class="step-title">How would you rate the urgency of this issue?</p>
         <div class="urg-list">
             <div class="urg-card" onclick="selectUrg(this,'Low')">
@@ -674,8 +703,8 @@
         <p class="err-msg" id="errUrg">Please select urgency level.</p>
     </div>
 
-    <!-- Step 4: Details -->
-    <div class="step-panel" id="step4">
+    <!-- Step 5: Details -->
+    <div class="step-panel" id="step5">
         <p class="step-title">Please provide details about your issue.</p>
         <div style="margin-bottom:14px;">
             <label class="field-label">What happened? <span class="req">*</span></label>
@@ -697,11 +726,12 @@
         </div>
     </div>
 
-    <!-- Step 5: Review -->
-    <div class="step-panel" id="step5">
+    <!-- Step 6: Review -->
+    <div class="step-panel" id="step6">
         <p class="step-title">Please review your request before submitting.</p>
         <div class="summary-box">
             <div class="summary-row"><span class="label">Submit To</span><span class="value" id="sum-dept">—</span></div>
+            <div class="summary-row"><span class="label">From Department</span><span class="value" id="sum-from">—</span></div>
             <div class="summary-row"><span class="label">Issue Type</span><span class="value" id="sum-cat">—</span></div>
             <div class="summary-row"><span class="label">Urgency</span><span class="value" id="sum-urg">—</span></div>
             <div class="summary-row"><span class="label">Description</span><span class="value" id="sum-desc" style="max-width:60%;font-weight:400;color:var(--muted);">—</span></div>
@@ -736,8 +766,8 @@
 
 <script>
 var API = 'ticket-action.php';
-var step = 1, totalSteps = 5;
-var selDept = '', selCat = '', selUrg = '';
+var step = 1, totalSteps = 6;
+var selDept = '', selFrom = '', selCat = '', selUrg = '';
 
 function openModal() {
     resetWizard();
@@ -813,6 +843,12 @@ function selectDept(el, val) {
         grid.appendChild(d);
     });
 }
+function selectFrom(el, val) {
+    document.querySelectorAll('#fromGrid .dept-btn').forEach(function(b){ b.classList.remove('selected'); });
+    el.classList.add('selected');
+    selFrom = val;
+    document.getElementById('errFrom').classList.remove('show');
+}
 function selectCat(el, val) {
     document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('selected'); });
     el.classList.add('selected');
@@ -847,7 +883,7 @@ function goStep(n) {
     document.getElementById('ps' + step).classList.add('active');
     document.getElementById('ps' + step).classList.remove('done');
     // update lines
-    for (var i = 1; i <= 4; i++) {
+    for (var i = 1; i <= 5; i++) {
         document.getElementById('pl' + i).classList.toggle('done', i < step);
     }
     document.getElementById('btnBack').style.visibility = step > 1 ? 'visible' : 'hidden';
@@ -863,12 +899,15 @@ function validateStep() {
         if (!selDept) { document.getElementById('errDept').classList.add('show'); return false; }
     }
     if (step === 2) {
-        if (!selCat)  { document.getElementById('errCat').classList.add('show'); return false; }
+        if (!selFrom) { document.getElementById('errFrom').classList.add('show'); return false; }
     }
     if (step === 3) {
-        if (!selUrg)  { document.getElementById('errUrg').classList.add('show'); return false; }
+        if (!selCat)  { document.getElementById('errCat').classList.add('show'); return false; }
     }
     if (step === 4) {
+        if (!selUrg)  { document.getElementById('errUrg').classList.add('show'); return false; }
+    }
+    if (step === 5) {
         var desc = document.getElementById('desc').value.trim();
         if (!desc) { document.getElementById('errDesc').classList.add('show'); return false; }
         document.getElementById('errDesc').classList.remove('show');
@@ -878,6 +917,7 @@ function validateStep() {
 
 function fillSummary() {
     document.getElementById('sum-dept').textContent = selDept;
+    document.getElementById('sum-from').textContent = selFrom;
     document.getElementById('sum-cat').textContent  = selCat;
     document.getElementById('sum-urg').textContent  = selUrg;
     document.getElementById('sum-desc').textContent = document.getElementById('desc').value.trim();
@@ -894,6 +934,7 @@ function submitTicket() {
     var fd = new FormData();
     fd.append('action',      'submit');
     fd.append('department',  selDept);
+    fd.append('from_dept',   selFrom);
     fd.append('category',    selCat);
     fd.append('urgency',     selUrg);
     fd.append('description', document.getElementById('desc').value.trim());
@@ -928,13 +969,13 @@ function showSuccess() {
 }
 
 function resetWizard() {
-    step = 1; selDept = ''; selCat = ''; selUrg = '';
+    step = 1; selDept = ''; selFrom = ''; selCat = ''; selUrg = '';
     document.querySelectorAll('.step-panel').forEach(function(p){ p.classList.remove('active'); });
     document.getElementById('step1').classList.add('active');
     document.querySelectorAll('.prog-step').forEach(function(p){ p.classList.remove('active','done'); });
     document.getElementById('ps1').classList.add('active');
     document.querySelectorAll('.prog-line').forEach(function(l){ l.classList.remove('done'); });
-    document.querySelectorAll('.target-card,.cat-card,.urg-card').forEach(function(el){ el.classList.remove('selected'); });
+    document.querySelectorAll('.target-card,.dept-btn,.cat-card,.urg-card').forEach(function(el){ el.classList.remove('selected'); });
     document.getElementById('catGrid').innerHTML = '';
     document.getElementById('desc').value = '';
     document.getElementById('ext').value = '';
