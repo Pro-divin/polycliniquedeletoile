@@ -740,6 +740,7 @@ var step = 1, totalSteps = 5;
 var selDept = '', selCat = '', selUrg = '';
 
 function openModal() {
+    resetWizard();
     document.getElementById('modalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
 }
