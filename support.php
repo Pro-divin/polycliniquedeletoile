@@ -555,7 +555,7 @@
     <div class="modal-head">
         <div>
             <h3><i class="fa fa-ticket me-2"></i>Report a Technical Issue</h3>
-            <p>Complete the steps below — takes about 60 seconds</p>
+            <p>Complete the steps below — it takes less than a minute.</p>
         </div>
         <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
     </div>
@@ -593,7 +593,7 @@
     <!-- Step 1: Department -->
     <div class="modal-body">
     <div class="step-panel active" id="step1">
-        <p class="step-title">Which department are you submitting to?</p>
+        <p class="step-title">Select the department you'd like to submit your request to.</p>
         <div class="target-grid">
             <button class="target-card" onclick="selectDept(this,'IT')">
                 <div class="target-icon" style="background:#E3F2FD;"><i class="fa fa-laptop" style="color:#1565C0;"></i></div>
@@ -629,14 +629,14 @@
 
     <!-- Step 2: Category (dynamic based on dept) -->
     <div class="step-panel" id="step2">
-        <p class="step-title">What type of issue is it?</p>
+        <p class="step-title">What best describes your issue?</p>
         <div class="cat-grid" id="catGrid"></div>
         <p class="err-msg" id="errCat">Please select an issue type.</p>
     </div>
 
     <!-- Step 3: Urgency -->
     <div class="step-panel" id="step3">
-        <p class="step-title">How urgent is this?</p>
+        <p class="step-title">How would you rate the urgency of this issue?</p>
         <div class="urg-list">
             <div class="urg-card" onclick="selectUrg(this,'Low')">
                 <div class="urg-dot" style="background:#4CAF50;"></div>
@@ -676,7 +676,7 @@
 
     <!-- Step 4: Details -->
     <div class="step-panel" id="step4">
-        <p class="step-title">Describe the problem</p>
+        <p class="step-title">Please provide details about your issue.</p>
         <div style="margin-bottom:14px;">
             <label class="field-label">What happened? <span class="req">*</span></label>
             <textarea class="field-input" id="desc" placeholder="Explain what happened, what you were doing, and any error messages you saw…"></textarea>
@@ -699,7 +699,7 @@
 
     <!-- Step 5: Review -->
     <div class="step-panel" id="step5">
-        <p class="step-title">Review your ticket before submitting</p>
+        <p class="step-title">Please review your request before submitting.</p>
         <div class="summary-box">
             <div class="summary-row"><span class="label">Submit To</span><span class="value" id="sum-dept">—</span></div>
             <div class="summary-row"><span class="label">Issue Type</span><span class="value" id="sum-cat">—</span></div>
