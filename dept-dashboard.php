@@ -264,7 +264,7 @@ if (!empty($conn)) {
             <input type="text" id="filterSearch" placeholder="Ticket # or keyword…" oninput="renderTable()" style="width:180px;">
         </div>
         <div style="margin-top:auto;">
-            <button class="btn-refresh" onclick="window.location.reload()">
+            <button class="btn-refresh" onclick="fetchTickets()">
                 <i class="fa fa-refresh"></i> Refresh
             </button>
         </div>
@@ -338,7 +338,32 @@ var cardFilter   = null;
 populateFromFilter();
 updateStats();
 renderTable();
-setInterval(function(){ window.location.reload(); }, 60000);
+setInterval(fetchTickets, 15000);
+
+function fetchTickets() {
+    fetch('ticket-action.php?action=dept_list', { credentials: 'same-origin' })
+        .then(function(r){ return r.json(); })
+        .then(function(data) {
+            if (!data.success) return;
+            allTickets = data.tickets;
+            updateStats();
+            populateFromFilterLive();
+            renderTable();
+        })
+        .catch(function(){});
+}
+
+function populateFromFilterLive() {
+    var sel = document.getElementById('filterFrom');
+    var current = sel.value;
+    while (sel.options.length > 1) sel.remove(1);
+    var depts = [];
+    allTickets.forEach(function(t){ if (t.from_dept && depts.indexOf(t.from_dept) === -1) depts.push(t.from_dept); });
+    depts.sort().forEach(function(d){
+        var o = document.createElement('option'); o.value = d; o.textContent = d; sel.appendChild(o);
+    });
+    sel.value = current;
+}
 
 // ── STATS ──
 function updateStats() {
