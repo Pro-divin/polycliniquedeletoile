@@ -3,6 +3,14 @@ session_name('PCE_DEPT');
 session_set_cookie_params(['path' => '/', 'httponly' => true, 'samesite' => 'Lax']);
 session_start();
 
+// Handle logout
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header('Location: dept-login.php');
+    exit;
+}
+
 // Already logged in
 if (!empty($_SESSION['dept'])) {
     header('Location: dept-dashboard.php');
