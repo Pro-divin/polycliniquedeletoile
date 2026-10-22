@@ -1,3 +1,12 @@
+<?php
+session_name('PCE_DEPT');
+session_set_cookie_params(['path' => '/', 'httponly' => true, 'samesite' => 'Lax']);
+session_start();
+if (empty($_SESSION['dept'])) {
+    header('Location: dept-login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

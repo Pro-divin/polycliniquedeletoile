@@ -5,6 +5,8 @@ header("Access-Control-Allow-Origin: *");
 // Only start session for actions that need auth — avoids session-lock delay on submit
 $action = $_POST["action"] ?? $_GET["action"] ?? "";
 if (in_array($action, ["dept_login","dept_logout","dept_list","dept_update"])) {
+    session_name('PCE_DEPT');
+    session_set_cookie_params(['path' => '/', 'httponly' => true, 'samesite' => 'Lax']);
     session_start();
 }
 
