@@ -520,12 +520,8 @@ function renderTable() {
         return true;
     });
 
-    // Sort: critical first, then by date desc
-    filtered.sort(function(a,b) {
-        var uo = {Critical:0, High:1, Normal:2, Low:3};
-        if ((uo[a.urgency]||9) !== (uo[b.urgency]||9)) return (uo[a.urgency]||9) - (uo[b.urgency]||9);
-        return new Date(b.submitted) - new Date(a.submitted);
-    });
+    // Sort: newest first
+    filtered.sort(function(a,b) { return new Date(b.submitted) - new Date(a.submitted); });
 
     document.getElementById('ticketCount').textContent = filtered.length + ' ticket' + (filtered.length!==1?'s':'') + ' shown';
 
