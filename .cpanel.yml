@@ -1,10 +1,9 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/jkvxncuh/public_html/support.polycliniquedeletoile.com
-    - /bin/mkdir -p $DEPLOYPATH/config
-    - /bin/cp support.php $DEPLOYPATH/index.php
-    - /bin/cp it-dashboard.php $DEPLOYPATH/it-dashboard.php
-    - /bin/cp ticket-action.php $DEPLOYPATH/ticket-action.php
-    - /bin/cp config/connect.php $DEPLOYPATH/config/connect.php
-    - /bin/cp support-htaccess.txt $DEPLOYPATH/.htaccess
+    - /bin/mkdir -p /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/config
+    - /bin/cp support.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/index.php
+    - /bin/cp it-dashboard.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/it-dashboard.php
+    - /bin/cp ticket-action.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/ticket-action.php
+    - /bin/cp config/connect.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/config/connect.php
+    - /bin/cp support-htaccess.txt /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/.htaccess
