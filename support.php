@@ -6,302 +6,392 @@
     <title>IT Support Centre — Polyclinique de l'Etoile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1565C0;
-            --primary-dark: #0D47A1;
+            --primary:       #1565C0;
+            --primary-dark:  #0D47A1;
+            --primary-mid:   #1976D2;
             --primary-light: #E3F2FD;
-            --primary-mid: #1976D2;
+            --accent:        #00ACC1;
+            --surface:       #F8FAFC;
+            --card:          #ffffff;
+            --text:          #1a2340;
+            --muted:         #64748b;
+            --border:        #e2e8f0;
+            --radius:        14px;
+            --shadow:        0 4px 24px rgba(21,101,192,.10);
         }
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background: #f0f4f8;
-            min-height: 100vh;
-            margin: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text); }
 
-        /* ─── TOPBAR ─── */
+        /* ── TOPBAR ── */
         .topbar {
-            background: #0a0a0a;
-            color: #ccc;
-            font-size: 12.5px;
-            padding: 8px 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: linear-gradient(90deg, #0a1628 0%, #0d2147 100%);
+            color: #9ab; font-size: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 24px; flex-wrap: wrap; gap: 6px;
         }
-        .topbar a { color: #ccc; text-decoration: none; }
-        .topbar .topbar-brand { font-family: 'Playfair Display', serif; color: #fff; font-size: 13px; font-weight: 600; }
+        .topbar a { color: #9ab; text-decoration: none; }
+        .topbar-brand { font-family: 'Playfair Display', serif; color: #fff; font-size: 13px; font-weight: 600; }
 
-        /* ─── HEADER ─── */
-        .support-header {
-            background: var(--primary);
-            color: #fff;
-            padding: 28px 28px 22px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #0D47A1 0%, #1565C0 50%, #0097A7 100%);
+            padding: 60px 24px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .support-header .logo-wrap {
-            background: rgba(255,255,255,0.12);
-            border-radius: 10px;
-            width: 56px; height: 56px;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
-        .support-header h1 {
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+            border-radius: 100px; padding: 6px 18px; font-size: 12px;
+            color: #e0f2fe; letter-spacing: .5px; text-transform: uppercase; font-weight: 600;
+            margin-bottom: 20px; backdrop-filter: blur(4px);
+        }
+        .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.55rem;
-            font-weight: 700;
-            margin: 0 0 3px;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: #fff; font-weight: 700;
+            margin-bottom: 14px; line-height: 1.2;
         }
-        .support-header p { margin: 0; opacity: 0.85; font-size: 13.5px; }
+        .hero p { color: #bfdbfe; font-size: 16px; max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+        .btn-report {
+            background: #fff; color: var(--primary);
+            border: none; border-radius: 50px;
+            padding: 16px 40px; font-size: 15px; font-weight: 700;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 8px 32px rgba(0,0,0,.25);
+            transition: transform .2s, box-shadow .2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-report:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,.3); }
+        .hero-note { color: rgba(255,255,255,.55); font-size: 12px; margin-top: 14px; }
 
-        /* ─── MAIN LAYOUT ─── */
-        .page-wrap {
-            max-width: 900px;
-            margin: 36px auto 60px;
-            padding: 0 16px;
-        }
-
-        /* ─── CARD ─── */
-        .card-support {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 28px rgba(0,0,0,0.09);
-            padding: 36px 40px;
-        }
-        @media(max-width:600px){ .card-support { padding: 24px 18px; } }
-
-        .section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--primary);
-            margin-bottom: 6px;
-        }
-        .card-support h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin: 0 0 6px;
-        }
-        .card-support .subtitle {
-            color: #666;
-            font-size: 14px;
-            margin: 0 0 30px;
-        }
-
-        /* ─── FORM ELEMENTS ─── */
-        label.form-label {
-            font-weight: 600;
-            font-size: 13.5px;
-            color: #2c2c2c;
-            margin-bottom: 6px;
-        }
-        label.form-label .req { color: var(--primary); margin-left: 2px; }
-        .form-control, .form-select {
-            border: 1.5px solid #d4dae3;
-            border-radius: 7px;
-            font-size: 14px;
-            padding: 10px 14px;
-            color: #2c2c2c;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(21,101,192,0.12);
-            outline: none;
-        }
-        textarea.form-control { resize: vertical; min-height: 100px; }
-
-        /* ─── URGENCY BUTTONS ─── */
-        .urgency-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        @media(max-width:520px){ .urgency-grid { grid-template-columns: 1fr; } }
-        .urgency-option { display: none; }
-        .urgency-label {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            border: 1.5px solid #d4dae3;
-            border-radius: 9px;
-            padding: 12px 14px;
-            cursor: pointer;
-            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-            background: #fff;
-        }
-        .urgency-label:hover { border-color: var(--primary); background: var(--primary-light); }
-        .urgency-option:checked + .urgency-label {
-            border-color: var(--primary);
-            background: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
-        }
-        .urgency-dot {
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .dot-low    { background: #43a047; }
-        .dot-normal { background: #fb8c00; }
-        .dot-high   { background: #e53935; }
-        .dot-critical { background: #6a1a1a; }
-        .urgency-text strong { font-size: 13px; color: #1a1a2e; display: block; margin-bottom: 2px; }
-        .urgency-text span { font-size: 12px; color: #666; }
-
-        /* ─── PROBLEM CATEGORIES ─── */
-        .category-grid {
+        /* ── QUICK CARDS ── */
+        .quick-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 16px;
+            max-width: 700px;
+            margin: -36px auto 0;
+            padding: 0 20px;
+            position: relative; z-index: 10;
         }
-        @media(max-width:520px){ .category-grid { grid-template-columns: repeat(2, 1fr); } }
-        .cat-option { display: none; }
-        .cat-label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        @media(max-width:600px){ .quick-cards { grid-template-columns: 1fr; margin-top: -20px; } }
+        .qcard {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 20px 18px;
             text-align: center;
-            gap: 8px;
-            border: 1.5px solid #d4dae3;
-            border-radius: 9px;
-            padding: 14px 10px;
-            cursor: pointer;
-            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-            font-size: 12.5px;
-            font-weight: 600;
-            color: #333;
-            background: #fff;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
         }
-        .cat-label i { font-size: 22px; color: var(--primary); }
-        .cat-label:hover { border-color: var(--primary); background: var(--primary-light); }
-        .cat-option:checked + .cat-label {
-            border-color: var(--primary);
-            background: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
-            color: var(--primary-dark);
-        }
-        .cat-option:checked + .cat-label i { color: var(--primary-dark); }
-
-        /* ─── SUBMIT BUTTON ─── */
-        .btn-submit {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 13px 36px;
-            font-size: 15px;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .btn-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
-        .btn-submit:active { transform: translateY(0); }
-
-        /* ─── DIVIDER ─── */
-        .form-divider {
-            border: none;
-            border-top: 1px solid #eaeef4;
-            margin: 28px 0;
-        }
-
-        /* ─── SUCCESS STATE ─── */
-        #successPanel {
-            display: none;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        #successPanel .check-circle {
-            width: 72px; height: 72px;
-            background: var(--primary-light);
-            border-radius: 50%;
+        .qcard-icon {
+            width: 44px; height: 44px; border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 10px; font-size: 18px;
         }
-        #successPanel .check-circle i { font-size: 34px; color: var(--primary); }
-        #successPanel h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1a1a2e; margin: 0 0 10px; }
-        #successPanel p { color: #666; font-size: 14px; max-width: 420px; margin: 0 auto 22px; }
-        #successPanel .ticket-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: #fff;
-            border-radius: 6px;
-            padding: 8px 22px;
-            font-size: 18px;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 1px;
-            margin-bottom: 24px;
-        }
+        .qcard h4 { font-size: 13px; font-weight: 600; color: var(--text); margin: 0 0 3px; }
+        .qcard p  { font-size: 11.5px; color: var(--muted); margin: 0; }
 
-        /* ─── HOW IT WORKS SIDEBAR ─── */
-        .steps-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 28px rgba(0,0,0,0.09);
-            padding: 28px 24px;
+        /* ── MAIN LAYOUT ── */
+        .main-wrap { max-width: 900px; margin: 48px auto 60px; padding: 0 20px; }
+
+        /* ── STATUS CHECKER CARD ── */
+        .status-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            padding: 36px 40px;
+            margin-bottom: 28px;
         }
-        .steps-card h5 {
+        .status-card h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin: 0 0 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--primary-light);
+            font-size: 1.35rem; color: var(--text); margin-bottom: 6px;
         }
-        .step-item {
-            display: flex;
-            gap: 14px;
-            margin-bottom: 18px;
+        .status-card .sub { color: var(--muted); font-size: 13.5px; margin-bottom: 22px; }
+        .status-input-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .status-input-row input {
+            flex: 1; border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 13px 16px; font-size: 14px; font-family: 'Inter', sans-serif;
+            color: var(--text); min-width: 160px; transition: border-color .2s, box-shadow .2s;
+            outline: none;
         }
+        .status-input-row input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(21,101,192,.1); }
+        .btn-check {
+            background: var(--primary); color: #fff;
+            border: none; border-radius: 10px; padding: 13px 28px;
+            font-size: 14px; font-weight: 600; cursor: pointer;
+            font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px;
+            transition: background .2s;
+        }
+        .btn-check:hover { background: var(--primary-dark); }
+        #ticketStatusResult { margin-top: 18px; }
+
+        /* ── HOW IT WORKS ── */
+        .how-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            padding: 36px 40px;
+            margin-bottom: 28px;
+        }
+        .how-card h2 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--text); margin-bottom: 24px; }
+        .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media(max-width:540px){ .steps-grid { grid-template-columns: 1fr; } }
+        .step-box { display: flex; gap: 14px; }
         .step-num {
-            width: 28px; height: 28px;
-            background: var(--primary);
-            color: #fff;
-            border-radius: 50%;
+            width: 32px; height: 32px; border-radius: 8px;
+            background: var(--primary); color: #fff;
             display: flex; align-items: center; justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
+            font-size: 13px; font-weight: 700; flex-shrink: 0;
         }
-        .step-text strong { display: block; font-size: 13px; color: #1a1a2e; margin-bottom: 3px; }
-        .step-text span { font-size: 12px; color: #666; line-height: 1.6; }
+        .step-box h5 { font-size: 13.5px; font-weight: 600; color: var(--text); margin: 0 0 4px; }
+        .step-box p  { font-size: 12.5px; color: var(--muted); margin: 0; line-height: 1.6; }
 
-        .contact-box {
-            background: var(--primary-light);
-            border-radius: 8px;
-            padding: 16px;
-            margin-top: 20px;
-            border-left: 4px solid var(--primary);
+        /* ── CONTACT BOX ── */
+        .contact-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
+            border-radius: var(--radius); padding: 28px 32px;
+            display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+            box-shadow: var(--shadow);
         }
-        .contact-box p { margin: 0; font-size: 13px; color: #1a1a2e; }
-        .contact-box strong { display: block; margin-bottom: 4px; color: var(--primary-dark); font-size: 13px; }
+        .contact-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin: 0 0 4px; }
+        .contact-card .sub { color: #bfdbfe; font-size: 13px; }
+        .contact-items { display: flex; flex-wrap: wrap; gap: 16px; margin-left: auto; }
+        .contact-chip {
+            background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2);
+            border-radius: 10px; padding: 10px 16px;
+            color: #fff; font-size: 13px; display: flex; align-items: center; gap: 8px;
+        }
+        .contact-chip i { color: #bfdbfe; }
 
-        /* ─── FOOTER ─── */
+        /* ── FOOTER ── */
         .support-footer {
-            background: #0a0a0a;
-            color: #888;
-            text-align: center;
-            padding: 18px;
+            background: #0a0a1a; color: #555;
+            text-align: center; padding: 20px;
             font-size: 12px;
         }
-        .support-footer a { color: var(--primary); text-decoration: none; }
+        .support-footer a { color: #1976D2; text-decoration: none; }
+
+        /* ════════════════════════════════
+           MODAL WIZARD
+        ════════════════════════════════ */
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(10,20,50,.6);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: none; align-items: center; justify-content: center;
+            padding: 16px;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-box {
+            background: #fff; border-radius: 20px;
+            width: 100%; max-width: 580px;
+            max-height: 92vh; overflow-y: auto;
+            box-shadow: 0 32px 80px rgba(0,0,0,.3);
+            animation: slideUp .3s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+        .modal-head {
+            background: linear-gradient(135deg, #0D47A1, #1976D2);
+            border-radius: 20px 20px 0 0;
+            padding: 24px 28px 20px;
+            color: #fff;
+            display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .modal-head h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; margin: 0 0 4px; }
+        .modal-head p  { font-size: 12.5px; color: #bfdbfe; margin: 0; }
+        .modal-close {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: rgba(255,255,255,.15); border: none; color: #fff;
+            cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: background .2s;
+        }
+        .modal-close:hover { background: rgba(255,255,255,.25); }
+
+        /* Progress bar */
+        .progress-wrap { padding: 0 28px; background: #fff; }
+        .progress-track {
+            display: flex; align-items: center; gap: 0;
+            padding: 20px 0 16px;
+        }
+        .prog-step {
+            display: flex; flex-direction: column; align-items: center;
+            flex: 1; position: relative; cursor: default;
+        }
+        .prog-dot {
+            width: 30px; height: 30px; border-radius: 50%;
+            background: #e2e8f0; color: #94a3b8;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 700;
+            transition: all .3s; z-index: 2; position: relative;
+        }
+        .prog-step.done .prog-dot  { background: var(--primary); color: #fff; }
+        .prog-step.active .prog-dot {
+            background: var(--primary); color: #fff;
+            box-shadow: 0 0 0 4px rgba(21,101,192,.2);
+        }
+        .prog-label { font-size: 10px; color: var(--muted); margin-top: 5px; white-space: nowrap; }
+        .prog-step.active .prog-label, .prog-step.done .prog-label { color: var(--primary); font-weight: 600; }
+        .prog-line {
+            flex: 1; height: 2px; background: #e2e8f0;
+            margin: 0 -1px; position: relative; top: -12px; z-index: 1;
+            transition: background .3s;
+        }
+        .prog-line.done { background: var(--primary); }
+
+        /* Step body */
+        .modal-body { padding: 24px 28px 8px; }
+        .step-panel { display: none; animation: fadeIn .25s ease; }
+        .step-panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
+        .step-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 16px; }
+
+        /* Department grid */
+        .dept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        @media(max-width:400px){ .dept-grid { grid-template-columns: repeat(2,1fr); } }
+        .dept-btn {
+            border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 10px 8px; font-size: 12px; font-weight: 500;
+            color: var(--text); background: #fff; cursor: pointer;
+            transition: all .2s; text-align: center; line-height: 1.4;
+        }
+        .dept-btn:hover   { border-color: var(--primary); background: var(--primary-light); }
+        .dept-btn.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary); font-weight: 700; }
+        .dept-btn i { display: block; font-size: 18px; margin-bottom: 5px; color: var(--primary); }
+
+        /* Category grid */
+        .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        @media(max-width:400px){ .cat-grid { grid-template-columns: repeat(2,1fr); } }
+        .cat-card {
+            border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 16px 10px; cursor: pointer; text-align: center;
+            transition: all .2s; background: #fff;
+        }
+        .cat-card i { font-size: 24px; color: var(--primary); display: block; margin-bottom: 8px; }
+        .cat-card span { font-size: 11.5px; font-weight: 600; color: var(--text); line-height: 1.4; display: block; }
+        .cat-card:hover   { border-color: var(--primary); background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(21,101,192,.15); }
+        .cat-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 3px rgba(21,101,192,.15); }
+
+        /* Urgency */
+        .urg-list { display: flex; flex-direction: column; gap: 8px; }
+        .urg-card {
+            border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 14px 16px; cursor: pointer;
+            display: flex; align-items: center; gap: 14px;
+            transition: all .2s; background: #fff;
+        }
+        .urg-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+        .urg-card h5 { font-size: 13.5px; font-weight: 600; color: var(--text); margin: 0 0 2px; }
+        .urg-card p  { font-size: 12px; color: var(--muted); margin: 0; }
+        .urg-card:hover   { border-color: var(--primary); background: var(--primary-light); }
+        .urg-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 3px rgba(21,101,192,.12); }
+        .urg-check { margin-left: auto; color: var(--primary); display: none; }
+        .urg-card.selected .urg-check { display: block; }
+
+        /* Step 4 form */
+        .field-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; display: block; }
+        .field-label .req { color: #e53935; }
+        .field-input {
+            width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 12px 14px; font-size: 14px; font-family: 'Inter', sans-serif;
+            color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s;
+        }
+        .field-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(21,101,192,.1); }
+        textarea.field-input { resize: vertical; min-height: 110px; }
+        .upload-zone {
+            border: 2px dashed var(--border); border-radius: 10px;
+            padding: 20px; text-align: center; cursor: pointer;
+            transition: border-color .2s, background .2s;
+            position: relative;
+        }
+        .upload-zone:hover { border-color: var(--primary); background: var(--primary-light); }
+        .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+        .upload-zone i { font-size: 24px; color: var(--primary); display: block; margin-bottom: 6px; }
+        .upload-zone p { font-size: 12.5px; color: var(--muted); margin: 0; }
+        #uploadName { font-size: 12px; color: var(--primary); margin-top: 6px; font-weight: 600; }
+
+        /* Summary */
+        .summary-box {
+            background: var(--surface); border-radius: 12px;
+            padding: 18px 20px; margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+        .summary-row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; font-size: 13px; border-bottom: 1px solid var(--border); }
+        .summary-row:last-child { border-bottom: none; }
+        .summary-row .label { color: var(--muted); font-weight: 500; }
+        .summary-row .value { font-weight: 600; color: var(--text); text-align: right; }
+
+        /* Modal footer */
+        .modal-foot {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 28px 24px;
+        }
+        .btn-back {
+            background: none; border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 11px 24px; font-size: 13.5px; font-weight: 600;
+            color: var(--muted); cursor: pointer; transition: all .2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-back:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-next {
+            background: var(--primary); color: #fff;
+            border: none; border-radius: 10px;
+            padding: 12px 28px; font-size: 13.5px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 8px;
+            transition: background .2s; font-family: 'Inter', sans-serif;
+        }
+        .btn-next:hover { background: var(--primary-dark); }
+
+        /* Success screen */
+        .success-screen {
+            padding: 40px 28px 32px; text-align: center; display: none;
+        }
+        .success-screen.active { display: block; }
+        .success-ring {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; font-size: 36px; color: #2E7D32;
+            animation: popIn .4s cubic-bezier(.68,-.55,.27,1.55);
+        }
+        @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+        .success-screen h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text); margin-bottom: 8px; }
+        .success-screen p  { font-size: 13.5px; color: var(--muted); max-width: 360px; margin: 0 auto 22px; line-height: 1.7; }
+        .ticket-pill {
+            display: inline-block;
+            background: var(--primary); color: #fff;
+            border-radius: 100px; padding: 10px 32px;
+            font-size: 1.3rem; font-weight: 700; letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .success-note { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+        .btn-another {
+            background: none; border: 1.5px solid var(--primary);
+            color: var(--primary); border-radius: 10px;
+            padding: 11px 28px; font-size: 14px; font-weight: 600;
+            cursor: pointer; font-family: 'Inter', sans-serif;
+            transition: all .2s;
+        }
+        .btn-another:hover { background: var(--primary); color: #fff; }
+
+        /* error */
+        .err-msg { font-size: 12px; color: #e53935; margin-top: 6px; display: none; }
+        .err-msg.show { display: block; }
     </style>
 </head>
 <body>
@@ -309,432 +399,536 @@
 <!-- Topbar -->
 <div class="topbar">
     <span class="topbar-brand">
-        <i class="fa fa-hospital-o me-2" style="color:var(--primary);"></i>
+        <i class="fa fa-hospital-o me-2" style="color:#60a5fa;"></i>
         Polyclinique de l'Etoile
     </span>
     <span>
-        <i class="fa fa-map-marker me-1" style="color:var(--primary);"></i>
+        <i class="fa fa-map-marker me-1" style="color:#60a5fa;"></i>
         Gasabo, Remera, Rukiri I, Kigali &nbsp;|&nbsp;
-        <i class="fa fa-phone me-1" style="color:var(--primary);"></i>
+        <i class="fa fa-phone me-1" style="color:#60a5fa;"></i>
         Free Call 1301
     </span>
 </div>
 
-<!-- Header -->
-<div class="support-header">
-    <div class="logo-wrap">
-        <i class="fa fa-headphones" style="font-size:26px; color:#fff;"></i>
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-badge"><i class="fa fa-shield"></i> Internal Staff Portal</div>
+    <h1>IT Support Centre</h1>
+    <p>Having a technical issue? Report it in under a minute and our IT team will respond promptly.</p>
+    <button class="btn-report" onclick="openModal()">
+        <i class="fa fa-plus-circle"></i> Report an Issue
+    </button>
+    <div class="hero-note"><i class="fa fa-lock me-1"></i>Internal staff use only — all reports are confidential</div>
+</div>
+
+<!-- Quick cards -->
+<div class="quick-cards">
+    <div class="qcard">
+        <div class="qcard-icon" style="background:#E3F2FD;">
+            <i class="fa fa-bolt" style="color:#1565C0;"></i>
+        </div>
+        <h4>Fast Response</h4>
+        <p>IT notified instantly on submission</p>
     </div>
-    <div>
-        <h1>IT Support Centre</h1>
-        <p>Polyclinique de l'Etoile &mdash; Internal Staff Portal</p>
+    <div class="qcard">
+        <div class="qcard-icon" style="background:#E8F5E9;">
+            <i class="fa fa-eye" style="color:#2E7D32;"></i>
+        </div>
+        <h4>Track Status</h4>
+        <p>Check updates with your ticket number</p>
+    </div>
+    <div class="qcard">
+        <div class="qcard-icon" style="background:#FFF3E0;">
+            <i class="fa fa-clock-o" style="color:#E65100;"></i>
+        </div>
+        <h4>24/7 Priority</h4>
+        <p>Critical issues escalated immediately</p>
     </div>
 </div>
 
-<!-- Page Body -->
-<div class="page-wrap">
-    <div class="row g-4">
+<!-- Main content -->
+<div class="main-wrap">
 
-        <!-- Form Column -->
-        <div class="col-lg-8">
-            <div class="card-support">
-
-                <!-- Form state -->
-                <div id="formPanel">
-                    <div class="section-label">New Ticket</div>
-                    <h2>How can we help you?</h2>
-                    <p class="subtitle">Report a technical issue and our IT team will follow up promptly.</p>
-
-                    <form id="supportForm" novalidate>
-
-                        <!-- Department -->
-                        <div class="mb-4">
-                            <label class="form-label" for="dept">Department <span class="req">*</span></label>
-                            <select class="form-select" id="dept" required>
-                                <option value="" disabled selected>Select your department</option>
-                                <option>Reception</option>
-                                <option>Consultation</option>
-                                <option>Laboratory</option>
-                                <option>Pharmacy</option>
-                                <option>Radiology / Imaging</option>
-                                <option>Nursing</option>
-                                <option>Inpatient Ward</option>
-                                <option>Paediatrics</option>
-                                <option>Gynaecology</option>
-                                <option>Endoscopy</option>
-                                <option>Minor Surgery</option>
-                                <option>Administration / Finance</option>
-                                <option>IT Department</option>
-                                <option>Management</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-
-                        <!-- Problem Category -->
-                        <div class="mb-4">
-                            <label class="form-label">What is the problem? <span class="req">*</span></label>
-                            <div class="category-grid" id="catGrid">
-                                <div>
-                                    <input type="radio" name="category" id="cat1" value="Computer / Laptop" class="cat-option" required>
-                                    <label class="cat-label" for="cat1">
-                                        <i class="fa fa-laptop"></i>
-                                        Computer / Laptop
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="category" id="cat2" value="Internet / Wi-Fi" class="cat-option">
-                                    <label class="cat-label" for="cat2">
-                                        <i class="fa fa-wifi"></i>
-                                        Internet / Wi-Fi
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="category" id="cat3" value="Printer / Scanner" class="cat-option">
-                                    <label class="cat-label" for="cat3">
-                                        <i class="fa fa-print"></i>
-                                        Printer / Scanner
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="category" id="cat4" value="Email / Account" class="cat-option">
-                                    <label class="cat-label" for="cat4">
-                                        <i class="fa fa-envelope"></i>
-                                        Email / Account
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="category" id="cat5" value="Hospital Software" class="cat-option">
-                                    <label class="cat-label" for="cat5">
-                                        <i class="fa fa-database"></i>
-                                        Hospital Software
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="category" id="cat6" value="Phone / Other" class="cat-option">
-                                    <label class="cat-label" for="cat6">
-                                        <i class="fa fa-phone"></i>
-                                        Phone / Other
-                                    </label>
-                                </div>
-                            </div>
-                            <div id="catError" style="color:#e53935; font-size:12.5px; margin-top:6px; display:none;">
-                                <i class="fa fa-exclamation-circle me-1"></i>Please select a problem category.
-                            </div>
-                        </div>
-
-                        <!-- Urgency -->
-                        <div class="mb-4">
-                            <label class="form-label">Urgency <span class="req">*</span></label>
-                            <div class="urgency-grid">
-                                <div>
-                                    <input type="radio" name="urgency" id="urg1" value="Low" class="urgency-option" required>
-                                    <label class="urgency-label" for="urg1">
-                                        <span class="urgency-dot dot-low"></span>
-                                        <span class="urgency-text">
-                                            <strong>Low</strong>
-                                            <span>Minor issue, work can continue</span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="urgency" id="urg2" value="Normal" class="urgency-option">
-                                    <label class="urgency-label" for="urg2">
-                                        <span class="urgency-dot dot-normal"></span>
-                                        <span class="urgency-text">
-                                            <strong>Normal</strong>
-                                            <span>Some work is affected</span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="urgency" id="urg3" value="High" class="urgency-option">
-                                    <label class="urgency-label" for="urg3">
-                                        <span class="urgency-dot dot-high"></span>
-                                        <span class="urgency-text">
-                                            <strong>High</strong>
-                                            <span>A department's work is blocked</span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <input type="radio" name="urgency" id="urg4" value="Critical" class="urgency-option">
-                                    <label class="urgency-label" for="urg4">
-                                        <span class="urgency-dot dot-critical"></span>
-                                        <span class="urgency-text">
-                                            <strong>Critical</strong>
-                                            <span>Major outage or patient-care impact</span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div id="urgError" style="color:#e53935; font-size:12.5px; margin-top:6px; display:none;">
-                                <i class="fa fa-exclamation-circle me-1"></i>Please select an urgency level.
-                            </div>
-                        </div>
-
-                        <hr class="form-divider">
-
-                        <!-- Description -->
-                        <div class="mb-4">
-                            <label class="form-label" for="desc">Describe the problem <span class="req">*</span></label>
-                            <textarea class="form-control" id="desc" rows="4" placeholder="Explain what happened, what you were doing, and any error messages you saw…" required></textarea>
-                        </div>
-
-                        <!-- Contact extension -->
-                        <div class="mb-4">
-                            <label class="form-label" for="ext">Your name &amp; contact extension or phone <span style="color:#999; font-weight:400;">(optional)</span></label>
-                            <input type="text" class="form-control" id="ext" placeholder="e.g. Marie — Ext. 205 or 0788 123 456">
-                        </div>
-
-                        <!-- Screenshot -->
-                        <div class="mb-4">
-                            <label class="form-label" for="screenshot">Attach a screenshot <span style="color:#999; font-weight:400;">(optional)</span></label>
-                            <input type="file" class="form-control" id="screenshot" accept="image/*,.pdf">
-                            <div style="font-size:12px; color:#888; margin-top:5px;">Accepted: JPG, PNG, PDF — max 5 MB</div>
-                        </div>
-
-                        <div id="formError" style="background:#fff3f3; border:1px solid #e53935; border-radius:7px; padding:10px 14px; font-size:13px; color:#c62828; margin-bottom:18px; display:none;">
-                            <i class="fa fa-exclamation-triangle me-2"></i>Please fill in all required fields before submitting.
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-                            <button type="submit" class="btn-submit">
-                                <i class="fa fa-paper-plane"></i>
-                                Submit Ticket
-                            </button>
-                            <span style="font-size:12px; color:#999;">
-                                <i class="fa fa-lock me-1"></i>Internal staff use only
-                            </span>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Success state -->
-                <div id="successPanel">
-                    <div class="check-circle">
-                        <i class="fa fa-check"></i>
-                    </div>
-                    <h3>Ticket Submitted Successfully</h3>
-                    <p>Your IT issue has been logged. The IT team has been notified and will follow up shortly.</p>
-                    <div class="ticket-badge" id="ticketNumber">IT-0000</div>
-                    <br>
-                    <p style="font-size:13px; color:#888;">Keep this ticket number for reference.</p>
-                    <button onclick="resetForm()" style="background:none; border:1.5px solid var(--primary); color:var(--primary); border-radius:7px; padding:10px 24px; font-weight:600; cursor:pointer; font-size:14px; margin-top:8px;">
-                        <i class="fa fa-plus me-1"></i> Report Another Issue
-                    </button>
-                </div>
-
+    <!-- Status Checker -->
+    <div class="status-card">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;">
+                <i class="fa fa-search" style="color:var(--primary);font-size:17px;"></i>
             </div>
+            <h2>Check Your Ticket Status</h2>
         </div>
-
-        <!-- Sidebar -->
-        <div class="col-lg-4">
-            <div class="steps-card">
-                <h5><i class="fa fa-info-circle me-2" style="color:var(--primary);"></i>How it works</h5>
-
-                <div class="step-item">
-                    <div class="step-num">1</div>
-                    <div class="step-text">
-                        <strong>You submit a ticket</strong>
-                        <span>Select your department, problem type, urgency, and describe the issue in 30–60 seconds.</span>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-num">2</div>
-                    <div class="step-text">
-                        <strong>IT receives an instant alert</strong>
-                        <span>The IT officer is notified by email and WhatsApp with your ticket number, department, and priority.</span>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-num">3</div>
-                    <div class="step-text">
-                        <strong>IT investigates &amp; updates</strong>
-                        <span>Status updates: Acknowledged → In Progress → Resolved. You can check progress at any time.</span>
-                    </div>
-                </div>
-                <div class="step-item" style="margin-bottom:0;">
-                    <div class="step-num">4</div>
-                    <div class="step-text">
-                        <strong>Resolution is recorded</strong>
-                        <span>The solution and response time are recorded for management review.</span>
-                    </div>
-                </div>
-
-                <div class="contact-box">
-                    <strong><i class="fa fa-phone me-1"></i>Urgent? Call IT directly</strong>
-                    <p>Internal extension: <strong>Ext. 100</strong><br>
-                    WhatsApp: <strong>+(250) 790 008 754</strong><br>
-                    Email: <strong>it@polycliniquedeletoile.com</strong></p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Check Ticket Status Section -->
-<div style="background:#fff; border-top:3px solid var(--primary); padding:40px 16px;">
-    <div style="max-width:600px; margin:0 auto;">
-        <div style="text-align:center; margin-bottom:24px;">
-            <div style="width:52px; height:52px; background:var(--primary-light); border-radius:50%;
-                        display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
-                <i class="fa fa-search" style="font-size:20px; color:var(--primary);"></i>
-            </div>
-            <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:#1a1a2e; margin:0 0 6px;">Check Your Ticket Status</h3>
-            <p style="color:#777; font-size:13.5px; margin:0;">Enter your ticket number to see the latest update from IT.</p>
-        </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <p class="sub">Enter your ticket number to see the latest update from the IT team.</p>
+        <div class="status-input-row">
             <input type="text" id="checkTicketId" placeholder="e.g. IT-1001"
-                   style="flex:1; border:1.5px solid #d4dae3; border-radius:7px; padding:11px 14px;
-                          font-size:14px; font-family:'Open Sans',sans-serif; min-width:180px;"
                    onkeydown="if(event.key==='Enter')checkTicket()">
-            <button onclick="checkTicket()"
-                    style="background:var(--primary); color:#fff; border:none; border-radius:7px;
-                           padding:11px 24px; font-size:14px; font-weight:700; cursor:pointer;
-                           font-family:'Playfair Display',serif; white-space:nowrap;">
-                <i class="fa fa-search me-1"></i> Check Status
+            <button class="btn-check" onclick="checkTicket()">
+                <i class="fa fa-search"></i> Check Status
             </button>
         </div>
-        <div id="ticketStatusResult" style="margin-top:18px; display:none;"></div>
+        <div id="ticketStatusResult"></div>
     </div>
+
+    <!-- How it works -->
+    <div class="how-card">
+        <h2><i class="fa fa-info-circle me-2" style="color:var(--primary);font-size:1.1rem;"></i>How it works</h2>
+        <div class="steps-grid">
+            <div class="step-box">
+                <div class="step-num">1</div>
+                <div>
+                    <h5>Submit a ticket</h5>
+                    <p>Select your department, problem type and urgency in a quick guided form.</p>
+                </div>
+            </div>
+            <div class="step-box">
+                <div class="step-num">2</div>
+                <div>
+                    <h5>IT is notified instantly</h5>
+                    <p>The IT officer receives an alert with your ticket number and priority.</p>
+                </div>
+            </div>
+            <div class="step-box">
+                <div class="step-num">3</div>
+                <div>
+                    <h5>Status updates</h5>
+                    <p>Track progress: Acknowledged → In Progress → Resolved at any time.</p>
+                </div>
+            </div>
+            <div class="step-box">
+                <div class="step-num">4</div>
+                <div>
+                    <h5>Resolution recorded</h5>
+                    <p>The solution and response time are logged for management review.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+        <div>
+            <h3>Urgent? Contact IT directly</h3>
+            <p class="sub">For critical outages affecting patient care</p>
+        </div>
+        <div class="contact-items">
+            <div class="contact-chip"><i class="fa fa-phone"></i> Ext. 100</div>
+            <div class="contact-chip"><i class="fa fa-whatsapp"></i> +(250) 790 008 754</div>
+            <div class="contact-chip"><i class="fa fa-envelope"></i> it@polycliniquedeletoile.com</div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Footer -->
 <div class="support-footer">
-    &copy; 2026 <a href="https://www.polycliniquedeletoile.com">Polyclinique de l'Etoile</a> &mdash; IT Support Centre &mdash; Internal Staff Portal
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="it-dashboard.php" style="color:#aaa; font-size:11px;">IT Staff Dashboard</a>
+    &copy; 2026 <a href="https://www.polycliniquedeletoile.com">Polyclinique de l'Etoile</a>
+    &mdash; IT Support Centre &mdash; Internal Staff Portal
+    &nbsp;|&nbsp;
+    <a href="it-dashboard.php" style="color:#555;">IT Staff Dashboard</a>
 </div>
+
+<!-- ════════════════════════════════════
+     MODAL WIZARD
+════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnBackdrop(event)">
+<div class="modal-box" id="modalBox">
+
+    <!-- Head -->
+    <div class="modal-head">
+        <div>
+            <h3><i class="fa fa-ticket me-2"></i>Report a Technical Issue</h3>
+            <p>Complete the steps below — takes about 60 seconds</p>
+        </div>
+        <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-wrap" id="progressWrap">
+        <div class="progress-track">
+            <div class="prog-step active" id="ps1">
+                <div class="prog-dot">1</div>
+                <span class="prog-label">Department</span>
+            </div>
+            <div class="prog-line" id="pl1"></div>
+            <div class="prog-step" id="ps2">
+                <div class="prog-dot">2</div>
+                <span class="prog-label">Problem</span>
+            </div>
+            <div class="prog-line" id="pl2"></div>
+            <div class="prog-step" id="ps3">
+                <div class="prog-dot">3</div>
+                <span class="prog-label">Urgency</span>
+            </div>
+            <div class="prog-line" id="pl3"></div>
+            <div class="prog-step" id="ps4">
+                <div class="prog-dot">4</div>
+                <span class="prog-label">Details</span>
+            </div>
+            <div class="prog-line" id="pl4"></div>
+            <div class="prog-step" id="ps5">
+                <div class="prog-dot">5</div>
+                <span class="prog-label">Review</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 1: Department -->
+    <div class="modal-body">
+    <div class="step-panel active" id="step1">
+        <p class="step-title">Which department are you in?</p>
+        <div class="dept-grid" id="deptGrid">
+            <button class="dept-btn" onclick="selectDept(this,'Reception')"><i class="fa fa-user-md"></i>Reception</button>
+            <button class="dept-btn" onclick="selectDept(this,'Consultation')"><i class="fa fa-stethoscope"></i>Consultation</button>
+            <button class="dept-btn" onclick="selectDept(this,'Emergency')"><i class="fa fa-ambulance"></i>Emergency</button>
+            <button class="dept-btn" onclick="selectDept(this,'Laboratory')"><i class="fa fa-flask"></i>Laboratory</button>
+            <button class="dept-btn" onclick="selectDept(this,'Radiology')"><i class="fa fa-eye"></i>Radiology</button>
+            <button class="dept-btn" onclick="selectDept(this,'Pharmacy')"><i class="fa fa-medkit"></i>Pharmacy</button>
+            <button class="dept-btn" onclick="selectDept(this,'Nursing Ward')"><i class="fa fa-heartbeat"></i>Nursing Ward</button>
+            <button class="dept-btn" onclick="selectDept(this,'Maternity')"><i class="fa fa-child"></i>Maternity</button>
+            <button class="dept-btn" onclick="selectDept(this,'Pediatrics')"><i class="fa fa-child"></i>Pediatrics</button>
+            <button class="dept-btn" onclick="selectDept(this,'Administration')"><i class="fa fa-building"></i>Administration</button>
+            <button class="dept-btn" onclick="selectDept(this,'Finance')"><i class="fa fa-money"></i>Finance</button>
+            <button class="dept-btn" onclick="selectDept(this,'IT Department')"><i class="fa fa-laptop"></i>IT Dept</button>
+            <button class="dept-btn" onclick="selectDept(this,'Maintenance')"><i class="fa fa-wrench"></i>Maintenance</button>
+            <button class="dept-btn" onclick="selectDept(this,'Kitchen')"><i class="fa fa-cutlery"></i>Kitchen</button>
+            <button class="dept-btn" onclick="selectDept(this,'Physiotherapy')"><i class="fa fa-wheelchair"></i>Physiotherapy</button>
+            <button class="dept-btn" onclick="selectDept(this,'Endoscopy')"><i class="fa fa-search-plus"></i>Endoscopy</button>
+            <button class="dept-btn" onclick="selectDept(this,'Dentistry')"><i class="fa fa-smile-o"></i>Dentistry</button>
+            <button class="dept-btn" onclick="selectDept(this,'Other')"><i class="fa fa-ellipsis-h"></i>Other</button>
+        </div>
+        <p class="err-msg" id="errDept">Please select your department.</p>
+    </div>
+
+    <!-- Step 2: Category -->
+    <div class="step-panel" id="step2">
+        <p class="step-title">What type of problem is it?</p>
+        <div class="cat-grid">
+            <div class="cat-card" onclick="selectCat(this,'Computer / Laptop')">
+                <i class="fa fa-laptop"></i><span>Computer / Laptop</span>
+            </div>
+            <div class="cat-card" onclick="selectCat(this,'Internet / Wi-Fi')">
+                <i class="fa fa-wifi"></i><span>Internet / Wi-Fi</span>
+            </div>
+            <div class="cat-card" onclick="selectCat(this,'Printer / Scanner')">
+                <i class="fa fa-print"></i><span>Printer / Scanner</span>
+            </div>
+            <div class="cat-card" onclick="selectCat(this,'Email / Account')">
+                <i class="fa fa-envelope"></i><span>Email / Account</span>
+            </div>
+            <div class="cat-card" onclick="selectCat(this,'Hospital Software')">
+                <i class="fa fa-database"></i><span>Hospital Software</span>
+            </div>
+            <div class="cat-card" onclick="selectCat(this,'Phone / Other')">
+                <i class="fa fa-phone"></i><span>Phone / Other</span>
+            </div>
+        </div>
+        <p class="err-msg" id="errCat">Please select a problem type.</p>
+    </div>
+
+    <!-- Step 3: Urgency -->
+    <div class="step-panel" id="step3">
+        <p class="step-title">How urgent is this?</p>
+        <div class="urg-list">
+            <div class="urg-card" onclick="selectUrg(this,'Low')">
+                <div class="urg-dot" style="background:#4CAF50;"></div>
+                <div>
+                    <h5>Low</h5>
+                    <p>Minor issue — work can continue normally</p>
+                </div>
+                <i class="fa fa-check-circle urg-check"></i>
+            </div>
+            <div class="urg-card" onclick="selectUrg(this,'Normal')">
+                <div class="urg-dot" style="background:#2196F3;"></div>
+                <div>
+                    <h5>Normal</h5>
+                    <p>Some work is affected but manageable</p>
+                </div>
+                <i class="fa fa-check-circle urg-check"></i>
+            </div>
+            <div class="urg-card" onclick="selectUrg(this,'High')">
+                <div class="urg-dot" style="background:#FF9800;"></div>
+                <div>
+                    <h5>High</h5>
+                    <p>A department's work is significantly blocked</p>
+                </div>
+                <i class="fa fa-check-circle urg-check"></i>
+            </div>
+            <div class="urg-card" onclick="selectUrg(this,'Critical')">
+                <div class="urg-dot" style="background:#F44336;"></div>
+                <div>
+                    <h5>Critical</h5>
+                    <p>Major outage — patient care is impacted</p>
+                </div>
+                <i class="fa fa-check-circle urg-check"></i>
+            </div>
+        </div>
+        <p class="err-msg" id="errUrg">Please select urgency level.</p>
+    </div>
+
+    <!-- Step 4: Details -->
+    <div class="step-panel" id="step4">
+        <p class="step-title">Describe the problem</p>
+        <div style="margin-bottom:14px;">
+            <label class="field-label">What happened? <span class="req">*</span></label>
+            <textarea class="field-input" id="desc" placeholder="Explain what happened, what you were doing, and any error messages you saw…"></textarea>
+            <p class="err-msg" id="errDesc">Please describe the problem.</p>
+        </div>
+        <div style="margin-bottom:14px;">
+            <label class="field-label">Your name &amp; extension (optional)</label>
+            <input type="text" class="field-input" id="ext" placeholder="e.g. Marie — Ext. 205 or 0788 123 456">
+        </div>
+        <div>
+            <label class="field-label">Attach a screenshot (optional)</label>
+            <div class="upload-zone">
+                <input type="file" id="screenshot" accept="image/*,.pdf" onchange="showFileName(this)">
+                <i class="fa fa-cloud-upload"></i>
+                <p>Click to upload — JPG, PNG, PDF &mdash; max 5 MB</p>
+                <div id="uploadName"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 5: Review -->
+    <div class="step-panel" id="step5">
+        <p class="step-title">Review your ticket before submitting</p>
+        <div class="summary-box">
+            <div class="summary-row"><span class="label">Department</span><span class="value" id="sum-dept">—</span></div>
+            <div class="summary-row"><span class="label">Problem</span><span class="value" id="sum-cat">—</span></div>
+            <div class="summary-row"><span class="label">Urgency</span><span class="value" id="sum-urg">—</span></div>
+            <div class="summary-row"><span class="label">Description</span><span class="value" id="sum-desc" style="max-width:60%;font-weight:400;color:var(--muted);">—</span></div>
+            <div class="summary-row"><span class="label">Contact</span><span class="value" id="sum-ext">Not provided</span></div>
+        </div>
+        <p class="err-msg" id="errSubmit"></p>
+    </div>
+    </div><!-- /modal-body -->
+
+    <!-- Success screen (replaces steps) -->
+    <div class="success-screen" id="successScreen">
+        <div class="success-ring"><i class="fa fa-check"></i></div>
+        <h3>Ticket Submitted!</h3>
+        <p>Your IT issue has been logged. The IT team has been notified and will follow up shortly.</p>
+        <div class="ticket-pill" id="ticketNumber">IT-0000</div>
+        <p class="success-note">Keep this number to check your ticket status below.</p>
+        <button class="btn-another" onclick="resetWizard()"><i class="fa fa-plus me-1"></i> Report Another Issue</button>
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-foot" id="modalFoot">
+        <button class="btn-back" id="btnBack" onclick="prevStep()" style="visibility:hidden;">
+            <i class="fa fa-arrow-left me-1"></i> Back
+        </button>
+        <button class="btn-next" id="btnNext" onclick="nextStep()">
+            Next <i class="fa fa-arrow-right ms-1"></i>
+        </button>
+    </div>
+
+</div><!-- /modal-box -->
+</div><!-- /modal-overlay -->
 
 <script>
 var API = 'ticket-action.php';
+var step = 1, totalSteps = 5;
+var selDept = '', selCat = '', selUrg = '';
 
-document.getElementById('supportForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+function openModal() {
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+}
+function closeOnBackdrop(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
 
-    var dept = document.getElementById('dept').value;
-    var cat  = document.querySelector('input[name="category"]:checked');
-    var urg  = document.querySelector('input[name="urgency"]:checked');
-    var desc = document.getElementById('desc').value.trim();
-    var ext  = document.getElementById('ext').value.trim();
-    var valid = true;
+// ── SELECTORS ──
+function selectDept(el, val) {
+    document.querySelectorAll('.dept-btn').forEach(function(b){ b.classList.remove('selected'); });
+    el.classList.add('selected');
+    selDept = val;
+    document.getElementById('errDept').classList.remove('show');
+}
+function selectCat(el, val) {
+    document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('selected'); });
+    el.classList.add('selected');
+    selCat = val;
+    document.getElementById('errCat').classList.remove('show');
+}
+function selectUrg(el, val) {
+    document.querySelectorAll('.urg-card').forEach(function(c){ c.classList.remove('selected'); });
+    el.classList.add('selected');
+    selUrg = val;
+    document.getElementById('errUrg').classList.remove('show');
+}
+function showFileName(input) {
+    document.getElementById('uploadName').textContent = input.files[0] ? input.files[0].name : '';
+}
 
-    document.getElementById('catError').style.display = cat  ? 'none' : 'block';
-    document.getElementById('urgError').style.display = urg  ? 'none' : 'block';
-    if (!cat) valid = false;
-    if (!urg) valid = false;
-
-    if (!dept || !desc) {
-        document.getElementById('formError').style.display = 'block';
-        valid = false;
-    } else {
-        document.getElementById('formError').style.display = 'none';
+// ── NAVIGATION ──
+function nextStep() {
+    if (!validateStep()) return;
+    if (step === totalSteps) { submitTicket(); return; }
+    goStep(step + 1);
+}
+function prevStep() {
+    if (step > 1) goStep(step - 1);
+}
+function goStep(n) {
+    document.getElementById('step' + step).classList.remove('active');
+    document.getElementById('ps' + step).classList.remove('active');
+    document.getElementById('ps' + step).classList.add('done');
+    step = n;
+    document.getElementById('step' + step).classList.add('active');
+    document.getElementById('ps' + step).classList.add('active');
+    document.getElementById('ps' + step).classList.remove('done');
+    // update lines
+    for (var i = 1; i <= 4; i++) {
+        document.getElementById('pl' + i).classList.toggle('done', i < step);
     }
+    document.getElementById('btnBack').style.visibility = step > 1 ? 'visible' : 'hidden';
+    document.getElementById('btnNext').innerHTML = step === totalSteps
+        ? '<i class="fa fa-paper-plane me-1"></i> Submit Ticket'
+        : 'Next <i class="fa fa-arrow-right ms-1"></i>';
+    if (step === totalSteps) fillSummary();
+    document.getElementById('modalBox').scrollTop = 0;
+}
 
-    if (!valid) return;
+function validateStep() {
+    if (step === 1) {
+        if (!selDept) { document.getElementById('errDept').classList.add('show'); return false; }
+    }
+    if (step === 2) {
+        if (!selCat)  { document.getElementById('errCat').classList.add('show'); return false; }
+    }
+    if (step === 3) {
+        if (!selUrg)  { document.getElementById('errUrg').classList.add('show'); return false; }
+    }
+    if (step === 4) {
+        var desc = document.getElementById('desc').value.trim();
+        if (!desc) { document.getElementById('errDesc').classList.add('show'); return false; }
+        document.getElementById('errDesc').classList.remove('show');
+    }
+    return true;
+}
 
-    var btn = document.querySelector('.btn-submit');
+function fillSummary() {
+    document.getElementById('sum-dept').textContent = selDept;
+    document.getElementById('sum-cat').textContent  = selCat;
+    document.getElementById('sum-urg').textContent  = selUrg;
+    document.getElementById('sum-desc').textContent = document.getElementById('desc').value.trim();
+    var ext = document.getElementById('ext').value.trim();
+    document.getElementById('sum-ext').textContent  = ext || 'Not provided';
+}
+
+// ── SUBMIT ──
+function submitTicket() {
+    var btn = document.getElementById('btnNext');
     btn.disabled = true;
-    btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Submitting…';
+    btn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i> Submitting…';
 
     var fd = new FormData();
     fd.append('action',      'submit');
-    fd.append('department',  dept);
-    fd.append('category',    cat.value);
-    fd.append('urgency',     urg.value);
-    fd.append('description', desc);
-    fd.append('contact',     ext);
+    fd.append('department',  selDept);
+    fd.append('category',    selCat);
+    fd.append('urgency',     selUrg);
+    fd.append('description', document.getElementById('desc').value.trim());
+    fd.append('contact',     document.getElementById('ext').value.trim());
 
     fetch(API, { method:'POST', body:fd })
         .then(function(r){ return r.json(); })
         .then(function(data) {
             btn.disabled = false;
-            btn.innerHTML = '<i class="fa fa-paper-plane"></i> Submit Ticket';
+            btn.innerHTML = '<i class="fa fa-paper-plane me-1"></i> Submit Ticket';
             if (data.success) {
                 document.getElementById('ticketNumber').textContent = data.ticket_id;
-                document.getElementById('formPanel').style.display = 'none';
-                document.getElementById('successPanel').style.display = 'block';
+                showSuccess();
             } else {
-                document.getElementById('formError').textContent = data.error || 'Submission failed. Please try again.';
-                document.getElementById('formError').style.display = 'block';
+                document.getElementById('errSubmit').textContent = data.error || 'Submission failed.';
+                document.getElementById('errSubmit').classList.add('show');
             }
         })
         .catch(function() {
             btn.disabled = false;
-            btn.innerHTML = '<i class="fa fa-paper-plane"></i> Submit Ticket';
-            document.getElementById('formError').textContent = 'Network error. Please try again.';
-            document.getElementById('formError').style.display = 'block';
+            btn.innerHTML = '<i class="fa fa-paper-plane me-1"></i> Submit Ticket';
+            document.getElementById('errSubmit').textContent = 'Network error. Please try again.';
+            document.getElementById('errSubmit').classList.add('show');
         });
-});
-
-function resetForm() {
-    document.getElementById('supportForm').reset();
-    document.querySelectorAll('.cat-option, .urgency-option').forEach(function(r) { r.checked = false; });
-    document.getElementById('catError').style.display = 'none';
-    document.getElementById('urgError').style.display = 'none';
-    document.getElementById('formError').style.display = 'none';
-    document.getElementById('formPanel').style.display = 'block';
-    document.getElementById('successPanel').style.display = 'none';
 }
 
+function showSuccess() {
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('modalFoot').style.display = 'none';
+    document.querySelector('.modal-body').style.display = 'none';
+    document.getElementById('successScreen').classList.add('active');
+}
+
+function resetWizard() {
+    step = 1; selDept = ''; selCat = ''; selUrg = '';
+    document.querySelectorAll('.step-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.getElementById('step1').classList.add('active');
+    document.querySelectorAll('.prog-step').forEach(function(p){ p.classList.remove('active','done'); });
+    document.getElementById('ps1').classList.add('active');
+    document.querySelectorAll('.prog-line').forEach(function(l){ l.classList.remove('done'); });
+    document.querySelectorAll('.dept-btn,.cat-card,.urg-card').forEach(function(el){ el.classList.remove('selected'); });
+    document.getElementById('desc').value = '';
+    document.getElementById('ext').value = '';
+    document.getElementById('uploadName').textContent = '';
+    document.querySelectorAll('.err-msg').forEach(function(e){ e.classList.remove('show'); });
+    document.getElementById('progressWrap').style.display = '';
+    document.getElementById('modalFoot').style.display = '';
+    document.querySelector('.modal-body').style.display = '';
+    document.getElementById('successScreen').classList.remove('active');
+    document.getElementById('btnBack').style.visibility = 'hidden';
+    document.getElementById('btnNext').innerHTML = 'Next <i class="fa fa-arrow-right ms-1"></i>';
+    document.getElementById('modalBox').scrollTop = 0;
+}
+
+// ── STATUS CHECKER ──
 function checkTicket() {
     var input = document.getElementById('checkTicketId').value.trim().toUpperCase();
     var result = document.getElementById('ticketStatusResult');
     if (!input) {
-        result.style.display = 'block';
-        result.innerHTML = '<div style="background:#fff3f3; border:1px solid #e53935; border-radius:8px; padding:14px 16px; color:#c62828; font-size:13.5px;"><i class="fa fa-exclamation-circle me-2"></i>Please enter a ticket number.</div>';
+        result.innerHTML = '<div style="background:#fff3f3;border:1px solid #e53935;border-radius:10px;padding:14px 16px;color:#c62828;font-size:13.5px;margin-top:12px;"><i class="fa fa-exclamation-circle me-2"></i>Please enter a ticket number.</div>';
         return;
     }
-    result.style.display = 'block';
-    result.innerHTML = '<div style="text-align:center; padding:16px; color:#555;"><i class="fa fa-spinner fa-spin me-2"></i>Checking ticket…</div>';
-
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#64748b;margin-top:12px;"><i class="fa fa-spinner fa-spin me-2"></i>Checking…</div>';
     fetch(API + '?action=check&id=' + encodeURIComponent(input))
         .then(function(r){ return r.json(); })
         .then(function(data) {
             if (!data.success) {
-                result.innerHTML = '<div style="background:#fff3f3; border:1px solid #e53935; border-radius:8px; padding:14px 16px; color:#c62828; font-size:13.5px;"><i class="fa fa-times-circle me-2"></i>Ticket <strong>' + input + '</strong> not found. Please check the number and try again.</div>';
+                result.innerHTML = '<div style="background:#fff3f3;border:1px solid #e53935;border-radius:10px;padding:14px 16px;color:#c62828;font-size:13.5px;margin-top:12px;"><i class="fa fa-times-circle me-2"></i>Ticket <strong>' + input + '</strong> not found.</div>';
                 return;
             }
             var t = data.ticket;
-
-    var statusColors = {
-        'New':                  { bg:'#E8F5E9', color:'#2E7D32', icon:'fa-clock-o' },
-        'Acknowledged':         { bg:'#FFF8E1', color:'#F57F17', icon:'fa-eye' },
-        'In Progress':          { bg:'#E8F5E9', color:'#2E7D32', icon:'fa-cog' },
-        'Waiting for Employee': { bg:'#F3E5F5', color:'#6A1B9A', icon:'fa-hourglass-half' },
-        'Resolved':             { bg:'#EFEBE9', color:'#4E342E', icon:'fa-check-circle' }
-    };
-    var sc = statusColors[t.status] || { bg:'#f5f5f5', color:'#333', icon:'fa-info-circle' };
-    var dt = new Date(t.submitted);
-    var dateStr = dt.toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'})
-                + ' at ' + dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-    var updatedStr = t.updatedAt ? 'Last updated: ' + new Date(t.updatedAt).toLocaleString('en-GB') : '';
-
-    result.style.display = 'block';
-    result.innerHTML =
-        '<div style="border:1.5px solid ' + sc.color + '; border-radius:10px; overflow:hidden;">' +
-            '<div style="background:' + sc.bg + '; padding:14px 18px; display:flex; align-items:center; gap:12px;">' +
-                '<i class="fa ' + sc.icon + '" style="font-size:22px; color:' + sc.color + ';"></i>' +
-                '<div>' +
-                    '<div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:' + sc.color + ';">Current Status</div>' +
-                    '<div style="font-size:1.2rem; font-weight:700; color:' + sc.color + '; font-family:\'Playfair Display\',serif;">' + t.status + '</div>' +
-                '</div>' +
-            '</div>' +
-            '<div style="padding:16px 18px; background:#fff;">' +
-                '<div style="display:flex; flex-wrap:wrap; gap:16px; font-size:13px; color:#555; margin-bottom:' + (t.notes ? '14px' : '0') + ';">' +
-                    '<div><strong style="color:#1a1a2e;">Ticket #</strong><br>' + t.id + '</div>' +
-                    '<div><strong style="color:#1a1a2e;">Department</strong><br>' + t.department + '</div>' +
-                    '<div><strong style="color:#1a1a2e;">Category</strong><br>' + t.category + '</div>' +
-                    '<div><strong style="color:#1a1a2e;">Submitted</strong><br>' + dateStr + '</div>' +
-                    (updatedStr ? '<div><strong style="color:#1a1a2e;">Updated</strong><br>' + updatedStr + '</div>' : '') +
-                '</div>' +
-                (t.notes ? '<div style="background:#f8f9ff; border-left:4px solid var(--primary); border-radius:0 6px 6px 0; padding:12px 14px; margin-top:4px;"><strong style="font-size:12px; text-transform:uppercase; letter-spacing:.7px; color:var(--primary);">IT Notes</strong><p style="margin:6px 0 0; font-size:13.5px; color:#1a1a2e;">' + t.notes + '</p></div>' : '') +
-            '</div>' +
-        '</div>';
+            var sc = {
+                'New':                  { bg:'#E8F5E9', color:'#2E7D32', icon:'fa-clock-o' },
+                'Acknowledged':         { bg:'#FFF8E1', color:'#F57F17', icon:'fa-eye' },
+                'In Progress':          { bg:'#E3F2FD', color:'#1565C0', icon:'fa-cog' },
+                'Waiting for Employee': { bg:'#F3E5F5', color:'#6A1B9A', icon:'fa-hourglass-half' },
+                'Resolved':             { bg:'#EFEBE9', color:'#4E342E', icon:'fa-check-circle' }
+            }[t.status] || { bg:'#f5f5f5', color:'#333', icon:'fa-info-circle' };
+            var dt = new Date(t.submitted);
+            var dateStr = dt.toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'}) + ' at ' + dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+            result.innerHTML =
+                '<div style="margin-top:16px;border:1.5px solid ' + sc.color + ';border-radius:12px;overflow:hidden;">' +
+                    '<div style="background:' + sc.bg + ';padding:16px 20px;display:flex;align-items:center;gap:12px;">' +
+                        '<i class="fa ' + sc.icon + '" style="font-size:24px;color:' + sc.color + ';"></i>' +
+                        '<div>' +
+                            '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:' + sc.color + ';">Current Status</div>' +
+                            '<div style="font-size:1.2rem;font-weight:700;color:' + sc.color + ';font-family:\'Playfair Display\',serif;">' + t.status + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div style="padding:16px 20px;background:#fff;display:flex;flex-wrap:wrap;gap:16px;">' +
+                        '<div style="font-size:13px;"><strong style="color:#64748b;display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;">Ticket #</strong>' + t.id + '</div>' +
+                        '<div style="font-size:13px;"><strong style="color:#64748b;display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;">Department</strong>' + t.department + '</div>' +
+                        '<div style="font-size:13px;"><strong style="color:#64748b;display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;">Category</strong>' + t.category + '</div>' +
+                        '<div style="font-size:13px;"><strong style="color:#64748b;display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;">Submitted</strong>' + dateStr + '</div>' +
+                    '</div>' +
+                    (t.notes ? '<div style="padding:14px 20px;background:#f8faff;border-top:1px solid #e2e8f0;"><strong style="font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--primary);display:block;margin-bottom:6px;">IT Notes</strong><p style="margin:0;font-size:13.5px;color:#1a2340;">' + t.notes + '</p></div>' : '') +
+                '</div>';
         })
         .catch(function() {
-            result.innerHTML = '<div style="background:#fff3f3; border:1px solid #e53935; border-radius:8px; padding:14px 16px; color:#c62828; font-size:13.5px;"><i class="fa fa-exclamation-triangle me-2"></i>Network error. Please try again.</div>';
+            result.innerHTML = '<div style="background:#fff3f3;border:1px solid #e53935;border-radius:10px;padding:14px 16px;color:#c62828;font-size:13.5px;margin-top:12px;"><i class="fa fa-times-circle me-2"></i>Network error. Please try again.</div>';
         });
 }
 </script>
