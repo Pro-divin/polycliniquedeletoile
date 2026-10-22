@@ -336,8 +336,10 @@ var DEPT_KEY    = 'PCE_DEPT_2026';
 var currentModal = null;
 var cardFilter   = null;
 
-// ── INIT — same pattern as it-dashboard ──
-loadTickets();
+// ── INIT: render PHP-embedded data instantly, sync from server in background ──
+populateFromFilter();
+updateStats();
+renderTable();
 setInterval(loadTickets, 15000);
 
 function loadTickets() {
@@ -457,24 +459,23 @@ function esc(s) {
     return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ── QUICK STATUS ──
+// ── QUICK STATUS — optimistic: update UI instantly, save in background ──
 function quickStatus(id, newStatus) {
     var t = allTickets.find(function(x){ return x.id === id; });
     if (!t) return;
+    // Update locally right away
+    t.status = newStatus;
+    updateStats();
+    renderTable();
+    showToast('Status updated to "' + newStatus + '"');
+    // Persist to server in background
     var fd = new FormData();
     fd.append('action', 'dept_update');
     fd.append('dept',   DEPT);
     fd.append('id',     id);
     fd.append('status', newStatus);
     fd.append('notes',  t.notes || '');
-    fetch('ticket-action.php', { method:'POST', body:fd, credentials:'same-origin' })
-        .then(function(r){ return r.json(); })
-        .then(function(data) {
-            if (data.success) {
-                loadTickets();
-                showToast('Status updated to "' + newStatus + '"');
-            }
-        });
+    fetch('ticket-action.php', { method:'POST', body:fd, credentials:'same-origin' }).catch(function(){});
 }
 
 // ── MODAL ──
@@ -509,21 +510,24 @@ function closeModal() { document.getElementById('detailModal').classList.remove(
 
 function saveModal() {
     if (!currentModal) return;
+    var ticketId  = currentModal.id;
+    var newStatus = document.getElementById('modalStatus').value;
+    var newNotes  = document.getElementById('modalNotes').value.trim();
+    // Update locally right away
+    currentModal.status = newStatus;
+    currentModal.notes  = newNotes;
+    updateStats();
+    renderTable();
+    showToast('Ticket updated successfully');
+    closeModal();
+    // Persist to server in background
     var fd = new FormData();
     fd.append('action', 'dept_update');
     fd.append('dept',   DEPT);
-    fd.append('id',     currentModal.id);
-    fd.append('status', document.getElementById('modalStatus').value);
-    fd.append('notes',  document.getElementById('modalNotes').value.trim());
-    fetch('ticket-action.php', { method:'POST', body:fd, credentials:'same-origin' })
-        .then(function(r){ return r.json(); })
-        .then(function(data) {
-            if (data.success) {
-                loadTickets();
-                showToast('Ticket updated successfully');
-            }
-        });
-    closeModal();
+    fd.append('id',     ticketId);
+    fd.append('status', newStatus);
+    fd.append('notes',  newNotes);
+    fetch('ticket-action.php', { method:'POST', body:fd, credentials:'same-origin' }).catch(function(){});
 }
 
 // ── TOAST ──
