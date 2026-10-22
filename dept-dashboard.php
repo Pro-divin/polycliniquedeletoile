@@ -264,7 +264,7 @@ if (!empty($conn)) {
             <input type="text" id="filterSearch" placeholder="Ticket # or keyword…" oninput="renderTable()" style="width:180px;">
         </div>
         <div style="margin-top:auto;">
-            <button class="btn-refresh" onclick="fetchTickets()">
+            <button class="btn-refresh" onclick="loadTickets()">
                 <i class="fa fa-refresh"></i> Refresh
             </button>
         </div>
@@ -331,38 +331,26 @@ if (!empty($conn)) {
 <script>
 var allTickets  = <?= json_encode(array_values($tickets)) ?>;
 var DEPT        = <?= json_encode($dept) ?>;
+var API         = 'ticket-action.php';
+var DEPT_KEY    = 'PCE_DEPT_2026';
 var currentModal = null;
 var cardFilter   = null;
 
-// ── INIT ──
-populateFromFilter();
-updateStats();
-renderTable();
-setInterval(fetchTickets, 15000);
+// ── INIT — same pattern as it-dashboard ──
+loadTickets();
+setInterval(loadTickets, 15000);
 
-function fetchTickets() {
-    fetch('ticket-action.php?action=dept_list', { credentials: 'same-origin' })
+function loadTickets() {
+    fetch(API + '?action=dept_tickets&dept=' + DEPT + '&key=' + DEPT_KEY)
         .then(function(r){ return r.json(); })
         .then(function(data) {
             if (!data.success) return;
             allTickets = data.tickets;
+            populateFromFilter();
             updateStats();
-            populateFromFilterLive();
             renderTable();
         })
         .catch(function(){});
-}
-
-function populateFromFilterLive() {
-    var sel = document.getElementById('filterFrom');
-    var current = sel.value;
-    while (sel.options.length > 1) sel.remove(1);
-    var depts = [];
-    allTickets.forEach(function(t){ if (t.from_dept && depts.indexOf(t.from_dept) === -1) depts.push(t.from_dept); });
-    depts.sort().forEach(function(d){
-        var o = document.createElement('option'); o.value = d; o.textContent = d; sel.appendChild(o);
-    });
-    sel.value = current;
 }
 
 // ── STATS ──
@@ -375,10 +363,15 @@ function updateStats() {
 
 function populateFromFilter() {
     var sel = document.getElementById('filterFrom');
+    var cur = sel.value;
     var depts = [];
     allTickets.forEach(function(t){ if (t.from_dept && depts.indexOf(t.from_dept) === -1) depts.push(t.from_dept); });
-    depts.sort().forEach(function(d){
-        var o = document.createElement('option'); o.value = d; o.textContent = d; sel.appendChild(o);
+    depts.sort();
+    sel.innerHTML = '<option value="">All</option>';
+    depts.forEach(function(d){
+        var o = document.createElement('option'); o.value = d; o.textContent = d;
+        if (d === cur) o.selected = true;
+        sel.appendChild(o);
     });
 }
 
@@ -478,9 +471,7 @@ function quickStatus(id, newStatus) {
         .then(function(r){ return r.json(); })
         .then(function(data) {
             if (data.success) {
-                t.status = newStatus;
-                updateStats();
-                renderTable();
+                loadTickets();
                 showToast('Status updated to "' + newStatus + '"');
             }
         });
@@ -528,9 +519,7 @@ function saveModal() {
         .then(function(r){ return r.json(); })
         .then(function(data) {
             if (data.success) {
-                currentModal.status = document.getElementById('modalStatus').value;
-                currentModal.notes  = document.getElementById('modalNotes').value.trim();
-                updateStats(); renderTable();
+                loadTickets();
                 showToast('Ticket updated successfully');
             }
         });

@@ -126,6 +126,23 @@ if ($action === "dept_list") {
     exit;
 }
 
+// Key-based dept ticket fetch — no session needed, same pattern as IT 'list' action
+if ($action === "dept_tickets") {
+    if (($_GET["key"] ?? $_POST["key"] ?? "") !== "PCE_DEPT_2026") {
+        echo json_encode(["success" => false, "error" => "Unauthorized."]); exit;
+    }
+    $validDepts = ['IT','Finance','HR','Logistics'];
+    $dept = trim($_GET["dept"] ?? $_POST["dept"] ?? "");
+    if (!in_array($dept, $validDepts)) {
+        echo json_encode(["success" => false, "error" => "Invalid department."]); exit;
+    }
+    $stmt = $conn->prepare("SELECT * FROM it_tickets WHERE department = ? ORDER BY submitted DESC");
+    $stmt->execute([$dept]);
+    $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode(["success" => true, "tickets" => $tickets]);
+    exit;
+}
+
 if ($action === "dept_update") {
     $validDepts = ['IT','Finance','HR','Logistics'];
     $dept = trim($_POST["dept"] ?? $_SESSION['dept'] ?? "");
