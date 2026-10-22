@@ -1,7 +1,12 @@
 ﻿<?php
-session_start();
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
+
+// Only start session for actions that need auth — avoids session-lock delay on submit
+$action = $_POST["action"] ?? $_GET["action"] ?? "";
+if (in_array($action, ["dept_login","dept_logout","dept_list","dept_update"])) {
+    session_start();
+}
 
 require_once __DIR__ . "/config/connect.php";
 
@@ -25,8 +30,6 @@ $conn->exec("CREATE TABLE IF NOT EXISTS it_tickets (
 )");
 // Add from_dept column if upgrading from older schema
 try { $conn->exec("ALTER TABLE it_tickets ADD COLUMN from_dept VARCHAR(100) AFTER department"); } catch(PDOException $e) {}
-
-$action = $_POST["action"] ?? $_GET["action"] ?? "";
 
 if ($action === "submit") {
     $dept = trim($_POST["department"] ?? "");

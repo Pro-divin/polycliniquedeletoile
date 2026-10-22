@@ -939,12 +939,8 @@ function fillSummary() {
     document.getElementById('sum-ext').textContent  = ext || 'Not provided';
 }
 
-// ── SUBMIT ──
+// ── SUBMIT (optimistic — show success instantly, confirm in background) ──
 function submitTicket() {
-    var btn = document.getElementById('btnNext');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fa fa-spinner fa-spin me-1"></i> Submitting…';
-
     var fd = new FormData();
     fd.append('action',      'submit');
     fd.append('department',  selDept);
@@ -954,24 +950,27 @@ function submitTicket() {
     fd.append('description', document.getElementById('desc').value.trim());
     fd.append('contact',     document.getElementById('ext').value.trim());
 
+    // Show success immediately — don't make the user wait
+    document.getElementById('ticketNumber').textContent = '…';
+    showSuccess();
+
     fetch(API, { method:'POST', body:fd })
         .then(function(r){ return r.json(); })
         .then(function(data) {
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fa fa-paper-plane me-1"></i> Submit Ticket';
             if (data.success) {
                 document.getElementById('ticketNumber').textContent = data.ticket_id;
-                showSuccess();
             } else {
-                document.getElementById('errSubmit').textContent = data.error || 'Submission failed.';
-                document.getElementById('errSubmit').classList.add('show');
+                // Rare: server rejected — show error inside success screen
+                document.getElementById('ticketNumber').textContent = 'Error';
+                document.getElementById('ticketNumber').style.background = '#fee2e2';
+                document.getElementById('ticketNumber').style.color = '#b91c1c';
+                document.getElementById('ticketNumber').textContent = data.error || 'Submission failed — please try again.';
             }
         })
         .catch(function() {
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fa fa-paper-plane me-1"></i> Submit Ticket';
-            document.getElementById('errSubmit').textContent = 'Network error. Please try again.';
-            document.getElementById('errSubmit').classList.add('show');
+            document.getElementById('ticketNumber').textContent = 'No connection — ticket may not have been saved.';
+            document.getElementById('ticketNumber').style.background = '#fee2e2';
+            document.getElementById('ticketNumber').style.color = '#b91c1c';
         });
 }
 
