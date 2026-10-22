@@ -18,7 +18,6 @@ RewriteRule ^([^\.]+)$ $1.html [NC,L]
 <IfModule lsapi_module>
 </IfModule>
 # END cPanel-generated php ini directives, do not edit
-AddType application/x-httpd-php .html
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php82” package as the default “PHP” programming language.
