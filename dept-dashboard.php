@@ -199,10 +199,9 @@ if (!empty($conn)) {
         <a href="index.php" style="color:rgba(255,255,255,0.8); font-size:13px; text-decoration:none;">
             <i class="fa fa-external-link me-1"></i>Employee Form
         </a>
-        <form method="POST" action="dept-login.php" style="margin:0;">
-            <input type="hidden" name="logout" value="1">
-            <button type="submit" class="logout-btn"><i class="fa fa-sign-out me-1"></i>Sign Out</button>
-        </form>
+        <a href="dept-login.php?logout=1" class="logout-btn" style="text-decoration:none;">
+            <i class="fa fa-sign-out me-1"></i>Sign Out
+        </a>
     </div>
 </div>
 

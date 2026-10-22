@@ -4,9 +4,11 @@ session_set_cookie_params(['path' => '/', 'httponly' => true, 'samesite' => 'Lax
 session_start();
 
 // Handle logout
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+if (isset($_POST['logout']) || isset($_GET['logout'])) {
     session_unset();
     session_destroy();
+    // Expire the session cookie so browser stops sending it
+    setcookie(session_name(), '', time() - 3600, '/');
     header('Location: dept-login.php');
     exit;
 }
