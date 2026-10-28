@@ -589,38 +589,9 @@
 
     <!-- SCREEN 3: Issue details -->
     <div class="step-panel" id="step3">
-        <div class="section-gap">
-            <label class="field-label">Issue type <span class="req">*</span></label>
-            <div class="cat-grid" id="catGrid"></div>
-        </div>
-        <div class="section-gap">
-            <label class="field-label">Urgency <span class="req">*</span></label>
-            <div class="urg-list">
-                <div class="urg-card" onclick="selectUrg(this,'Low')">
-                    <div class="urg-dot" style="background:#4CAF50;"></div>
-                    <div><h5>Low</h5><p>Minor — work can continue normally</p></div>
-                    <i class="fa fa-check-circle urg-check"></i>
-                </div>
-                <div class="urg-card" onclick="selectUrg(this,'Normal')">
-                    <div class="urg-dot" style="background:#2196F3;"></div>
-                    <div><h5>Normal</h5><p>Some work is affected but manageable</p></div>
-                    <i class="fa fa-check-circle urg-check"></i>
-                </div>
-                <div class="urg-card" onclick="selectUrg(this,'High')">
-                    <div class="urg-dot" style="background:#FF9800;"></div>
-                    <div><h5>High</h5><p>Department work is significantly blocked</p></div>
-                    <i class="fa fa-check-circle urg-check"></i>
-                </div>
-                <div class="urg-card" onclick="selectUrg(this,'Critical')">
-                    <div class="urg-dot" style="background:#F44336;"></div>
-                    <div><h5>Critical</h5><p>Major outage — patient care is impacted</p></div>
-                    <i class="fa fa-check-circle urg-check"></i>
-                </div>
-            </div>
-        </div>
         <div>
             <label class="field-label">Describe your issue <span class="req">*</span></label>
-            <textarea class="field-input" id="desc" placeholder="Explain what happened, what you were doing, and any error messages…" oninput="checkStep3()"></textarea>
+            <textarea class="field-input" id="desc" placeholder="Explain what happened, what you were doing, and any error messages…" oninput="checkStep3()" style="min-height:160px;"></textarea>
         </div>
     </div>
     </div><!-- /modal-body -->
@@ -766,7 +737,7 @@ function checkStep1() {
 }
 function checkStep3() {
     var desc = document.getElementById('desc').value.trim();
-    showNext(selCat && selUrg && desc.length > 0, '<i class="fa fa-paper-plane me-1"></i> Submit');
+    showNext(desc.length > 0, '<i class="fa fa-paper-plane me-1"></i> Submit');
 }
 
 // ── NAVIGATION ──
@@ -790,7 +761,7 @@ function goStep(n) {
     // Next button state for new screen
     if (step === 1) { showNext(false); checkStep1(); }
     if (step === 2) { showNext(selDept.length > 0, 'Next <i class="fa fa-arrow-right ms-1"></i>'); }
-    if (step === 3) { showNext(false); checkStep3(); }
+    if (step === 3) { showNext(false, '<i class="fa fa-paper-plane me-1"></i> Submit'); checkStep3(); }
     document.getElementById('modalBox').scrollTop = 0;
 }
 
@@ -800,8 +771,8 @@ function submitTicket() {
     fd.append('action',      'submit');
     fd.append('department',  selDept);
     fd.append('from_dept',   selFrom);
-    fd.append('category',    selCat);
-    fd.append('urgency',     selUrg);
+    fd.append('category',    selCat  || 'General');
+    fd.append('urgency',     selUrg  || 'Normal');
     fd.append('description', document.getElementById('desc').value.trim());
     fd.append('contact',     document.getElementById('ext').value.trim());
     document.getElementById('ticketNumber').textContent = '…';
