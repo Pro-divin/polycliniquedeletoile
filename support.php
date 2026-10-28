@@ -700,6 +700,7 @@ function selectDept(el, val) {
     // Build category grid for step 3
     var cats = DEPT_CATS[val] || [];
     var grid = document.getElementById('catGrid');
+    if (!grid) { showNext(true, 'Next <i class="fa fa-arrow-right ms-1"></i>'); return; }
     grid.innerHTML = '';
     cats.forEach(function(c) {
         var d = document.createElement('div');
@@ -807,7 +808,7 @@ function resetWizard() {
     document.querySelectorAll('.step-panel').forEach(function(p){ p.classList.remove('active'); });
     document.getElementById('step1').classList.add('active');
     document.querySelectorAll('.target-card,.dept-btn,.cat-card,.urg-card').forEach(function(el){ el.classList.remove('selected'); });
-    document.getElementById('catGrid').innerHTML = '';
+    var cg = document.getElementById('catGrid'); if (cg) cg.innerHTML = '';
     document.getElementById('otherFromWrap').style.display = 'none';
     document.getElementById('otherFromInput').value = '';
     document.getElementById('ext').value = '';
