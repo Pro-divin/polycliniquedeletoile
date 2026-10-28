@@ -9,10 +9,10 @@ session_write_close(); // Release session lock immediately — page doesn't need
 
 // Per-department colours and icons
 $deptMeta = [
-    'IT'       => ['color'=>'#1565C0','dark'=>'#0D47A1','light'=>'#E3F2FD','icon'=>'fa-laptop',        'label'=>'IT Department'],
-    'Finance'  => ['color'=>'#2E7D32','dark'=>'#1B5E20','light'=>'#E8F5E9','icon'=>'fa-money',          'label'=>'Finance Department'],
-    'HR'       => ['color'=>'#E65100','dark'=>'#BF360C','light'=>'#FFF3E0','icon'=>'fa-users',           'label'=>'Human Resources'],
-    'Logistics'=> ['color'=>'#6A1B9A','dark'=>'#4A148C','light'=>'#F3E5F5','icon'=>'fa-truck',          'label'=>'Logistics Department'],
+    'IT'       => ['color'=>'#0d6efd','dark'=>'#0a58ca','light'=>'#cfe2ff','icon'=>'fa-laptop',        'label'=>'IT Department'],
+    'Finance'  => ['color'=>'#0d6efd','dark'=>'#0a58ca','light'=>'#cfe2ff','icon'=>'fa-money',          'label'=>'Finance Department'],
+    'HR'       => ['color'=>'#0d6efd','dark'=>'#0a58ca','light'=>'#cfe2ff','icon'=>'fa-users',           'label'=>'Human Resources'],
+    'Logistics'=> ['color'=>'#0d6efd','dark'=>'#0a58ca','light'=>'#cfe2ff','icon'=>'fa-truck',          'label'=>'Logistics Department'],
 ];
 $m = $deptMeta[$dept] ?? ['color'=>'#198754','dark'=>'#146c43','light'=>'#d1e7dd','icon'=>'fa-inbox','label'=>$dept.' Department'];
 
@@ -121,13 +121,13 @@ if (!empty($conn)) {
             display:inline-block; border-radius:5px;
             padding:3px 10px; font-size:11.5px; font-weight:700; white-space:nowrap;
         }
-        .s-new          { background:#E3F2FD; color:#1565C0; }
+        .s-new          { background:#cfe2ff; color:#0d6efd; }
         .s-acknowledged { background:#FFF8E1; color:#F57F17; }
-        .s-inprogress   { background:#E8F5E9; color:#2E7D32; }
-        .s-waiting      { background:#F3E5F5; color:#6A1B9A; }
+        .s-inprogress   { background:#d1e7dd; color:#0a3622; }
+        .s-waiting      { background:#fff3cd; color:#664d03; }
         .s-resolved     { background:#EFEBE9; color:#4E342E; }
-        .u-low      { background:#E8F5E9; color:#2E7D32; }
-        .u-normal   { background:#FFF3E0; color:#E65100; }
+        .u-low      { background:#d1e7dd; color:#0a3622; }
+        .u-normal   { background:#fff3cd; color:#664d03; }
         .u-high     { background:#FFEBEE; color:#C62828; }
         .u-critical { background:#4a0000; color:#fff; }
 
@@ -219,13 +219,13 @@ if (!empty($conn)) {
         </div>
         <div class="col-6 col-md-3">
             <div class="stat-tile" onclick="filterByCard('open')" title="Show open tickets">
-                <div class="stat-icon" style="background:#E65100;"><i class="fa fa-exclamation-circle"></i></div>
+                <div class="stat-icon" style="background:#fd7e14;"><i class="fa fa-exclamation-circle"></i></div>
                 <div><h3 id="st-open">0</h3><p>Open</p></div>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="stat-tile" onclick="filterByCard('resolved')" title="Show resolved tickets">
-                <div class="stat-icon" style="background:#2E7D32;"><i class="fa fa-check-circle"></i></div>
+                <div class="stat-icon" style="background:#198754;"><i class="fa fa-check-circle"></i></div>
                 <div><h3 id="st-resolved">0</h3><p>Resolved</p></div>
             </div>
         </div>

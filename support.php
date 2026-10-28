@@ -348,7 +348,7 @@
             width: 78px; height: 78px; border-radius: 50%;
             background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
             display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-size: 34px; color: #2E7D32;
+            margin: 0 auto 20px; font-size: 34px; color: #0d6efd;
             animation: popIn .4s cubic-bezier(.68,-.55,.27,1.55);
         }
         @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
@@ -403,21 +403,21 @@
 <div class="quick-cards">
     <div class="qcard">
         <div class="qcard-icon" style="background:#E3F2FD;">
-            <i class="fa fa-bolt" style="color:#1565C0;"></i>
+            <i class="fa fa-bolt" style="color:#0d6efd;"></i>
         </div>
         <h4>Fast Response</h4>
         <p>IT notified instantly on submission</p>
     </div>
     <div class="qcard">
         <div class="qcard-icon" style="background:#E8F5E9;">
-            <i class="fa fa-eye" style="color:#2E7D32;"></i>
+            <i class="fa fa-eye" style="color:#0d6efd;"></i>
         </div>
         <h4>Track Status</h4>
         <p>Check updates with your ticket number</p>
     </div>
     <div class="qcard">
         <div class="qcard-icon" style="background:#FFF3E0;">
-            <i class="fa fa-clock-o" style="color:#E65100;"></i>
+            <i class="fa fa-clock-o" style="color:#0d6efd;"></i>
         </div>
         <h4>24/7 Priority</h4>
         <p>Critical issues escalated immediately</p>
@@ -557,28 +557,28 @@
     <div class="step-panel" id="step2">
         <div class="target-grid">
             <button class="target-card" onclick="selectDept(this,'IT')">
-                <div class="target-icon" style="background:#E3F2FD;"><i class="fa fa-laptop" style="color:#1565C0;"></i></div>
+                <div class="target-icon" style="background:#cfe2ff;"><i class="fa fa-laptop" style="color:#0d6efd;"></i></div>
                 <div class="target-info">
                     <strong>IT Department</strong>
                     <span>Computer, network, software &amp; device issues</span>
                 </div>
             </button>
             <button class="target-card" onclick="selectDept(this,'Finance')">
-                <div class="target-icon" style="background:#E8F5E9;"><i class="fa fa-money" style="color:#2E7D32;"></i></div>
+                <div class="target-icon" style="background:#cfe2ff;"><i class="fa fa-money" style="color:#0d6efd;"></i></div>
                 <div class="target-info">
                     <strong>Finance</strong>
                     <span>Salary, payments, budgets &amp; reimbursements</span>
                 </div>
             </button>
             <button class="target-card" onclick="selectDept(this,'HR')">
-                <div class="target-icon" style="background:#FFF3E0;"><i class="fa fa-users" style="color:#E65100;"></i></div>
+                <div class="target-icon" style="background:#cfe2ff;"><i class="fa fa-users" style="color:#0d6efd;"></i></div>
                 <div class="target-info">
                     <strong>Human Resources</strong>
                     <span>Leave, contracts, training &amp; staff matters</span>
                 </div>
             </button>
             <button class="target-card" onclick="selectDept(this,'Logistics')">
-                <div class="target-icon" style="background:#F3E5F5;"><i class="fa fa-truck" style="color:#6A1B9A;"></i></div>
+                <div class="target-icon" style="background:#cfe2ff;"><i class="fa fa-truck" style="color:#0d6efd;"></i></div>
                 <div class="target-info">
                     <strong>Logistics</strong>
                     <span>Supplies, equipment, stock &amp; transport</span>
@@ -850,10 +850,10 @@ function checkTicket() {
             }
             var t = data.ticket;
             var sc = {
-                'New':                  { bg:'#E8F5E9', color:'#2E7D32', icon:'fa-clock-o' },
+                'New':                  { bg:'#cfe2ff', color:'#0d6efd', icon:'fa-clock-o' },
                 'Acknowledged':         { bg:'#FFF8E1', color:'#F57F17', icon:'fa-eye' },
-                'In Progress':          { bg:'#E3F2FD', color:'#1565C0', icon:'fa-cog' },
-                'Waiting for Employee': { bg:'#F3E5F5', color:'#6A1B9A', icon:'fa-hourglass-half' },
+                'In Progress':          { bg:'#cfe2ff', color:'#0d6efd', icon:'fa-cog' },
+                'Waiting for Employee': { bg:'#fff3cd', color:'#664d03', icon:'fa-hourglass-half' },
                 'Resolved':             { bg:'#EFEBE9', color:'#4E342E', icon:'fa-check-circle' }
             }[t.status] || { bg:'#f5f5f5', color:'#333', icon:'fa-info-circle' };
             var dt = new Date(t.submitted);

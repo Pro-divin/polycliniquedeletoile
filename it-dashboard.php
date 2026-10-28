@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1565C0;
-            --primary-dark: #0D47A1;
-            --primary-light: #E3F2FD;
+            --primary: #0d6efd;
+            --primary-dark: #0a58ca;
+            --primary-light: #cfe2ff;
         }
         body { font-family:'Open Sans',sans-serif; background:#f0f4f8; margin:0; }
 
@@ -140,14 +140,14 @@
             padding:3px 10px; font-size:11.5px; font-weight:700; white-space:nowrap;
         }
         /* Status */
-        .s-new          { background:#E3F2FD; color:#1565C0; }
+        .s-new          { background:#cfe2ff; color:#0d6efd; }
         .s-acknowledged { background:#FFF8E1; color:#F57F17; }
-        .s-inprogress   { background:#E8F5E9; color:#2E7D32; }
-        .s-waiting      { background:#F3E5F5; color:#6A1B9A; }
+        .s-inprogress   { background:#d1e7dd; color:#0a3622; }
+        .s-waiting      { background:#fff3cd; color:#664d03; }
         .s-resolved     { background:#EFEBE9; color:#4E342E; }
         /* Urgency */
-        .u-low      { background:#E8F5E9; color:#2E7D32; }
-        .u-normal   { background:#FFF3E0; color:#E65100; }
+        .u-low      { background:#d1e7dd; color:#0a3622; }
+        .u-normal   { background:#fff3cd; color:#664d03; }
         .u-high     { background:#FFEBEE; color:#C62828; }
         .u-critical { background:#4a0000; color:#fff; }
 
@@ -289,13 +289,13 @@
         </div>
         <div class="col-6 col-md-3">
             <div class="stat-tile" onclick="filterByCard('open')" style="cursor:pointer;" title="Show open tickets">
-                <div class="stat-icon" style="background:#E65100;"><i class="fa fa-exclamation-circle"></i></div>
+                <div class="stat-icon" style="background:#fd7e14;"><i class="fa fa-exclamation-circle"></i></div>
                 <div><h3 id="st-open">0</h3><p>Open</p></div>
             </div>
         </div>
         <div class="col-6 col-md-3">
             <div class="stat-tile" onclick="filterByCard('resolved')" style="cursor:pointer;" title="Show resolved tickets">
-                <div class="stat-icon" style="background:#2E7D32;"><i class="fa fa-check-circle"></i></div>
+                <div class="stat-icon" style="background:#198754;"><i class="fa fa-check-circle"></i></div>
                 <div><h3 id="st-resolved">0</h3><p>Resolved</p></div>
             </div>
         </div>
