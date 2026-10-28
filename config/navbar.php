@@ -157,7 +157,6 @@
                         <a href="https://x.com/polydeletoile" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-twitter"></i></a>
                         <a href="https://www.instagram.com/polycliniquedeletoile/" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.youtube.com/channel/UCWMShUjUxoVuByeEve3VXrw" class="btn btn-light btn-square border rounded-circle nav-fill me-3"><i class="fab fa-youtube"></i></a>
-                        <a href="https://support.polycliniquedeletoile.com" target="_blank" class="btn btn-primary text-white py-1 px-3 ms-2" style="font-size:12px; font-weight:600; border-radius:4px; letter-spacing:0.5px; white-space:nowrap;"><i class="fa fa-headphones me-1"></i> IT Support</a>
                     </div>
                 </div>
             </div>
