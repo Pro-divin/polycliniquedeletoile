@@ -11,3 +11,7 @@ deployment:
     - /bin/cp /home/jkvxncuh/public_html/dept-dashboard.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/dept-dashboard.php
     - /bin/cp /home/jkvxncuh/public_html/config/connect.php /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/config/connect.php
     - /bin/cp /home/jkvxncuh/public_html/support-htaccess.txt /home/jkvxncuh/public_html/support.polycliniquedeletoile.com/.htaccess
+    - /bin/mkdir -p /home/jkvxncuh/public_html/feedback.polycliniquedeletoile.com/config
+    - /bin/cp /home/jkvxncuh/public_html/patient-feedback.html /home/jkvxncuh/public_html/feedback.polycliniquedeletoile.com/index.html
+    - /bin/cp /home/jkvxncuh/public_html/feedback-action.php /home/jkvxncuh/public_html/feedback.polycliniquedeletoile.com/feedback-action.php
+    - /bin/cp /home/jkvxncuh/public_html/config/connect.php /home/jkvxncuh/public_html/feedback.polycliniquedeletoile.com/config/connect.php
