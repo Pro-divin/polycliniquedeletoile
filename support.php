@@ -216,201 +216,160 @@
         .modal-overlay.open { display: flex; }
         .modal-box {
             background: #fff; border-radius: 20px;
-            width: 100%; max-width: 580px;
+            width: 100%; max-width: 520px;
             max-height: 92vh; overflow-y: auto;
-            box-shadow: 0 32px 80px rgba(0,0,0,.3);
-            animation: slideUp .3s ease;
+            box-shadow: 0 32px 80px rgba(0,0,0,.35);
+            animation: slideUp .28s cubic-bezier(.22,.68,0,1.2);
         }
         @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
+            from { transform: translateY(40px); opacity: 0; }
             to   { transform: translateY(0);    opacity: 1; }
         }
         .modal-head {
             background: linear-gradient(135deg, #146c43, #198754);
             border-radius: 20px 20px 0 0;
-            padding: 24px 28px 20px;
+            padding: 22px 26px 18px;
             color: #fff;
             display: flex; justify-content: space-between; align-items: flex-start;
         }
-        .modal-head h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; margin: 0 0 4px; }
-        .modal-head p  { font-size: 12.5px; color: #bfdbfe; margin: 0; }
+        .modal-head-sub { font-size: 11px; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 600; }
+        .modal-head h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin: 0; line-height: 1.3; }
         .modal-close {
             width: 32px; height: 32px; border-radius: 8px;
             background: rgba(255,255,255,.15); border: none; color: #fff;
             cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; transition: background .2s;
+            flex-shrink: 0; transition: background .2s; margin-left: 12px;
         }
-        .modal-close:hover { background: rgba(255,255,255,.25); }
-
-        /* Progress bar */
-        .progress-wrap { padding: 0 28px; background: #fff; }
-        .progress-track {
-            display: flex; align-items: center; gap: 0;
-            padding: 20px 0 16px;
-        }
-        .prog-step {
-            display: flex; flex-direction: column; align-items: center;
-            flex: 1; position: relative; cursor: default;
-        }
-        .prog-dot {
-            width: 30px; height: 30px; border-radius: 50%;
-            background: #e2e8f0; color: #94a3b8;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 12px; font-weight: 700;
-            transition: all .3s; z-index: 2; position: relative;
-        }
-        .prog-step.done .prog-dot  { background: var(--primary); color: #fff; }
-        .prog-step.active .prog-dot {
-            background: var(--primary); color: #fff;
-            box-shadow: 0 0 0 4px rgba(21,101,192,.2);
-        }
-        .prog-label { font-size: 10px; color: var(--muted); margin-top: 5px; white-space: nowrap; }
-        .prog-step.active .prog-label, .prog-step.done .prog-label { color: var(--primary); font-weight: 600; }
-        .prog-line {
-            flex: 1; height: 2px; background: #e2e8f0;
-            margin: 0 -1px; position: relative; top: -12px; z-index: 1;
-            transition: background .3s;
-        }
-        .prog-line.done { background: var(--primary); }
+        .modal-close:hover { background: rgba(255,255,255,.3); }
 
         /* Step body */
-        .modal-body { padding: 24px 28px 8px; }
-        .step-panel { display: none; animation: fadeIn .25s ease; }
-        .step-panel.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
-        .step-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 16px; }
+        .modal-body { padding: 26px 26px 6px; }
+        .step-panel { display: none; }
+        .step-panel.active { display: block; animation: fadeSlide .22s ease; }
+        @keyframes fadeSlide { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
 
-        /* Department grid */
-        .dept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        @media(max-width:400px){ .dept-grid { grid-template-columns: repeat(2,1fr); } }
-        .dept-btn {
-            border: 1.5px solid var(--border); border-radius: 10px;
-            padding: 10px 8px; font-size: 12px; font-weight: 500;
-            color: var(--text); background: #fff; cursor: pointer;
-            transition: all .2s; text-align: center; line-height: 1.4;
-        }
-        .dept-btn:hover   { border-color: var(--primary); background: var(--primary-light); }
-        .dept-btn.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary); font-weight: 700; }
-        .dept-btn i { display: block; font-size: 18px; margin-bottom: 5px; color: var(--primary); }
-
-        /* Category grid */
-        .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        @media(max-width:400px){ .cat-grid { grid-template-columns: repeat(2,1fr); } }
-        .cat-card {
-            border: 1.5px solid var(--border); border-radius: 10px;
-            padding: 16px 10px; cursor: pointer; text-align: center;
-            transition: all .2s; background: #fff;
-        }
-        .cat-card i { font-size: 24px; color: var(--primary); display: block; margin-bottom: 8px; }
-        .cat-card span { font-size: 11.5px; font-weight: 600; color: var(--text); line-height: 1.4; display: block; }
-        .cat-card:hover   { border-color: var(--primary); background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(21,101,192,.15); }
-        .cat-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 3px rgba(21,101,192,.15); }
-
-        /* Urgency */
-        .urg-list { display: flex; flex-direction: column; gap: 8px; }
-        .urg-card {
-            border: 1.5px solid var(--border); border-radius: 10px;
-            padding: 14px 16px; cursor: pointer;
-            display: flex; align-items: center; gap: 14px;
-            transition: all .2s; background: #fff;
-        }
-        .urg-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
-        .urg-card h5 { font-size: 13.5px; font-weight: 600; color: var(--text); margin: 0 0 2px; }
-        .urg-card p  { font-size: 12px; color: var(--muted); margin: 0; }
-        .urg-card:hover   { border-color: var(--primary); background: var(--primary-light); }
-        .urg-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 3px rgba(21,101,192,.12); }
-        .urg-check { margin-left: auto; color: var(--primary); display: none; }
-        .urg-card.selected .urg-check { display: block; }
-
-        /* Step 4 form */
-        .field-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; display: block; }
+        /* Field styles */
+        .field-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 7px; display: block; }
         .field-label .req { color: #e53935; }
         .field-input {
             width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
             padding: 12px 14px; font-size: 14px; font-family: 'Inter', sans-serif;
             color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s;
         }
-        .field-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(21,101,192,.1); }
-        textarea.field-input { resize: vertical; min-height: 110px; }
-        .upload-zone {
-            border: 2px dashed var(--border); border-radius: 10px;
-            padding: 20px; text-align: center; cursor: pointer;
-            transition: border-color .2s, background .2s;
-            position: relative;
-        }
-        .upload-zone:hover { border-color: var(--primary); background: var(--primary-light); }
-        .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-        .upload-zone i { font-size: 24px; color: var(--primary); display: block; margin-bottom: 6px; }
-        .upload-zone p { font-size: 12.5px; color: var(--muted); margin: 0; }
-        #uploadName { font-size: 12px; color: var(--primary); margin-top: 6px; font-weight: 600; }
+        .field-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(25,135,84,.1); }
+        textarea.field-input { resize: vertical; min-height: 100px; }
 
-        /* Summary */
-        .summary-box {
-            background: var(--surface); border-radius: 12px;
-            padding: 18px 20px; margin-bottom: 16px;
-            border: 1px solid var(--border);
+        /* From dept grid */
+        .dept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+        @media(max-width:400px){ .dept-grid { grid-template-columns: repeat(2,1fr); } }
+        .dept-btn {
+            border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 9px 6px; font-size: 11.5px; font-weight: 500;
+            color: var(--text); background: #fff; cursor: pointer;
+            transition: all .18s; text-align: center; line-height: 1.4;
         }
-        .summary-row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; font-size: 13px; border-bottom: 1px solid var(--border); }
-        .summary-row:last-child { border-bottom: none; }
-        .summary-row .label { color: var(--muted); font-weight: 500; }
-        .summary-row .value { font-weight: 600; color: var(--text); text-align: right; }
+        .dept-btn:hover    { border-color: var(--primary); background: var(--primary-light); }
+        .dept-btn.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary); font-weight: 700; }
+        .dept-btn i { display: block; font-size: 17px; margin-bottom: 4px; color: var(--primary); }
+
+        /* Target dept cards */
+        .target-grid { display: flex; flex-direction: column; gap: 10px; }
+        .target-card {
+            display: flex; align-items: center; gap: 14px;
+            border: 2px solid var(--border); border-radius: 12px;
+            padding: 14px 16px; background: #fff; cursor: pointer;
+            text-align: left; transition: all .18s; width: 100%;
+        }
+        .target-card:hover    { border-color: var(--primary); background: var(--primary-light); }
+        .target-card.selected { border-color: var(--primary); background: var(--primary-light); }
+        .target-icon { width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .target-info strong { font-size: 14px; font-weight: 700; color: var(--text); display: block; }
+        .target-info span   { font-size: 11.5px; color: var(--muted); margin-top: 2px; display: block; }
+
+        /* Category grid */
+        .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        @media(max-width:400px){ .cat-grid { grid-template-columns: repeat(2,1fr); } }
+        .cat-card {
+            border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 14px 8px; cursor: pointer; text-align: center;
+            transition: all .18s; background: #fff;
+        }
+        .cat-card i    { font-size: 22px; color: var(--primary); display: block; margin-bottom: 7px; }
+        .cat-card span { font-size: 11px; font-weight: 600; color: var(--text); line-height: 1.35; display: block; }
+        .cat-card:hover    { border-color: var(--primary); background: var(--primary-light); transform: translateY(-2px); }
+        .cat-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 3px rgba(25,135,84,.15); }
+
+        /* Urgency */
+        .urg-list { display: flex; flex-direction: column; gap: 8px; }
+        .urg-card {
+            border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 12px 14px; cursor: pointer;
+            display: flex; align-items: center; gap: 12px;
+            transition: all .18s; background: #fff;
+        }
+        .urg-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+        .urg-card h5 { font-size: 13px; font-weight: 600; color: var(--text); margin: 0 0 1px; }
+        .urg-card p  { font-size: 11.5px; color: var(--muted); margin: 0; }
+        .urg-card:hover    { border-color: var(--primary); background: var(--primary-light); }
+        .urg-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 3px rgba(25,135,84,.12); }
+        .urg-check { margin-left: auto; color: var(--primary); display: none; font-size: 16px; }
+        .urg-card.selected .urg-check { display: block; }
 
         /* Modal footer */
-        .modal-foot {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 28px 24px;
-        }
+        .modal-foot { padding: 16px 26px 24px; display: flex; justify-content: space-between; align-items: center; }
+
         .btn-back {
             background: none; border: 1.5px solid var(--border); border-radius: 10px;
-            padding: 11px 24px; font-size: 13.5px; font-weight: 600;
+            padding: 11px 22px; font-size: 13px; font-weight: 600;
             color: var(--muted); cursor: pointer; transition: all .2s;
             font-family: 'Inter', sans-serif;
         }
         .btn-back:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-back.hidden { visibility: hidden; }
+
+        /* Next / Submit — hidden until screen is valid */
         .btn-next {
             background: var(--primary); color: #fff;
             border: none; border-radius: 10px;
-            padding: 12px 28px; font-size: 13.5px; font-weight: 600;
+            padding: 12px 28px; font-size: 13.5px; font-weight: 700;
             cursor: pointer; display: flex; align-items: center; gap: 8px;
-            transition: background .2s; font-family: 'Inter', sans-serif;
+            font-family: 'Inter', sans-serif;
+            opacity: 0; transform: translateY(8px);
+            transition: opacity .25s, transform .25s, background .2s;
+            pointer-events: none;
         }
+        .btn-next.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
         .btn-next:hover { background: var(--primary-dark); }
 
         /* Success screen */
-        .success-screen {
-            padding: 40px 28px 32px; text-align: center; display: none;
-        }
+        .success-screen { padding: 40px 26px 32px; text-align: center; display: none; }
         .success-screen.active { display: block; }
         .success-ring {
-            width: 80px; height: 80px; border-radius: 50%;
+            width: 78px; height: 78px; border-radius: 50%;
             background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
             display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-size: 36px; color: #2E7D32;
+            margin: 0 auto 20px; font-size: 34px; color: #2E7D32;
             animation: popIn .4s cubic-bezier(.68,-.55,.27,1.55);
         }
         @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
         .success-screen h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text); margin-bottom: 8px; }
-        .success-screen p  { font-size: 13.5px; color: var(--muted); max-width: 360px; margin: 0 auto 22px; line-height: 1.7; }
+        .success-screen p  { font-size: 13.5px; color: var(--muted); max-width: 340px; margin: 0 auto 20px; line-height: 1.7; }
         .ticket-pill {
-            display: inline-block;
-            background: var(--primary); color: #fff;
+            display: inline-block; background: var(--primary); color: #fff;
             border-radius: 100px; padding: 10px 32px;
-            font-size: 1.3rem; font-weight: 700; letter-spacing: 1px;
-            margin-bottom: 6px;
+            font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px;
         }
         .success-note { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
         .btn-another {
-            background: none; border: 1.5px solid var(--primary);
-            color: var(--primary); border-radius: 10px;
-            padding: 11px 28px; font-size: 14px; font-weight: 600;
-            cursor: pointer; font-family: 'Inter', sans-serif;
-            transition: all .2s;
+            background: none; border: 1.5px solid var(--primary); color: var(--primary);
+            border-radius: 10px; padding: 11px 28px; font-size: 14px; font-weight: 600;
+            cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s;
         }
         .btn-another:hover { background: var(--primary); color: #fff; }
 
-        /* error */
         .err-msg { font-size: 12px; color: #e53935; margin-top: 6px; display: none; }
         .err-msg.show { display: block; }
+        .section-gap { margin-bottom: 18px; }
     </style>
 </head>
 <body>
@@ -546,59 +505,56 @@
 </div>
 
 <!-- ════════════════════════════════════
-     MODAL WIZARD
+     MODAL WIZARD — 3 screens, no step dots
 ════════════════════════════════════ -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeOnBackdrop(event)">
 <div class="modal-box" id="modalBox">
 
-    <!-- Head -->
-    <div class="modal-head">
+    <!-- Dynamic header -->
+    <div class="modal-head" id="modalHead">
         <div>
-            <h3><i class="fa fa-ticket me-2"></i>Report a Technical Issue</h3>
-            <p>Complete the steps below — it takes less than a minute.</p>
+            <div class="modal-head-sub" id="headSub">Step 1 of 3</div>
+            <h3 id="headTitle">Who are you?</h3>
         </div>
         <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-wrap" id="progressWrap">
-        <div class="progress-track">
-            <div class="prog-step active" id="ps1">
-                <div class="prog-dot">1</div>
-                <span class="prog-label">Send To</span>
+    <!-- SCREEN 1: Name & Your Department -->
+    <div class="modal-body">
+    <div class="step-panel active" id="step1">
+        <div class="section-gap">
+            <label class="field-label">Your name &amp; extension <span class="req">*</span></label>
+            <input type="text" class="field-input" id="ext" placeholder="e.g. Marie — Ext. 205"
+                   oninput="checkStep1()">
+        </div>
+        <div>
+            <label class="field-label">Your department <span class="req">*</span></label>
+            <div class="dept-grid" id="fromGrid">
+                <button class="dept-btn" onclick="selectFrom(this,'Reception')"><i class="fa fa-user-md"></i>Reception</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Consultation')"><i class="fa fa-stethoscope"></i>Consultation</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Emergency')"><i class="fa fa-ambulance"></i>Emergency</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Laboratory')"><i class="fa fa-flask"></i>Laboratory</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Radiology')"><i class="fa fa-eye"></i>Radiology</button>
+                <button class="dept-btn" onclick="selectFrom(this,'CT Scan')"><i class="fa fa-circle-o-notch"></i>CT Scan</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Gynaecology')"><i class="fa fa-venus"></i>Gynaecology</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Nursing Ward')"><i class="fa fa-heartbeat"></i>Nursing Ward</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Pediatrics')"><i class="fa fa-child"></i>Pediatrics</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Endoscopy')"><i class="fa fa-search-plus"></i>Endoscopy</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Dentistry')"><i class="fa fa-smile-o"></i>Dentistry</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Administration')"><i class="fa fa-building"></i>Administration</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Finance')"><i class="fa fa-money"></i>Finance</button>
+                <button class="dept-btn" onclick="selectFrom(this,'HR')"><i class="fa fa-users"></i>HR</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Logistics')"><i class="fa fa-truck"></i>Logistics</button>
+                <button class="dept-btn" onclick="selectFrom(this,'Other')"><i class="fa fa-ellipsis-h"></i>Other</button>
             </div>
-            <div class="prog-line" id="pl1"></div>
-            <div class="prog-step" id="ps2">
-                <div class="prog-dot">2</div>
-                <span class="prog-label">Your Dept</span>
-            </div>
-            <div class="prog-line" id="pl2"></div>
-            <div class="prog-step" id="ps3">
-                <div class="prog-dot">3</div>
-                <span class="prog-label">Issue Type</span>
-            </div>
-            <div class="prog-line" id="pl3"></div>
-            <div class="prog-step" id="ps4">
-                <div class="prog-dot">4</div>
-                <span class="prog-label">Urgency</span>
-            </div>
-            <div class="prog-line" id="pl4"></div>
-            <div class="prog-step" id="ps5">
-                <div class="prog-dot">5</div>
-                <span class="prog-label">Details</span>
-            </div>
-            <div class="prog-line" id="pl5"></div>
-            <div class="prog-step" id="ps6">
-                <div class="prog-dot">6</div>
-                <span class="prog-label">Review</span>
+            <div id="otherFromWrap" style="display:none;margin-top:10px;">
+                <input type="text" class="field-input" id="otherFromInput" placeholder="Specify your department…" oninput="selFrom=this.value.trim();checkStep1()">
             </div>
         </div>
     </div>
 
-    <!-- Step 1: Department -->
-    <div class="modal-body">
-    <div class="step-panel active" id="step1">
-        <p class="step-title">Select the department you'd like to submit your request to.</p>
+    <!-- SCREEN 2: Which department to submit to -->
+    <div class="step-panel" id="step2">
         <div class="target-grid">
             <button class="target-card" onclick="selectDept(this,'IT')">
                 <div class="target-icon" style="background:#E3F2FD;"><i class="fa fa-laptop" style="color:#1565C0;"></i></div>
@@ -629,135 +585,59 @@
                 </div>
             </button>
         </div>
-        <p class="err-msg" id="errDept">Please select a department to submit to.</p>
     </div>
 
-    <!-- Step 2: From Department -->
-    <div class="step-panel" id="step2">
-        <p class="step-title">Which department are you submitting this request from?</p>
-        <div class="dept-grid" id="fromGrid">
-            <button class="dept-btn" onclick="selectFrom(this,'Reception')"><i class="fa fa-user-md"></i>Reception</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Consultation')"><i class="fa fa-stethoscope"></i>Consultation</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Emergency')"><i class="fa fa-ambulance"></i>Emergency</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Laboratory')"><i class="fa fa-flask"></i>Laboratory</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Radiology')"><i class="fa fa-eye"></i>Radiology</button>
-            <button class="dept-btn" onclick="selectFrom(this,'CT Scan')"><i class="fa fa-circle-o-notch"></i>CT Scan</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Gynaecology')"><i class="fa fa-venus"></i>Gynaecology</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Nursing Ward')"><i class="fa fa-heartbeat"></i>Nursing Ward</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Pediatrics')"><i class="fa fa-child"></i>Pediatrics</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Endoscopy')"><i class="fa fa-search-plus"></i>Endoscopy</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Dentistry')"><i class="fa fa-smile-o"></i>Dentistry</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Administration')"><i class="fa fa-building"></i>Administration</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Finance')"><i class="fa fa-money"></i>Finance</button>
-            <button class="dept-btn" onclick="selectFrom(this,'HR')"><i class="fa fa-users"></i>HR</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Logistics')"><i class="fa fa-truck"></i>Logistics</button>
-            <button class="dept-btn" onclick="selectFrom(this,'Other')"><i class="fa fa-ellipsis-h"></i>Other</button>
-        </div>
-        <div id="otherFromWrap" style="display:none;margin-top:12px;">
-            <label class="field-label">Please specify your department <span class="req">*</span></label>
-            <input type="text" class="field-input" id="otherFromInput" placeholder="e.g. Physiotherapy, Pharmacy…" oninput="selFrom=this.value.trim()">
-        </div>
-        <p class="err-msg" id="errFrom">Please select your department.</p>
-    </div>
-
-    <!-- Step 3: Category (dynamic based on target dept) -->
+    <!-- SCREEN 3: Issue details -->
     <div class="step-panel" id="step3">
-        <p class="step-title">What best describes your issue?</p>
-        <div class="cat-grid" id="catGrid"></div>
-        <p class="err-msg" id="errCat">Please select an issue type.</p>
-    </div>
-
-    <!-- Step 4: Urgency -->
-    <div class="step-panel" id="step4">
-        <p class="step-title">How would you rate the urgency of this issue?</p>
-        <div class="urg-list">
-            <div class="urg-card" onclick="selectUrg(this,'Low')">
-                <div class="urg-dot" style="background:#4CAF50;"></div>
-                <div>
-                    <h5>Low</h5>
-                    <p>Minor issue — work can continue normally</p>
-                </div>
-                <i class="fa fa-check-circle urg-check"></i>
-            </div>
-            <div class="urg-card" onclick="selectUrg(this,'Normal')">
-                <div class="urg-dot" style="background:#2196F3;"></div>
-                <div>
-                    <h5>Normal</h5>
-                    <p>Some work is affected but manageable</p>
-                </div>
-                <i class="fa fa-check-circle urg-check"></i>
-            </div>
-            <div class="urg-card" onclick="selectUrg(this,'High')">
-                <div class="urg-dot" style="background:#FF9800;"></div>
-                <div>
-                    <h5>High</h5>
-                    <p>A department's work is significantly blocked</p>
-                </div>
-                <i class="fa fa-check-circle urg-check"></i>
-            </div>
-            <div class="urg-card" onclick="selectUrg(this,'Critical')">
-                <div class="urg-dot" style="background:#F44336;"></div>
-                <div>
-                    <h5>Critical</h5>
-                    <p>Major outage — patient care is impacted</p>
-                </div>
-                <i class="fa fa-check-circle urg-check"></i>
-            </div>
+        <div class="section-gap">
+            <label class="field-label">Issue type <span class="req">*</span></label>
+            <div class="cat-grid" id="catGrid"></div>
         </div>
-        <p class="err-msg" id="errUrg">Please select urgency level.</p>
-    </div>
-
-    <!-- Step 5: Details -->
-    <div class="step-panel" id="step5">
-        <p class="step-title">Please provide details about your issue.</p>
-        <div style="margin-bottom:14px;">
-            <label class="field-label">What happened? <span class="req">*</span></label>
-            <textarea class="field-input" id="desc" placeholder="Explain what happened, what you were doing, and any error messages you saw…"></textarea>
-            <p class="err-msg" id="errDesc">Please describe the problem.</p>
-        </div>
-        <div style="margin-bottom:14px;">
-            <label class="field-label">Your name &amp; extension (optional)</label>
-            <input type="text" class="field-input" id="ext" placeholder="e.g. Marie — Ext. 205 or 0788 123 456">
+        <div class="section-gap">
+            <label class="field-label">Urgency <span class="req">*</span></label>
+            <div class="urg-list">
+                <div class="urg-card" onclick="selectUrg(this,'Low')">
+                    <div class="urg-dot" style="background:#4CAF50;"></div>
+                    <div><h5>Low</h5><p>Minor — work can continue normally</p></div>
+                    <i class="fa fa-check-circle urg-check"></i>
+                </div>
+                <div class="urg-card" onclick="selectUrg(this,'Normal')">
+                    <div class="urg-dot" style="background:#2196F3;"></div>
+                    <div><h5>Normal</h5><p>Some work is affected but manageable</p></div>
+                    <i class="fa fa-check-circle urg-check"></i>
+                </div>
+                <div class="urg-card" onclick="selectUrg(this,'High')">
+                    <div class="urg-dot" style="background:#FF9800;"></div>
+                    <div><h5>High</h5><p>Department work is significantly blocked</p></div>
+                    <i class="fa fa-check-circle urg-check"></i>
+                </div>
+                <div class="urg-card" onclick="selectUrg(this,'Critical')">
+                    <div class="urg-dot" style="background:#F44336;"></div>
+                    <div><h5>Critical</h5><p>Major outage — patient care is impacted</p></div>
+                    <i class="fa fa-check-circle urg-check"></i>
+                </div>
+            </div>
         </div>
         <div>
-            <label class="field-label">Attach a screenshot (optional)</label>
-            <div class="upload-zone">
-                <input type="file" id="screenshot" accept="image/*,.pdf" onchange="showFileName(this)">
-                <i class="fa fa-cloud-upload"></i>
-                <p>Click to upload — JPG, PNG, PDF &mdash; max 5 MB</p>
-                <div id="uploadName"></div>
-            </div>
+            <label class="field-label">Describe your issue <span class="req">*</span></label>
+            <textarea class="field-input" id="desc" placeholder="Explain what happened, what you were doing, and any error messages…" oninput="checkStep3()"></textarea>
         </div>
-    </div>
-
-    <!-- Step 6: Review -->
-    <div class="step-panel" id="step6">
-        <p class="step-title">Please review your request before submitting.</p>
-        <div class="summary-box">
-            <div class="summary-row"><span class="label">Submit To</span><span class="value" id="sum-dept">—</span></div>
-            <div class="summary-row"><span class="label">From Department</span><span class="value" id="sum-from">—</span></div>
-            <div class="summary-row"><span class="label">Issue Type</span><span class="value" id="sum-cat">—</span></div>
-            <div class="summary-row"><span class="label">Urgency</span><span class="value" id="sum-urg">—</span></div>
-            <div class="summary-row"><span class="label">Description</span><span class="value" id="sum-desc" style="max-width:60%;font-weight:400;color:var(--muted);">—</span></div>
-            <div class="summary-row"><span class="label">Contact</span><span class="value" id="sum-ext">Not provided</span></div>
-        </div>
-        <p class="err-msg" id="errSubmit"></p>
     </div>
     </div><!-- /modal-body -->
 
-    <!-- Success screen (replaces steps) -->
+    <!-- Success screen -->
     <div class="success-screen" id="successScreen">
         <div class="success-ring"><i class="fa fa-check"></i></div>
-        <h3>Ticket Submitted!</h3>
-        <p>Your issue has been logged and the relevant team has been notified. They will follow up with you shortly.</p>
-        <div class="ticket-pill" id="ticketNumber">IT-0000</div>
-        <p class="success-note">Keep this number to check your ticket status below.</p>
-        <button class="btn-another" onclick="resetWizard()"><i class="fa fa-plus me-1"></i> Report Another Issue</button>
+        <h3>Request Submitted!</h3>
+        <p>Your issue has been logged and the relevant department has been notified. They will follow up with you shortly.</p>
+        <div class="ticket-pill" id="ticketNumber">…</div>
+        <p class="success-note">Keep this number to track your ticket status below.</p>
+        <button class="btn-another" onclick="resetWizard()"><i class="fa fa-plus me-1"></i>Report Another Issue</button>
     </div>
 
-    <!-- Modal footer -->
+    <!-- Footer -->
     <div class="modal-foot" id="modalFoot">
-        <button class="btn-back" id="btnBack" onclick="prevStep()" style="visibility:hidden;">
+        <button class="btn-back" id="btnBack" onclick="prevStep()">
             <i class="fa fa-arrow-left me-1"></i> Back
         </button>
         <button class="btn-next" id="btnNext" onclick="nextStep()">
@@ -770,8 +650,49 @@
 
 <script>
 var API = 'ticket-action.php';
-var step = 1, totalSteps = 6;
+var step = 1;
 var selDept = '', selFrom = '', selCat = '', selUrg = '';
+
+var HEADS = [
+    { sub: 'Step 1 of 3', title: 'Who are you?' },
+    { sub: 'Step 2 of 3', title: 'Who do you want to contact?' },
+    { sub: 'Step 3 of 3', title: 'What is your issue?' }
+];
+
+var DEPT_CATS = {
+    'IT': [
+        { icon:'fa-laptop',        label:'Computer / Laptop' },
+        { icon:'fa-wifi',          label:'Internet / Wi-Fi' },
+        { icon:'fa-print',         label:'Printer / Scanner' },
+        { icon:'fa-envelope',      label:'Email / Account' },
+        { icon:'fa-database',      label:'Hospital Software' },
+        { icon:'fa-phone',         label:'Phone / Other' }
+    ],
+    'Finance': [
+        { icon:'fa-money',         label:'Salary / Payroll' },
+        { icon:'fa-file-text',     label:'Expense Claim' },
+        { icon:'fa-bar-chart',     label:'Budget Request' },
+        { icon:'fa-credit-card',   label:'Invoice / Payment' },
+        { icon:'fa-shopping-cart', label:'Purchase Order' },
+        { icon:'fa-line-chart',    label:'Financial Report' }
+    ],
+    'HR': [
+        { icon:'fa-calendar',      label:'Leave Request' },
+        { icon:'fa-file-text-o',   label:'Staff Contract' },
+        { icon:'fa-user-plus',     label:'Recruitment' },
+        { icon:'fa-graduation-cap',label:'Training / Development' },
+        { icon:'fa-clock-o',       label:'Work Schedule' },
+        { icon:'fa-gavel',         label:'Disciplinary / Grievance' }
+    ],
+    'Logistics': [
+        { icon:'fa-medkit',        label:'Medical Supplies' },
+        { icon:'fa-wrench',        label:'Equipment Request' },
+        { icon:'fa-cubes',         label:'Stock / Inventory' },
+        { icon:'fa-shopping-cart', label:'Purchase Order' },
+        { icon:'fa-truck',         label:'Transport / Delivery' },
+        { icon:'fa-archive',       label:'Storage' }
+    ]
+};
 
 function openModal() {
     resetWizard();
@@ -784,69 +705,9 @@ function closeModal() {
 }
 function closeOnBackdrop(e) {
     if (e.target === document.getElementById('modalOverlay')) closeModal();
-
-// Wire button via event listener as reliable fallback
-(function() {
-    var btn = document.querySelector('.btn-report');
-    if (btn) btn.addEventListener('click', openModal);
-})();
 }
 
-// ── DEPARTMENT CATEGORIES ──
-var DEPT_CATS = {
-    'IT': [
-        { icon:'fa-laptop',   label:'Computer / Laptop' },
-        { icon:'fa-wifi',     label:'Internet / Wi-Fi' },
-        { icon:'fa-print',    label:'Printer / Scanner' },
-        { icon:'fa-envelope', label:'Email / Account' },
-        { icon:'fa-database', label:'Hospital Software' },
-        { icon:'fa-phone',    label:'Phone / Other' }
-    ],
-    'Finance': [
-        { icon:'fa-money',        label:'Salary / Payroll' },
-        { icon:'fa-file-text',    label:'Expense Claim' },
-        { icon:'fa-bar-chart',    label:'Budget Request' },
-        { icon:'fa-credit-card',  label:'Invoice / Payment' },
-        { icon:'fa-shopping-cart',label:'Purchase Order' },
-        { icon:'fa-line-chart',   label:'Financial Report' }
-    ],
-    'HR': [
-        { icon:'fa-calendar',     label:'Leave Request' },
-        { icon:'fa-file-text-o',  label:'Staff Contract' },
-        { icon:'fa-user-plus',    label:'Recruitment' },
-        { icon:'fa-graduation-cap',label:'Training / Development' },
-        { icon:'fa-clock-o',      label:'Work Schedule' },
-        { icon:'fa-gavel',        label:'Disciplinary / Grievance' }
-    ],
-    'Logistics': [
-        { icon:'fa-medkit',       label:'Medical Supplies' },
-        { icon:'fa-wrench',       label:'Equipment Request' },
-        { icon:'fa-cubes',        label:'Stock / Inventory' },
-        { icon:'fa-shopping-cart',label:'Purchase Order' },
-        { icon:'fa-truck',        label:'Transport / Delivery' },
-        { icon:'fa-archive',      label:'Storage' }
-    ]
-};
-
-// ── SELECTORS ──
-function selectDept(el, val) {
-    document.querySelectorAll('.target-card').forEach(function(b){ b.classList.remove('selected'); });
-    el.classList.add('selected');
-    selDept = val;
-    selCat = '';
-    document.getElementById('errDept').classList.remove('show');
-    // Populate step 2 categories for this department
-    var cats = DEPT_CATS[val] || [];
-    var grid = document.getElementById('catGrid');
-    grid.innerHTML = '';
-    cats.forEach(function(c) {
-        var d = document.createElement('div');
-        d.className = 'cat-card';
-        d.innerHTML = '<i class="fa ' + c.icon + '"></i><span>' + c.label + '</span>';
-        d.onclick = function(){ selectCat(d, c.label); };
-        grid.appendChild(d);
-    });
-}
+// ── SELECTOR HELPERS ──
 function selectFrom(el, val) {
     document.querySelectorAll('#fromGrid .dept-btn').forEach(function(b){ b.classList.remove('selected'); });
     el.classList.add('selected');
@@ -858,28 +719,59 @@ function selectFrom(el, val) {
         wrap.style.display = 'none';
         selFrom = val;
     }
-    document.getElementById('errFrom').classList.remove('show');
+    checkStep1();
+}
+function selectDept(el, val) {
+    document.querySelectorAll('.target-card').forEach(function(b){ b.classList.remove('selected'); });
+    el.classList.add('selected');
+    selDept = val;
+    selCat  = '';
+    // Build category grid for step 3
+    var cats = DEPT_CATS[val] || [];
+    var grid = document.getElementById('catGrid');
+    grid.innerHTML = '';
+    cats.forEach(function(c) {
+        var d = document.createElement('div');
+        d.className = 'cat-card';
+        d.innerHTML = '<i class="fa ' + c.icon + '"></i><span>' + c.label + '</span>';
+        d.onclick = function(){ selectCat(d, c.label); };
+        grid.appendChild(d);
+    });
+    showNext(true, 'Next <i class="fa fa-arrow-right ms-1"></i>');
 }
 function selectCat(el, val) {
     document.querySelectorAll('.cat-card').forEach(function(c){ c.classList.remove('selected'); });
     el.classList.add('selected');
     selCat = val;
-    document.getElementById('errCat').classList.remove('show');
+    checkStep3();
 }
 function selectUrg(el, val) {
     document.querySelectorAll('.urg-card').forEach(function(c){ c.classList.remove('selected'); });
     el.classList.add('selected');
     selUrg = val;
-    document.getElementById('errUrg').classList.remove('show');
+    checkStep3();
 }
-function showFileName(input) {
-    document.getElementById('uploadName').textContent = input.files[0] ? input.files[0].name : '';
+
+// ── CONDITIONAL NEXT BUTTON ──
+function showNext(visible, html) {
+    var btn = document.getElementById('btnNext');
+    if (html) btn.innerHTML = html;
+    if (visible) btn.classList.add('visible');
+    else         btn.classList.remove('visible');
+}
+function checkStep1() {
+    var name = document.getElementById('ext').value.trim();
+    if (selFrom === 'Other') selFrom = document.getElementById('otherFromInput').value.trim();
+    showNext(name.length > 0 && selFrom.length > 0, 'Next <i class="fa fa-arrow-right ms-1"></i>');
+}
+function checkStep3() {
+    var desc = document.getElementById('desc').value.trim();
+    showNext(selCat && selUrg && desc.length > 0, '<i class="fa fa-paper-plane me-1"></i> Submit');
 }
 
 // ── NAVIGATION ──
 function nextStep() {
-    if (!validateStep()) return;
-    if (step === totalSteps) { submitTicket(); return; }
+    if (step === 3) { submitTicket(); return; }
     goStep(step + 1);
 }
 function prevStep() {
@@ -887,59 +779,22 @@ function prevStep() {
 }
 function goStep(n) {
     document.getElementById('step' + step).classList.remove('active');
-    document.getElementById('ps' + step).classList.remove('active');
-    document.getElementById('ps' + step).classList.add('done');
     step = n;
     document.getElementById('step' + step).classList.add('active');
-    document.getElementById('ps' + step).classList.add('active');
-    document.getElementById('ps' + step).classList.remove('done');
-    // update lines
-    for (var i = 1; i <= 5; i++) {
-        document.getElementById('pl' + i).classList.toggle('done', i < step);
-    }
-    document.getElementById('btnBack').style.visibility = step > 1 ? 'visible' : 'hidden';
-    document.getElementById('btnNext').innerHTML = step === totalSteps
-        ? '<i class="fa fa-paper-plane me-1"></i> Submit Ticket'
-        : 'Next <i class="fa fa-arrow-right ms-1"></i>';
-    if (step === totalSteps) fillSummary();
+    // Update header
+    document.getElementById('headSub').textContent   = HEADS[step-1].sub;
+    document.getElementById('headTitle').textContent = HEADS[step-1].title;
+    // Back button
+    var back = document.getElementById('btnBack');
+    back.classList.toggle('hidden', step === 1);
+    // Next button state for new screen
+    if (step === 1) { showNext(false); checkStep1(); }
+    if (step === 2) { showNext(selDept.length > 0, 'Next <i class="fa fa-arrow-right ms-1"></i>'); }
+    if (step === 3) { showNext(false); checkStep3(); }
     document.getElementById('modalBox').scrollTop = 0;
 }
 
-function validateStep() {
-    if (step === 1) {
-        if (!selDept) { document.getElementById('errDept').classList.add('show'); return false; }
-    }
-    if (step === 2) {
-        if (document.getElementById('otherFromWrap').style.display !== 'none') {
-            selFrom = document.getElementById('otherFromInput').value.trim();
-        }
-        if (!selFrom) { document.getElementById('errFrom').classList.add('show'); return false; }
-    }
-    if (step === 3) {
-        if (!selCat)  { document.getElementById('errCat').classList.add('show'); return false; }
-    }
-    if (step === 4) {
-        if (!selUrg)  { document.getElementById('errUrg').classList.add('show'); return false; }
-    }
-    if (step === 5) {
-        var desc = document.getElementById('desc').value.trim();
-        if (!desc) { document.getElementById('errDesc').classList.add('show'); return false; }
-        document.getElementById('errDesc').classList.remove('show');
-    }
-    return true;
-}
-
-function fillSummary() {
-    document.getElementById('sum-dept').textContent = selDept;
-    document.getElementById('sum-from').textContent = selFrom;
-    document.getElementById('sum-cat').textContent  = selCat;
-    document.getElementById('sum-urg').textContent  = selUrg;
-    document.getElementById('sum-desc').textContent = document.getElementById('desc').value.trim();
-    var ext = document.getElementById('ext').value.trim();
-    document.getElementById('sum-ext').textContent  = ext || 'Not provided';
-}
-
-// ── SUBMIT (optimistic — show success instantly, confirm in background) ──
+// ── SUBMIT ──
 function submitTicket() {
     var fd = new FormData();
     fd.append('action',      'submit');
@@ -949,61 +804,61 @@ function submitTicket() {
     fd.append('urgency',     selUrg);
     fd.append('description', document.getElementById('desc').value.trim());
     fd.append('contact',     document.getElementById('ext').value.trim());
-
-    // Show success immediately — don't make the user wait
     document.getElementById('ticketNumber').textContent = '…';
     showSuccess();
-
     fetch(API, { method:'POST', body:fd })
         .then(function(r){ return r.json(); })
         .then(function(data) {
+            var pill = document.getElementById('ticketNumber');
             if (data.success) {
-                document.getElementById('ticketNumber').textContent = data.ticket_id;
+                pill.textContent = data.ticket_id;
+                pill.style.background = '';
+                pill.style.color = '';
             } else {
-                // Rare: server rejected — show error inside success screen
-                document.getElementById('ticketNumber').textContent = 'Error';
-                document.getElementById('ticketNumber').style.background = '#fee2e2';
-                document.getElementById('ticketNumber').style.color = '#b91c1c';
-                document.getElementById('ticketNumber').textContent = data.error || 'Submission failed — please try again.';
+                pill.textContent = data.error || 'Submission failed — please retry.';
+                pill.style.background = '#fee2e2'; pill.style.color = '#b91c1c';
             }
         })
         .catch(function() {
-            document.getElementById('ticketNumber').textContent = 'No connection — ticket may not have been saved.';
-            document.getElementById('ticketNumber').style.background = '#fee2e2';
-            document.getElementById('ticketNumber').style.color = '#b91c1c';
+            var pill = document.getElementById('ticketNumber');
+            pill.textContent = 'No connection — please retry.';
+            pill.style.background = '#fee2e2'; pill.style.color = '#b91c1c';
         });
 }
-
 function showSuccess() {
-    document.getElementById('progressWrap').style.display = 'none';
     document.getElementById('modalFoot').style.display = 'none';
     document.querySelector('.modal-body').style.display = 'none';
+    document.getElementById('modalHead').style.display = 'none';
     document.getElementById('successScreen').classList.add('active');
 }
-
 function resetWizard() {
     step = 1; selDept = ''; selFrom = ''; selCat = ''; selUrg = '';
     document.querySelectorAll('.step-panel').forEach(function(p){ p.classList.remove('active'); });
     document.getElementById('step1').classList.add('active');
-    document.querySelectorAll('.prog-step').forEach(function(p){ p.classList.remove('active','done'); });
-    document.getElementById('ps1').classList.add('active');
-    document.querySelectorAll('.prog-line').forEach(function(l){ l.classList.remove('done'); });
     document.querySelectorAll('.target-card,.dept-btn,.cat-card,.urg-card').forEach(function(el){ el.classList.remove('selected'); });
     document.getElementById('catGrid').innerHTML = '';
     document.getElementById('otherFromWrap').style.display = 'none';
     document.getElementById('otherFromInput').value = '';
-    document.getElementById('desc').value = '';
     document.getElementById('ext').value = '';
-    document.getElementById('uploadName').textContent = '';
-    document.querySelectorAll('.err-msg').forEach(function(e){ e.classList.remove('show'); });
-    document.getElementById('progressWrap').style.display = '';
+    document.getElementById('desc').value = '';
     document.getElementById('modalFoot').style.display = '';
     document.querySelector('.modal-body').style.display = '';
+    document.getElementById('modalHead').style.display = '';
     document.getElementById('successScreen').classList.remove('active');
-    document.getElementById('btnBack').style.visibility = 'hidden';
-    document.getElementById('btnNext').innerHTML = 'Next <i class="fa fa-arrow-right ms-1"></i>';
+    document.getElementById('ticketNumber').style.background = '';
+    document.getElementById('ticketNumber').style.color = '';
+    document.getElementById('headSub').textContent   = HEADS[0].sub;
+    document.getElementById('headTitle').textContent = HEADS[0].title;
+    document.getElementById('btnBack').classList.add('hidden');
+    showNext(false, 'Next <i class="fa fa-arrow-right ms-1"></i>');
     document.getElementById('modalBox').scrollTop = 0;
 }
+
+// Wire report button
+(function() {
+    var btn = document.querySelector('.btn-report');
+    if (btn) btn.addEventListener('click', openModal);
+})();
 
 // ── STATUS CHECKER ──
 function checkTicket() {
