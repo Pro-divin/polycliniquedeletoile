@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Feedback — Polyclinique de l'Etoile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:      #1565C0;
+            --primary-dark: #0D47A1;
+            --primary-light:#E3F2FD;
+            --accent:       #1976D2;
+            --gold:         #F9A825;
+            --surface:      #F0F4F8;
+            --card:         #ffffff;
+            --text:         #1a2340;
+            --muted:        #64748b;
+            --border:       #e2e8f0;
+            --radius:       14px;
+            --shadow:       0 4px 24px rgba(21,101,192,.10);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text); }
+
+        /* ── TOPBAR ── */
+        .topbar {
+            background: #0a0a1e; color: #7899bb; font-size: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 24px; flex-wrap: wrap; gap: 6px;
+        }
+        .topbar-brand { font-family: 'Playfair Display', serif; color: #fff; font-size: 13px; font-weight: 600; }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #0D47A1 0%, #1565C0 55%, #1976D2 100%);
+            padding: 56px 24px 100px; text-align: center; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22);
+            border-radius: 100px; padding: 6px 18px; font-size: 12px;
+            color: #bfdbfe; letter-spacing: .5px; text-transform: uppercase;
+            font-weight: 600; margin-bottom: 18px; backdrop-filter: blur(4px);
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: #fff; font-weight: 700; margin-bottom: 12px; line-height: 1.2;
+        }
+        .hero p { color: #bfdbfe; font-size: 15.5px; max-width: 460px; margin: 0 auto; line-height: 1.7; }
+
+        /* ── FORM CARD (floats over hero) ── */
+        .form-wrap {
+            max-width: 700px; margin: -56px auto 60px; padding: 0 16px;
+            position: relative; z-index: 10;
+        }
+        .form-card {
+            background: var(--card); border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(21,101,192,.18);
+            overflow: hidden;
+        }
+
+        /* ── SECTION HEADERS INSIDE CARD ── */
+        .form-section {
+            padding: 28px 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .form-section:last-of-type { border-bottom: none; }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem; font-weight: 700; color: var(--text);
+            margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+        }
+        .section-title i {
+            width: 30px; height: 30px; border-radius: 7px;
+            background: var(--primary-light); color: var(--primary);
+            display: flex; align-items: center; justify-content: center; font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* ── DEPT GRID ── */
+        .dept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        @media(max-width:480px){ .dept-grid { grid-template-columns: repeat(2,1fr); } }
+        .dept-btn {
+            border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 10px 8px; font-size: 12px; font-weight: 500;
+            color: var(--text); background: #fff; cursor: pointer;
+            transition: all .18s; text-align: center; line-height: 1.4; font-family: 'Inter', sans-serif;
+        }
+        .dept-btn:hover    { border-color: var(--primary); background: var(--primary-light); }
+        .dept-btn.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary); font-weight: 700; }
+        .dept-btn i { display: block; font-size: 18px; margin-bottom: 4px; color: var(--primary); }
+
+        /* ── STAR RATING ── */
+        .star-group { display: flex; gap: 6px; flex-direction: row-reverse; justify-content: flex-end; }
+        .star-group input { display: none; }
+        .star-group label {
+            font-size: 32px; color: #d1d5db; cursor: pointer;
+            transition: color .15s; line-height: 1;
+        }
+        .star-group label:hover,
+        .star-group label:hover ~ label,
+        .star-group input:checked ~ label { color: var(--gold); }
+        .star-row { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+        .star-label { font-size: 13px; font-weight: 600; color: var(--text); min-width: 180px; }
+
+        /* ── WOULD RECOMMEND ── */
+        .rec-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .rec-btn {
+            flex: 1; min-width: 100px; border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 12px 10px; font-size: 13px; font-weight: 600;
+            color: var(--text); background: #fff; cursor: pointer;
+            transition: all .18s; text-align: center; font-family: 'Inter', sans-serif;
+        }
+        .rec-btn i { display: block; font-size: 20px; margin-bottom: 5px; }
+        .rec-btn:hover     { border-color: var(--primary); background: var(--primary-light); }
+        .rec-btn.selected  { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+
+        /* ── FIELDS ── */
+        .field-label { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 7px; display: block; }
+        .field-label .req { color: #e53935; }
+        .field-input {
+            width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
+            padding: 12px 14px; font-size: 14px; font-family: 'Inter', sans-serif;
+            color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s;
+        }
+        .field-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(21,101,192,.1); }
+        textarea.field-input { resize: vertical; min-height: 100px; }
+        .field-gap { margin-bottom: 18px; }
+
+        /* ── VISIT DATE ── */
+        .date-row { display: flex; gap: 12px; flex-wrap: wrap; }
+        .date-row > div { flex: 1; min-width: 130px; }
+
+        /* ── SUBMIT BUTTON ── */
+        .submit-wrap { padding: 24px 32px; background: #f8faff; }
+        .btn-submit {
+            width: 100%; background: var(--primary); color: #fff;
+            border: none; border-radius: 12px; padding: 15px;
+            font-size: 15px; font-weight: 700; font-family: 'Playfair Display', serif;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: background .2s, transform .15s;
+        }
+        .btn-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .privacy-note { font-size: 11.5px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+        /* ── SUCCESS SCREEN ── */
+        .success-screen {
+            display: none; padding: 60px 32px; text-align: center;
+        }
+        .success-screen.active { display: block; }
+        .success-ring {
+            width: 86px; height: 86px; border-radius: 50%;
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 22px; font-size: 38px; color: var(--primary);
+            animation: popIn .4s cubic-bezier(.68,-.55,.27,1.55);
+        }
+        @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+        .success-screen h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text); margin-bottom: 10px; }
+        .success-screen p  { font-size: 14px; color: var(--muted); max-width: 360px; margin: 0 auto 24px; line-height: 1.8; }
+        .btn-another {
+            background: none; border: 1.5px solid var(--primary); color: var(--primary);
+            border-radius: 10px; padding: 11px 28px; font-size: 14px; font-weight: 600;
+            cursor: pointer; font-family: 'Inter', sans-serif; transition: all .2s;
+        }
+        .btn-another:hover { background: var(--primary); color: #fff; }
+
+        /* ── FOOTER ── */
+        .page-footer {
+            background: #0a0a1e; color: #445; text-align: center;
+            padding: 20px; font-size: 12px;
+        }
+        .page-footer a { color: #1565C0; text-decoration: none; }
+
+        /* ── QUICK STATS (below hero) ── */
+        .stats-bar {
+            max-width: 700px; margin: 0 auto; padding: 0 16px;
+            display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+            position: relative; z-index: 11; top: -76px; margin-bottom: -64px;
+        }
+        .stat-chip {
+            background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+            border-radius: 50px; padding: 8px 18px; font-size: 12.5px; font-weight: 600;
+            color: var(--text); display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 4px 16px rgba(21,101,192,.12);
+        }
+        .stat-chip i { color: var(--primary); }
+
+        @media(max-width:600px){
+            .form-section { padding: 22px 18px; }
+            .submit-wrap  { padding: 20px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <span class="topbar-brand">
+        <i class="fa fa-hospital-o" style="color:#60a5fa; margin-right:6px;"></i>
+        Polyclinique de l'Etoile
+    </span>
+    <span>
+        <i class="fa fa-map-marker" style="color:#60a5fa; margin-right:4px;"></i>
+        Gasabo, Remera, Rukiri I, Kigali &nbsp;|&nbsp;
+        <i class="fa fa-phone" style="color:#60a5fa; margin-right:4px;"></i>
+        Free Call 1301
+    </span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge"><i class="fa fa-heart"></i> Patient Experience</div>
+    <h1>Share Your Feedback</h1>
+    <p>Your experience matters. Help us improve the care and service we provide to every patient.</p>
+</div>
+
+<!-- QUICK CHIPS -->
+<div class="stats-bar">
+    <div class="stat-chip"><i class="fa fa-lock"></i> 100% Confidential</div>
+    <div class="stat-chip"><i class="fa fa-clock-o"></i> Takes 2 minutes</div>
+    <div class="stat-chip"><i class="fa fa-check-circle"></i> Reviewed by management</div>
+</div>
+
+<!-- MAIN FORM CARD -->
+<div class="form-wrap">
+<div class="form-card" id="formCard">
+
+    <!-- Section 1: Department -->
+    <div class="form-section">
+        <div class="section-title">
+            <i class="fa fa-building"></i>
+            Which department or service did you visit?
+        </div>
+        <div class="dept-grid" id="deptGrid">
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Reception')"><i class="fa fa-user-md"></i>Reception</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Consultation')"><i class="fa fa-stethoscope"></i>Consultation</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Emergency')"><i class="fa fa-ambulance"></i>Emergency</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Laboratory')"><i class="fa fa-flask"></i>Laboratory</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Radiology')"><i class="fa fa-eye"></i>Radiology</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'CT Scan')"><i class="fa fa-circle-o-notch"></i>CT Scan</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Gynaecology')"><i class="fa fa-venus"></i>Gynaecology</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Nursing Ward')"><i class="fa fa-heartbeat"></i>Nursing Ward</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Pediatrics')"><i class="fa fa-child"></i>Pediatrics</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Endoscopy')"><i class="fa fa-search-plus"></i>Endoscopy</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Dentistry')"><i class="fa fa-smile-o"></i>Dentistry</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Pharmacy')"><i class="fa fa-medkit"></i>Pharmacy</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Maternity')"><i class="fa fa-child"></i>Maternity</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Physiotherapy')"><i class="fa fa-male"></i>Physiotherapy</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Administration')"><i class="fa fa-building"></i>Administration</button>
+            <button type="button" class="dept-btn" onclick="selectDept(this,'Other')"><i class="fa fa-ellipsis-h"></i>Other</button>
+        </div>
+        <div id="otherDeptWrap" style="display:none; margin-top:10px;">
+            <input type="text" class="field-input" id="otherDeptInput" placeholder="Please specify the department or service…">
+        </div>
+    </div>
+
+    <!-- Section 2: Date of visit -->
+    <div class="form-section">
+        <div class="section-title"><i class="fa fa-calendar"></i> When did you visit?</div>
+        <div class="date-row">
+            <div>
+                <label class="field-label">Date of visit</label>
+                <input type="date" class="field-input" id="visitDate" max="">
+            </div>
+            <div>
+                <label class="field-label">Approximate time</label>
+                <select class="field-input" id="visitTime">
+                    <option value="">Select time of day</option>
+                    <option>Morning (06:00 – 12:00)</option>
+                    <option>Afternoon (12:00 – 17:00)</option>
+                    <option>Evening (17:00 – 21:00)</option>
+                    <option>Night (21:00 – 06:00)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Ratings -->
+    <div class="form-section">
+        <div class="section-title"><i class="fa fa-star"></i> Rate your experience</div>
+
+        <div class="star-row">
+            <span class="star-label">Overall satisfaction <span style="color:#e53935;">*</span></span>
+            <div class="star-group" id="stars-overall">
+                <input type="radio" name="overall" id="o5" value="5"><label for="o5" title="Excellent">&#9733;</label>
+                <input type="radio" name="overall" id="o4" value="4"><label for="o4" title="Good">&#9733;</label>
+                <input type="radio" name="overall" id="o3" value="3"><label for="o3" title="Average">&#9733;</label>
+                <input type="radio" name="overall" id="o2" value="2"><label for="o2" title="Poor">&#9733;</label>
+                <input type="radio" name="overall" id="o1" value="1"><label for="o1" title="Very poor">&#9733;</label>
+            </div>
+            <span id="overallLabel" style="font-size:13px; color:var(--muted); min-width:70px;"></span>
+        </div>
+
+        <div class="star-row">
+            <span class="star-label">Staff friendliness</span>
+            <div class="star-group" id="stars-staff">
+                <input type="radio" name="staff" id="s5" value="5"><label for="s5">&#9733;</label>
+                <input type="radio" name="staff" id="s4" value="4"><label for="s4">&#9733;</label>
+                <input type="radio" name="staff" id="s3" value="3"><label for="s3">&#9733;</label>
+                <input type="radio" name="staff" id="s2" value="2"><label for="s2">&#9733;</label>
+                <input type="radio" name="staff" id="s1" value="1"><label for="s1">&#9733;</label>
+            </div>
+        </div>
+
+        <div class="star-row">
+            <span class="star-label">Cleanliness &amp; comfort</span>
+            <div class="star-group" id="stars-clean">
+                <input type="radio" name="clean" id="c5" value="5"><label for="c5">&#9733;</label>
+                <input type="radio" name="clean" id="c4" value="4"><label for="c4">&#9733;</label>
+                <input type="radio" name="clean" id="c3" value="3"><label for="c3">&#9733;</label>
+                <input type="radio" name="clean" id="c2" value="2"><label for="c2">&#9733;</label>
+                <input type="radio" name="clean" id="c1" value="1"><label for="c1">&#9733;</label>
+            </div>
+        </div>
+
+        <div class="star-row">
+            <span class="star-label">Wait time</span>
+            <div class="star-group" id="stars-wait">
+                <input type="radio" name="wait" id="w5" value="5"><label for="w5">&#9733;</label>
+                <input type="radio" name="wait" id="w4" value="4"><label for="w4">&#9733;</label>
+                <input type="radio" name="wait" id="w3" value="3"><label for="w3">&#9733;</label>
+                <input type="radio" name="wait" id="w2" value="2"><label for="w2">&#9733;</label>
+                <input type="radio" name="wait" id="w1" value="1"><label for="w1">&#9733;</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4: Comments -->
+    <div class="form-section">
+        <div class="section-title"><i class="fa fa-comment"></i> Tell us more</div>
+        <div class="field-gap">
+            <label class="field-label">What went well? <span class="req">*</span></label>
+            <textarea class="field-input" id="wentWell" placeholder="Tell us what you appreciated about your visit…"></textarea>
+        </div>
+        <div>
+            <label class="field-label">What could we improve?</label>
+            <textarea class="field-input" id="improve" placeholder="Any suggestions for how we can serve you better…"></textarea>
+        </div>
+    </div>
+
+    <!-- Section 5: Recommend -->
+    <div class="form-section">
+        <div class="section-title"><i class="fa fa-share-alt"></i> Would you recommend us to family or friends?</div>
+        <div class="rec-row">
+            <button type="button" class="rec-btn" onclick="selectRec(this,'Yes')">
+                <i class="fa fa-thumbs-up" style="color:#2E7D32;"></i>Yes, definitely
+            </button>
+            <button type="button" class="rec-btn" onclick="selectRec(this,'Maybe')">
+                <i class="fa fa-meh-o" style="color:#F57F17;"></i>Maybe
+            </button>
+            <button type="button" class="rec-btn" onclick="selectRec(this,'No')">
+                <i class="fa fa-thumbs-down" style="color:#C62828;"></i>No
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 6: Contact (optional) -->
+    <div class="form-section">
+        <div class="section-title"><i class="fa fa-user"></i> Your details <span style="font-size:12px; font-weight:400; color:var(--muted);">(optional — leave blank to stay anonymous)</span></div>
+        <div class="date-row">
+            <div class="field-gap">
+                <label class="field-label">Your name</label>
+                <input type="text" class="field-input" id="patientName" placeholder="e.g. Jean-Pierre Nkurunziza">
+            </div>
+            <div>
+                <label class="field-label">Phone or email</label>
+                <input type="text" class="field-input" id="patientContact" placeholder="So we can follow up if needed">
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-wrap">
+        <button type="button" class="btn-submit" onclick="submitFeedback()">
+            <i class="fa fa-paper-plane"></i> Submit My Feedback
+        </button>
+        <p class="privacy-note">
+            <i class="fa fa-lock" style="margin-right:4px;"></i>
+            Your feedback is confidential and reviewed only by hospital management.
+        </p>
+    </div>
+
+</div><!-- /form-card -->
+
+<!-- SUCCESS SCREEN (shown after submit) -->
+<div class="form-card success-screen" id="successScreen">
+    <div class="success-ring"><i class="fa fa-heart"></i></div>
+    <h3>Thank You for Your Feedback!</h3>
+    <p>We truly appreciate you taking the time to share your experience. Your feedback helps us deliver better care to every patient at Polyclinique de l'Etoile.</p>
+    <button class="btn-another" onclick="resetForm()">
+        <i class="fa fa-plus" style="margin-right:6px;"></i>Submit Another Response
+    </button>
+</div>
+
+</div><!-- /form-wrap -->
+
+<!-- FOOTER -->
+<div class="page-footer">
+    &copy; 2026 <a href="#">Polyclinique de l'Etoile</a> &mdash; Patient Feedback Portal
+    &nbsp;|&nbsp; Gasabo, Remera, Rukiri I, Kigali &nbsp;|&nbsp;
+    <i class="fa fa-phone" style="margin-right:3px;"></i> Free Call 1301
+</div>
+
+<script>
+var selDept = '';
+var selRec  = '';
+
+// Set today as max date
+document.getElementById('visitDate').max = new Date().toISOString().split('T')[0];
+
+// Star label text
+var starLabels = { '1':'Very poor', '2':'Poor', '3':'Average', '4':'Good', '5':'Excellent' };
+document.querySelectorAll('input[name="overall"]').forEach(function(r) {
+    r.addEventListener('change', function() {
+        document.getElementById('overallLabel').textContent = starLabels[this.value] || '';
+    });
+});
+
+function selectDept(el, val) {
+    document.querySelectorAll('#deptGrid .dept-btn').forEach(function(b){ b.classList.remove('selected'); });
+    el.classList.add('selected');
+    var wrap = document.getElementById('otherDeptWrap');
+    if (val === 'Other') {
+        wrap.style.display = 'block';
+        selDept = '';
+    } else {
+        wrap.style.display = 'none';
+        selDept = val;
+    }
+}
+
+function selectRec(el, val) {
+    document.querySelectorAll('.rec-btn').forEach(function(b){ b.classList.remove('selected'); });
+    el.classList.add('selected');
+    selRec = val;
+}
+
+function submitFeedback() {
+    // Validate required fields
+    var overall = document.querySelector('input[name="overall"]:checked');
+    var wentWell = document.getElementById('wentWell').value.trim();
+
+    if (!overall) {
+        alert('Please rate your overall satisfaction before submitting.');
+        document.getElementById('stars-overall').scrollIntoView({ behavior:'smooth', block:'center' });
+        return;
+    }
+    if (!wentWell) {
+        alert('Please tell us at least one thing that went well during your visit.');
+        document.getElementById('wentWell').focus();
+        return;
+    }
+
+    // Get "Other" dept if applicable
+    var dept = selDept;
+    if (!dept) {
+        var otherVal = document.getElementById('otherDeptInput').value.trim();
+        dept = otherVal || 'Not specified';
+    }
+
+    var staffR = document.querySelector('input[name="staff"]:checked');
+    var cleanR = document.querySelector('input[name="clean"]:checked');
+    var waitR  = document.querySelector('input[name="wait"]:checked');
+
+    var payload = {
+        department:      dept,
+        visit_date:      document.getElementById('visitDate').value,
+        visit_time:      document.getElementById('visitTime').value,
+        rating_overall:  overall.value,
+        rating_staff:    staffR ? staffR.value : '',
+        rating_clean:    cleanR ? cleanR.value : '',
+        rating_wait:     waitR  ? waitR.value  : '',
+        went_well:       wentWell,
+        improve:         document.getElementById('improve').value.trim(),
+        recommend:       selRec,
+        patient_name:    document.getElementById('patientName').value.trim(),
+        patient_contact: document.getElementById('patientContact').value.trim()
+    };
+
+    // Show success immediately
+    document.getElementById('formCard').style.display = 'none';
+    document.getElementById('successScreen').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Send to server in background
+    var fd = new FormData();
+    fd.append('action', 'submit_feedback');
+    Object.keys(payload).forEach(function(k){ fd.append(k, payload[k]); });
+    fetch('feedback-action.php', { method:'POST', body:fd }).catch(function(){});
+}
+
+function resetForm() {
+    selDept = ''; selRec = '';
+    document.getElementById('formCard').style.display = '';
+    document.getElementById('successScreen').classList.remove('active');
+    document.querySelectorAll('.dept-btn, .rec-btn').forEach(function(b){ b.classList.remove('selected'); });
+    document.getElementById('otherDeptWrap').style.display = 'none';
+    document.getElementById('otherDeptInput').value = '';
+    document.getElementById('visitDate').value = '';
+    document.getElementById('visitTime').value = '';
+    document.querySelectorAll('input[type="radio"]').forEach(function(r){ r.checked = false; });
+    document.getElementById('overallLabel').textContent = '';
+    document.getElementById('wentWell').value = '';
+    document.getElementById('improve').value = '';
+    document.getElementById('patientName').value = '';
+    document.getElementById('patientContact').value = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
