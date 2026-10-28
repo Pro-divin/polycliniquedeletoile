@@ -9,9 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0d6efd;
-            --primary-dark: #0a58ca;
-            --primary-light: #cfe2ff;
+            --primary: #15B9D9;
+            --primary-dark: #0f8fa8;
+            --primary-light: #d4f4fb;
         }
         body { font-family:'Open Sans',sans-serif; background:#f0f4f8; margin:0; }
 
@@ -140,7 +140,7 @@
             padding:3px 10px; font-size:11.5px; font-weight:700; white-space:nowrap;
         }
         /* Status */
-        .s-new          { background:#cfe2ff; color:#0d6efd; }
+        .s-new          { background:#d4f4fb; color:#15B9D9; }
         .s-acknowledged { background:#FFF8E1; color:#F57F17; }
         .s-inprogress   { background:#d1e7dd; color:#0a3622; }
         .s-waiting      { background:#fff3cd; color:#664d03; }

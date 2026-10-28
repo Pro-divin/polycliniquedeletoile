@@ -9,10 +9,10 @@ session_write_close(); // Release session lock immediately — page doesn't need
 
 // Per-department colours and icons
 $deptMeta = [
-    'IT'       => ['color'=>'#0d6efd','dark'=>'#0a58ca','light'=>'#cfe2ff','icon'=>'fa-laptop',        'label'=>'IT Department'],
-    'Finance'  => ['color'=>'#0d6efd','dark'=>'#0a58ca','light'=>'#cfe2ff','icon'=>'fa-money',          'label'=>'Finance Department'],
-    'HR'       => ['color'=>'#0d6efd','dark'=>'#0a58ca','light'=>'#cfe2ff','icon'=>'fa-users',           'label'=>'Human Resources'],
-    'Logistics'=> ['color'=>'#0d6efd','dark'=>'#0a58ca','light'=>'#cfe2ff','icon'=>'fa-truck',          'label'=>'Logistics Department'],
+    'IT'       => ['color'=>'#15B9D9','dark'=>'#0f8fa8','light'=>'#d4f4fb','icon'=>'fa-laptop',        'label'=>'IT Department'],
+    'Finance'  => ['color'=>'#15B9D9','dark'=>'#0f8fa8','light'=>'#d4f4fb','icon'=>'fa-money',          'label'=>'Finance Department'],
+    'HR'       => ['color'=>'#15B9D9','dark'=>'#0f8fa8','light'=>'#d4f4fb','icon'=>'fa-users',           'label'=>'Human Resources'],
+    'Logistics'=> ['color'=>'#15B9D9','dark'=>'#0f8fa8','light'=>'#d4f4fb','icon'=>'fa-truck',          'label'=>'Logistics Department'],
 ];
 $m = $deptMeta[$dept] ?? ['color'=>'#198754','dark'=>'#146c43','light'=>'#d1e7dd','icon'=>'fa-inbox','label'=>$dept.' Department'];
 
@@ -121,7 +121,7 @@ if (!empty($conn)) {
             display:inline-block; border-radius:5px;
             padding:3px 10px; font-size:11.5px; font-weight:700; white-space:nowrap;
         }
-        .s-new          { background:#cfe2ff; color:#0d6efd; }
+        .s-new          { background:#d4f4fb; color:#15B9D9; }
         .s-acknowledged { background:#FFF8E1; color:#F57F17; }
         .s-inprogress   { background:#d1e7dd; color:#0a3622; }
         .s-waiting      { background:#fff3cd; color:#664d03; }
