@@ -118,7 +118,7 @@ s0.parentNode.insertBefore(s1,s0);
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Gynecology & Obstetrics </h5>
+                                    <h5 class="mb-4">Gynecology <span style="font-family:Arial,sans-serif;">&amp;</span> Obstetrics </h5>
                                     <p class="mb-4">We are concerned with women’s health, before, during and after the reproductive years. We focus on childbirth, providing pre-natal care and pregnancy support along with post-partum care.</p>
                                     <a href="gynecology" class="btn btn-primary text-white py-2 px-4 mb-2" style="position: relative;font-family:Playfair Display;">More</a>
                                 </div>
@@ -247,8 +247,8 @@ s0.parentNode.insertBefore(s1,s0);
                             <a href=""><i class="fas fa-angle-right me-2"></i> About Us</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms & Conditions</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Our Blog & News</a>
+                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms <span style="font-family:Arial,sans-serif;">&amp;</span> Conditions</a>
+                            <a href=""><i class="fas fa-angle-right me-2"></i> Our Blog <span style="font-family:Arial,sans-serif;">&amp;</span> News</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Our Team</a>
                         </div>
                     </div>

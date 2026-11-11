@@ -135,8 +135,8 @@ s0.parentNode.insertBefore(s1,s0);
                             <a href=""><i class="fas fa-angle-right me-2"></i> About Us</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms & Conditions</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Our Blog & News</a>
+                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms <span style="font-family:Arial,sans-serif;">&amp;</span> Conditions</a>
+                            <a href=""><i class="fas fa-angle-right me-2"></i> Our Blog <span style="font-family:Arial,sans-serif;">&amp;</span> News</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Our Team</a>
                         </div>
                     </div>
