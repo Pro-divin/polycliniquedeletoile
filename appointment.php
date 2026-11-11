@@ -106,7 +106,7 @@ $subject = "Patient Request";
 
 $email_subject = $subject;
 $email_body = $htmlContent ;
-$to = $mail_username;
+$to = "support@polycliniquedeletoile.com";
 
 //echo $to."<br><br>".$email_subject."<br><br>".$email_body;
 
@@ -355,7 +355,8 @@ s0.parentNode.insertBefore(s1,s0);
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Contact Info</h4>
                             <a href=""><i class="fas fa-map-marker-alt me-2"></i>  KG 1 Ave, Kigali, Gasabo, Remera, Rukiri I, Ubumwe Rwanda.</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i>polycliniquedeletoile2020@gmail.com</a>
+                            <a href="mailto:support@polycliniquedeletoile.com"><i class="fas fa-envelope me-2"></i>support@polycliniquedeletoile.com</a>
+                            <a href="mailto:info@polycliniquedeletoile.com"><i class="fas fa-envelope me-2"></i>info@polycliniquedeletoile.com</a>
                             <a href=""><i class="fas fa-phone me-2"></i>Free Call : 1301</a>
                             <a href="" class="mb-3"><i class="fa fa-whatsapp me-2"></i>Reception Call And Whatsapp : 0790008754</a>
                         </div>
