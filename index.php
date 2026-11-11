@@ -198,10 +198,10 @@ s0.parentNode.insertBefore(s1,s0);
         <div class="container-fluid position-relative p-0">
 
             <!-- CT Scan Advertisement Banner Start -->
-            <div style="display:flex; width:100%; height:480px; overflow:hidden;">
+            <div class="ct-banner" style="display:flex; width:100%; overflow:hidden;">
 
                 <!-- Left: text panel, plain dark background, no image -->
-                <div style="flex:0 0 42%; background:var(--bs-primary); display:flex; flex-direction:column;
+                <div class="ct-text-panel" style="flex:0 0 42%; background:var(--bs-primary); display:flex; flex-direction:column;
                             justify-content:center; padding:48px 50px;">
                     <h2 style="font-family:'Playfair Display', serif; color:#fff;
                                font-size:clamp(1.4rem, 2.5vw, 2.2rem); font-weight:700;
@@ -224,7 +224,7 @@ s0.parentNode.insertBefore(s1,s0);
                 </div>
 
                 <!-- Right: clean image, absolutely no overlay -->
-                <div style="flex:1; overflow:hidden;">
+                <div class="ct-img-panel" style="flex:1; overflow:hidden;">
                     <img src="1800x1200_ct_scan_machine_bigbead.webp" alt="CT Scan Machine"
                          style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
                 </div>
@@ -309,6 +309,52 @@ s0.parentNode.insertBefore(s1,s0);
             <style>
                 #ctScanModal { display:none !important; }
                 #ctScanModal.active { display:flex !important; }
+
+                /* ── MOBILE FIXES ── */
+                @media (max-width: 767px) {
+                    /* CT Banner: stack vertically */
+                    .ct-banner { flex-direction: column !important; height: auto !important; }
+                    .ct-text-panel { flex: none !important; width: 100% !important; padding: 32px 24px !important; }
+                    .ct-img-panel { flex: none !important; width: 100% !important; height: 220px !important; }
+                    .ct-img-panel img { height: 220px !important; }
+                    .starting-soon-badge { font-size: 12px !important; letter-spacing: 2px !important; padding: 10px 18px !important; }
+
+                    /* Welcome section */
+                    .welcome-section { padding: 40px 0 !important; }
+                    .welcome-heading { font-size: 1.7rem !important; }
+                    .welcome-desc { font-size: 1rem !important; max-width: 100% !important; }
+                    .welcome-img-col video { height: 240px !important; }
+
+                    /* Carousel text */
+                    .header-carousel-item .carousel-caption-content h1 { font-size: 1.8rem !important; margin-top: 20px !important; letter-spacing: 1px !important; }
+                    .header-carousel-item .carousel-caption-content p { font-size: 0.9rem !important; margin-top: 10px !important; }
+                    .header-carousel-item .carousel-caption-content .btn { padding: 10px 24px !important; font-size: 13px !important; }
+
+                    /* Schedule table */
+                    .tables { overflow-x: auto !important; }
+                    .tables table { min-width: 700px !important; font-size: 12px !important; }
+                    .tables th, .tables td { padding: 6px 8px !important; white-space: nowrap; }
+
+                    /* Book Appointment CTA */
+                    .container-fluid .col-lg-4.text-lg-end { text-align: center !important; }
+
+                    /* Contact strip */
+                    .contact-strip-item { justify-content: center !important; }
+
+                    /* Partners image */
+                    .service-img img[style*="height:550px"] { height: 220px !important; }
+
+                    /* Stats bar */
+                    .col-6 [style*="border-right"] { border-right: none !important; }
+                }
+
+                @media (max-width: 991px) {
+                    /* CT Banner on tablet: also stack */
+                    .ct-banner { flex-direction: column !important; height: auto !important; }
+                    .ct-text-panel { flex: none !important; width: 100% !important; padding: 40px 36px !important; }
+                    .ct-img-panel { flex: none !important; width: 100% !important; height: 300px !important; }
+                    .ct-img-panel img { height: 300px !important; }
+                }
 
                 /* Services flyout menu */
                 .svc-nav-wrap { position:relative; }
@@ -1183,14 +1229,14 @@ s0.parentNode.insertBefore(s1,s0);
         <!-- Team Start -->
 
 
-        <div class="container-fluid team py-5" style="position: relative;top: -100px!important;">
+        <div class="container-fluid team py-5">
         <div class="sub-style">
         <h4 class="paragraph" style="position: relative;text-align: center;color:#0f96bf!important">Doctor's Schedule</h4><br><br>
         </div>
         <div class="col-md-12">
         <div class="row">
-        <div class="tables">
-        <table class="table table-bordered">
+        <div class="tables" style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+        <table class="table table-bordered" style="min-width:700px;">
         <tr style="position: relative;background:#0f96bf!important;font-family:Playfair Display!important;color:white!important;">
         <th>Speciality</th>
         <th>Doctor Name</th>
