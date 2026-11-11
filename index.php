@@ -705,7 +705,7 @@ s0.parentNode.insertBefore(s1,s0);
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Gynecology & Obstetrics </h5>
+                                    <h5 class="mb-4">Gynecology &amp; Obstetrics </h5>
                                     <p class="mb-4"></p>
                                     <!-- <a href="gynecology" class="btn btn-primary text-white py-2 px-4 mb-2" style="position: relative;font-family:Playfair Display;">More</a> -->
                                 </div>
@@ -793,7 +793,7 @@ s0.parentNode.insertBefore(s1,s0);
                            </div>
                             <div class="service-content rounded-bottom bg-light p-4">
                                 <div class="service-content-inner">
-                                    <h5 class="mb-4">Endoscopy & Colonoscopy</h5>
+                                    <h5 class="mb-4">Endoscopy &amp; Colonoscopy</h5>
                                     <p class="mb-4"></p>
                                    <!--  <a href="endoscopy" class="btn btn-primary text-white py-2 px-4 mb-2" style="position: relative;font-family:Playfair Display;">More</a> -->
                                 </div>
@@ -1459,8 +1459,8 @@ s0.parentNode.insertBefore(s1,s0);
                             <a href=""><i class="fas fa-angle-right me-2"></i> About Us</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms & Conditions</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Our Blog & News</a>
+                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms &amp; Conditions</a>
+                            <a href=""><i class="fas fa-angle-right me-2"></i> Our Blog &amp; News</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Our Team</a>
                         </div>
                     </div>
@@ -1468,7 +1468,7 @@ s0.parentNode.insertBefore(s1,s0);
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Clinic Services</h4>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Pediatrics</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Gynecolgy & Obstetrics </a>
+                            <a href=""><i class="fas fa-angle-right me-2"></i> Gynecology &amp; Obstetrics</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Internal Medicine</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Dental</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> General Medicine</a>
