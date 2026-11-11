@@ -58,14 +58,13 @@ function sendemail($to,$email_body,$email_subject)
     $mail->AddAddress("$to");
 
      if(!$mail->Send()) {
-        return "failure";
+        file_put_contents(__DIR__.'/mail_error.log', date('Y-m-d H:i:s').' '.$mail->ErrorInfo."\n", FILE_APPEND);
+        return "failure:".$mail->ErrorInfo;
      } else {
         return "success";
      }
-
-    
 }
-        
+
 $htmlContent=
 '<html>
 <head>
@@ -110,7 +109,8 @@ $to = "info@polycliniquedeletoile.com";
 
 //echo $to."<br><br>".$email_subject."<br><br>".$email_body;
 
-$emailres=sendemail($to,$email_body,$email_subject); 
+$emailres=sendemail($to,$email_body,$email_subject);
+file_put_contents(__DIR__.'/mail_error.log', date('Y-m-d H:i:s').' RESULT: '.$emailres."\n", FILE_APPEND);
 //end mail
 
  header('location:appointment');
