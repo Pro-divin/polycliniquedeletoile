@@ -139,7 +139,119 @@
     border-left-color:var(--bs-primary);
     padding-left:22px;
 }
+
+/* ── MOBILE NAV ── */
+@media (max-width: 991px) {
+    /* Services flyout becomes a stacked accordion inside collapsed nav */
+    .svc-flyout-root {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border-top: none !important;
+        border-radius: 0 !important;
+        pointer-events: all !important;
+        display: none;
+        background: #f8f9fa;
+        padding: 0 0 0 12px;
+        transition: none !important;
+    }
+    .svc-flyout-root.mob-open { display: block !important; }
+
+    .svc-nav-wrap:hover .svc-flyout-root {
+        display: none; /* disable hover on mobile */
+    }
+    .svc-nav-wrap.mob-open .svc-flyout-root { display: block !important; }
+
+    .svc-main-list { padding: 4px 0; }
+    .svc-main-item {
+        padding: 10px 14px;
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+    }
+    .svc-main-item:hover { background: transparent !important; color: #333 !important; }
+    .svc-main-item:hover a, .svc-main-item:hover span { color: #333 !important; }
+    .svc-main-item:hover i { color: #aaa !important; }
+
+    /* Sub-lists: also stacked, not flyout */
+    .svc-sub-list {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border-left: 2px solid var(--bs-primary) !important;
+        border-radius: 0 !important;
+        pointer-events: all !important;
+        display: none;
+        padding: 4px 0 4px 10px;
+        min-width: unset !important;
+    }
+    .svc-sub-list::before { display: none; }
+    .svc-main-item.mob-sub-open .svc-sub-list { display: block !important; }
+    .svc-main-item:hover .svc-sub-list { display: none; } /* disable hover */
+
+    /* Sub-sub lists */
+    .svc-sub-sub-list {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border-right: none !important;
+        border-left: 2px solid #ccc !important;
+        border-radius: 0 !important;
+        pointer-events: all !important;
+        display: none;
+        padding: 2px 0 2px 10px;
+        min-width: unset !important;
+    }
+    .svc-sub-sub-list::before { display: none; }
+    .svc-sub-item-has-sub.mob-sub-open .svc-sub-sub-list { display: block !important; }
+    .svc-sub-item-has-sub:hover .svc-sub-sub-list { display: none; }
+
+    /* Chevron rotation feedback */
+    .svc-arrow { transition: transform 0.2s; }
+    .mob-sub-open > .svc-arrow { transform: rotate(90deg); }
+}
 </style>
+
+<script>
+/* Mobile nav: toggle Services flyout and sub-lists on tap */
+(function(){
+    function isMobile(){ return window.innerWidth < 992; }
+
+    /* Main Services trigger */
+    var trigger = document.querySelector('.svc-nav-trigger');
+    var wrap    = document.querySelector('.svc-nav-wrap');
+    if(trigger && wrap){
+        trigger.addEventListener('click', function(e){
+            if(!isMobile()) return;
+            e.preventDefault();
+            wrap.classList.toggle('mob-open');
+        });
+    }
+
+    /* Sub-list toggles (items with has-sub) */
+    document.querySelectorAll('.svc-main-item.has-sub').forEach(function(item){
+        item.addEventListener('click', function(e){
+            if(!isMobile()) return;
+            e.stopPropagation();
+            item.classList.toggle('mob-sub-open');
+        });
+    });
+
+    /* Sub-sub-list toggles */
+    document.querySelectorAll('.svc-sub-item-has-sub').forEach(function(item){
+        item.addEventListener('click', function(e){
+            if(!isMobile()) return;
+            e.stopPropagation();
+            item.classList.toggle('mob-sub-open');
+        });
+    });
+})();
+</script>
 
         <!-- Topbar Start -->
         <div class="container-fluid bg-dark px-5 d-none d-lg-block">
