@@ -36,33 +36,14 @@ $Time = date('Y').'-'.date('m').'-'.date('d');
 //start email  
 function sendemail($to,$email_body,$email_subject)
 {
-    global $mail_host, $mail_port, $mail_smtp_secure, $mail_username, $mail_password, $mail_from_name;
+    $headers  = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: Polyclinique de l'Etoile <info@polycliniquedeletoile.com>\r\n";
+    $headers .= "Reply-To: info@polycliniquedeletoile.com\r\n";
 
- require("phpmailer/src/PHPMailer.php");
- require("phpmailer/src/SMTP.php");
- require("phpmailer//src/Exception.php");
-
-    $mail = new PHPMailer\PHPMailer\PHPMailer();
-    $mail->IsSMTP(); // enable SMTP
-
-    $mail->SMTPAuth = true; // authentication enabled
-    $mail->SMTPSecure = $mail_smtp_secure; // secure transfer enabled REQUIRED for Gmail
-    $mail->Host = $mail_host;
-    $mail->Port = $mail_port; // or 587
-    $mail->IsHTML(true);
-    $mail->Username = $mail_username;
-    $mail->Password = $mail_password;
-    $mail->SetFrom($mail_username, $mail_from_name);
-    $mail->Subject = "$email_subject";
-    $mail->Body = "$email_body";
-    $mail->AddAddress("$to");
-
-     if(!$mail->Send()) {
-        file_put_contents(__DIR__.'/mail_error.log', date('Y-m-d H:i:s').' '.$mail->ErrorInfo."\n", FILE_APPEND);
-        return "failure:".$mail->ErrorInfo;
-     } else {
-        return "success";
-     }
+    $sent = mail($to, $email_subject, $email_body, $headers);
+    file_put_contents(__DIR__.'/mail_error.log', date('Y-m-d H:i:s').' RESULT: '.($sent?'success':'failure')."\n", FILE_APPEND);
+    return $sent ? "success" : "failure";
 }
 
 $htmlContent=
